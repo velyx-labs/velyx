@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Registry API v1 endpoints
-Route::prefix('v1')->group(function () {
+Route::domain(config('app.domains.api'))->prefix('v1')->group(function () {
     // Component endpoints
     Route::get('/components', [ComponentController::class, 'index']);
     Route::get('/components/{name}', [ComponentController::class, 'show']);
