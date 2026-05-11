@@ -1,5 +1,8 @@
 # Velyx UI
 
+![Registry Tests](https://github.com/velyx-dev/velyx/actions/workflows/registry-tests.yml/badge.svg)
+![Codecov](https://codecov.io/gh/velyx-dev/velyx/branch/main/graph/badge.svg?flag=registry)
+
 Beautifully designed components for Laravel, built with [Livewire](https://livewire.laravel.com), [Alpine.js](https://alpinejs.dev), and [Tailwind CSS](https://tailwindcss.com).
 
 ## Introduction

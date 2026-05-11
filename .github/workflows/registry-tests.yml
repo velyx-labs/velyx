@@ -1,0 +1,54 @@
+name: Registry Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    name: Registry Tests (PHP ${{ matrix.php-version }})
+
+    strategy:
+      matrix:
+        php-version: ['8.4']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Copy .env
+        working-directory: ./registry
+        run: cp .env.example .env || cp .env.testing .env || echo "APP_ENV=testing" > .env
+
+      - name: Install Dependencies
+        working-directory: ./registry
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Install Node dependencies
+        working-directory: ./registry
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Tests with Coverage
+        working-directory: ./registry
+        run: vendor/bin/pest --coverage --coverage-xml=coverage.xml
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./registry/coverage.xml
+          flags: registry
+          name: registry-coverage
+          fail_ci_if_error: false
