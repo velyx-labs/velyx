@@ -12,9 +12,10 @@
     <script>
         (function () {
             const theme = localStorage.getItem('theme');
-            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const resolvedTheme = theme === 'dark' || theme === 'light' ? theme : (prefersDark ? 'dark' : 'light');
+            document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+            document.documentElement.dataset.theme = resolvedTheme;
         })();
     </script>
 </head>
@@ -22,6 +23,6 @@
     <livewire:docs.header />
     {{ $slot }}
     <livewire:docs.footer />
-    @livewireScripts
+    @livewireScriptConfig
 </body>
 </html>

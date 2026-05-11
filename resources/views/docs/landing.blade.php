@@ -21,7 +21,7 @@
 
                 <div class="mt-9 flex animate-fade-in flex-wrap justify-center gap-3">
                     <x-ui.button href="/docs/installation" size="lg" iconRight="arrow-right">Get Started</x-ui.button>
-                    <x-ui.button href="/docs/components/button" variant="outline" size="lg" iconRight="arrow-right">Browse Components</x-ui.button>
+                    <x-ui.button href="/docs/components" variant="outline" size="lg" iconRight="arrow-right">Browse Components</x-ui.button>
                 </div>
 
                 <div class="mt-14 grid animate-fade-in overflow-hidden rounded-2xl border border-border md:grid-cols-3">

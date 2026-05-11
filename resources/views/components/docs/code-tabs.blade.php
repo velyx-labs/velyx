@@ -44,7 +44,7 @@
         // Dispatch event for other code-tabs instances
         window.dispatchEvent(new CustomEvent('velyx-pm-changed', { detail: { pm } }));
     }
-}" class="code-tabs bg-muted/50 relative" x-init="init()">
+}" class="code-tabs bg-muted/50 relative mb-4" x-init="init()">
     <!-- Tabs header -->
     <div class="flex items-center gap-2 px-3 py-1 mb-0 overflow-x-auto">
         <div class="flex size-4 items-center justify-center rounded-[1px] ">

@@ -34,14 +34,19 @@ class DocsController extends Controller
     {
         $normalized = Str::of($page)->trim('/')->replace('_', '-')->toString();
         $view = 'docs.pages.'.str_replace('/', '.', $normalized);
+        $data = [
+            'title' => Str::headline(basename($normalized)).' - Velyx',
+        ];
 
         if (! view()->exists($view)) {
             abort(404);
         }
 
-        return view($view, [
-            'title' => Str::headline(basename($normalized)).' - Velyx',
-        ]);
+        if ($normalized === 'components') {
+            $data['components'] = $this->components->getAllComponents();
+        }
+
+        return view($view, $data);
     }
 
     public function component(string $component): View

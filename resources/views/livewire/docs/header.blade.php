@@ -13,10 +13,14 @@
 
                 <nav class="hidden items-center gap-1 text-sm font-medium md:flex" aria-label="Main navigation">
                     <a href="/docs/installation" class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Get Started</a>
-                    <a href="/docs/components/button" class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Component Library</a>
+                    <a href="/docs/components" class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Component Library</a>
                     <a href="https://github.com/velyx-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">
                         <x-icons.github class="h-4 w-4 text-foreground" />
                         GitHub
+                    </a>
+                    <a href="https://gvcjmaad.mychariow.shop/velyx-dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">
+                        <x-lucide-heart class="h-4 w-4 text-red-600" />
+                        Support
                     </a>
                 </nav>
             </div>
@@ -24,8 +28,7 @@
             <div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
                 <button
                     type="button"
-                    onclick="const html = document.documentElement; html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');"
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    class="dark-mode-toggle inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     aria-label="Toggle dark mode"
                 >
                     <x-lucide-sun class="h-[1.1rem] w-[1.1rem] dark:hidden" />
@@ -55,7 +58,8 @@
             <div class="border-t border-border py-4 md:hidden">
                 <nav class="grid gap-2 text-sm">
                     <a wire:click="closeMobileNavigation" href="/docs/installation" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Get Started</a>
-                    <a wire:click="closeMobileNavigation" href="/docs/components/button" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Component Library</a>
+                    <a wire:click="closeMobileNavigation" href="/docs/components" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Component Library</a>
+                    <a wire:click="closeMobileNavigation" href="https://gvcjmaad.mychariow.shop/velyx-dev" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Support</a>
                     <a wire:click="closeMobileNavigation" href="/api/v1/components" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Registry API</a>
                 </nav>
             </div>

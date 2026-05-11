@@ -81,7 +81,7 @@
     </script>
 
     @stack('previewScripts')
-    @livewireScripts
+    @livewireScriptConfig
     
     <!-- Initialize theme -->
     <script>

@@ -24,7 +24,7 @@
                         <p class="text-xs font-semibold uppercase tracking-normal text-muted-foreground">Explore</p>
                         <div class="mt-4 flex flex-col gap-3 text-sm">
                             <a href="/docs/installation" class="text-muted-foreground transition-colors hover:text-foreground">Get Started</a>
-                            <a href="/docs/components/button" class="text-muted-foreground transition-colors hover:text-foreground">Component Library</a>
+                            <a href="/docs/components" class="text-muted-foreground transition-colors hover:text-foreground">Component Library</a>
                             <a href="/" class="text-muted-foreground transition-colors hover:text-foreground">Homepage</a>
                         </div>
                     </div>
@@ -34,6 +34,10 @@
                         <div class="mt-4 flex flex-col gap-3 text-sm">
                             <a href="https://github.com/velyx-labs" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">GitHub</a>
                             <a href="https://x.com/velyxdev" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">X</a>
+                            <a href="https://gvcjmaad.mychariow.shop/velyx-dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                                <x-lucide-heart class="h-4 w-4 text-red-600" />
+                                Support
+                            </a>
                         </div>
                     </div>
                 </div>
