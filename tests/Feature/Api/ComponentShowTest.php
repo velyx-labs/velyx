@@ -1,7 +1,7 @@
 <?php
 
 test('can get component details', function () {
-    $response = $this->getJson('/api/v1/components/button');
+    $response = $this->getJson(route('components.show', 'button'));
 
     $response->assertOk()
         ->assertJsonStructure([
@@ -22,7 +22,7 @@ test('can get component details', function () {
 });
 
 test('can get specific version of component', function () {
-    $response = $this->getJson('/api/v1/components/button?version=1.0.0');
+    $response = $this->getJson(route('components.show', ['name' => 'button', 'version' => '1.0.0']));
 
     $response->assertOk()
         ->assertJsonPath('data.name', 'button')
@@ -30,7 +30,7 @@ test('can get specific version of component', function () {
 });
 
 test('component defaults to latest version when not specified', function () {
-    $response = $this->getJson('/api/v1/components/button');
+    $response = $this->getJson(route('components.show', 'button'));
 
     $response->assertOk()
         ->assertJsonPath('data.version', '1.0.0')
@@ -38,35 +38,35 @@ test('component defaults to latest version when not specified', function () {
 });
 
 test('returns 404 for non existent component', function () {
-    $response = $this->getJson('/api/v1/components/non-existent');
+    $response = $this->getJson(route('components.show', 'non-existent'));
 
     $response->assertNotFound()
         ->assertJsonPath('error', 'Component not found');
 });
 
 test('returns 404 for non existent version', function () {
-    $response = $this->getJson('/api/v1/components/button?version=9.9.9');
+    $response = $this->getJson(route('components.show', ['name' => 'button', 'version' => '9.9.9']));
 
     $response->assertNotFound()
         ->assertJsonPath('error', 'Component not found');
 });
 
 test('returns validation error for invalid version format', function () {
-    $response = $this->getJson('/api/v1/components/button?version=invalid');
+    $response = $this->getJson(route('components.show', ['name' => 'button', 'version' => 'invalid']));
 
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['version']);
 });
 
 test('returns validation error for invalid component name', function () {
-    $response = $this->getJson('/api/v1/components/InvalidName');
+    $response = $this->getJson(route('components.show', 'InvalidName'));
 
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['name']);
 });
 
 test('can include files in response', function () {
-    $response = $this->getJson('/api/v1/components/button?include=files');
+    $response = $this->getJson(route('components.show', ['name' => 'button', 'include' => 'files']));
 
     $response->assertOk()
         ->assertJsonPath('data.name', 'button')
@@ -84,7 +84,7 @@ test('can include files in response', function () {
 });
 
 test('files are empty when include parameter is not set', function () {
-    $response = $this->getJson('/api/v1/components/button');
+    $response = $this->getJson(route('components.show', 'button'));
 
     $response->assertOk();
     $data = $response->json('data');
@@ -93,7 +93,7 @@ test('files are empty when include parameter is not set', function () {
 });
 
 test('returns validation error for invalid include parameter', function () {
-    $response = $this->getJson('/api/v1/components/button?include=invalid');
+    $response = $this->getJson(route('components.show', ['name' => 'button', 'include' => 'invalid']));
 
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['include']);
@@ -125,7 +125,7 @@ test('components with assets expose blade views inside a component folder', func
     ];
 
     foreach ($components as $component) {
-        $response = $this->getJson('/api/v1/components/'.$component.'?include=files');
+        $response = $this->getJson(route('components.show', ['name' => $component, 'include' => 'files']));
 
         $response->assertOk();
 
@@ -146,7 +146,7 @@ test('components with assets expose blade views inside a component folder', func
 });
 
 test('nested blade component directories are exported correctly', function () {
-    $response = $this->getJson('/api/v1/components/accordion?include=files');
+    $response = $this->getJson(route('components.show', ['name' => 'accordion', 'include' => 'files']));
 
     $response->assertOk();
 
@@ -159,7 +159,7 @@ test('nested blade component directories are exported correctly', function () {
 });
 
 test('multi-blade components expose their root view as index.blade.php', function () {
-    $response = $this->getJson('/api/v1/components/tabs?include=files');
+    $response = $this->getJson(route('components.show', ['name' => 'tabs', 'include' => 'files']));
 
     $response->assertOk();
 
@@ -173,7 +173,7 @@ test('multi-blade components expose their root view as index.blade.php', functio
 });
 
 test('simple components expose their root view as index.blade.php', function () {
-    $response = $this->getJson('/api/v1/components/button?include=files');
+    $response = $this->getJson(route('components.show', ['name' => 'button', 'include' => 'files']));
 
     $response->assertOk();
 

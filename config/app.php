@@ -57,10 +57,8 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'domains' => [
-        'web' => parse_url((string) env('WEB_DOMAIN', env('APP_URL', 'http://localhost')), PHP_URL_HOST)
-            ?: env('WEB_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
-        'api' => parse_url((string) env('API_DOMAIN', env('WEB_DOMAIN', env('APP_URL', 'http://localhost'))), PHP_URL_HOST)
-            ?: env('API_DOMAIN', env('WEB_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST))),
+        'web' => env('WEB_DOMAIN', env('APP_URL')),
+        'api' => env('API_DOMAIN', env('APP_URL')),
     ],
 
     /*
