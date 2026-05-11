@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     {{-- Tailwind & app assets --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
     @livewireStyles
+    @vite('resources/js/app.js')
     <style>
         /* Preview-specific styles */
         * {
