@@ -32,21 +32,5 @@
                 @endforeach
             </x-ui.table.body>
         </x-ui.table>
-
-        <div class="grid gap-4 md:grid-cols-2">
-            <x-ui.card class="p-5">
-                <h2 class="font-semibold">Use gap for siblings</h2>
-                <pre class="mt-4 overflow-x-auto rounded-lg bg-muted p-4"><code class="language-php">&lt;div class="grid gap-4"&gt;
-  ...
-&lt;/div&gt;</code></pre>
-            </x-ui.card>
-
-            <x-ui.card class="p-5">
-                <h2 class="font-semibold">Use padding for surfaces</h2>
-                <pre class="mt-4 overflow-x-auto rounded-lg bg-muted p-4"><code class="language-php">&lt;div class="rounded-lg border p-4"&gt;
-  ...
-&lt;/div&gt;</code></pre>
-            </x-ui.card>
-        </div>
     </section>
 </x-docs.layout>
