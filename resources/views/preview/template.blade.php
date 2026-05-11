@@ -8,23 +8,8 @@
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-<script>
-      window.addEventListener('message', (event) => {
-          // Allow messages from configured origins
-          const allowedOrigins = [
-              window.location.origin,
-              {{ Illuminate\Support\Js::from(env('DOC_URL', [])) }}
-          ].flat();
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-          if (!allowedOrigins.includes(event.origin)) return;
-
-          if (event.data?.type === 'darkMode') {
-              const isDark = event.data.value;
-              document.documentElement.classList.toggle('dark', isDark);
-          }
-      });
-  </script>
     {{-- Tailwind & app assets --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -97,5 +82,32 @@
 
     @stack('previewScripts')
     @livewireScripts
+    
+    <!-- Initialize theme -->
+    <script>
+        // Theme initialization
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

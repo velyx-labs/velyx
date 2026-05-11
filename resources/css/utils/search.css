@@ -1,0 +1,370 @@
+/* header.css — à importer dans votre feuille de styles principale */
+
+/* ─────────────────────────────────────────
+   Header shell
+───────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  /* Isolation pour les effets de backdrop */
+  isolation: isolate;
+}
+
+.header-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: color-mix(in oklab, var(--background) 80%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* Ligne décorative en bas du header */
+.header-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    color-mix(in oklab, var(--border) 60%, transparent) 30%,
+    var(--border) 50%,
+    color-mix(in oklab, var(--border) 60%, transparent) 70%,
+    transparent 100%
+  );
+}
+
+/* Léger glow sous le header au scroll */
+.site-header::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  translate: -50% 0;
+  width: 60%;
+  height: 20px;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in oklab, var(--primary) 8%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─────────────────────────────────────────
+   Navigation links
+───────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+/* Indicateur actif */
+.nav-link[aria-current="page"] {
+  color: var(--foreground);
+  background-color: color-mix(in oklab, var(--muted) 70%, transparent);
+}
+
+.nav-link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  translate: -50% 0;
+  width: 16px;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--primary);
+}
+
+/* ─────────────────────────────────────────
+   Mobile search bar
+───────────────────────────────────────── */
+.mobile-search {
+  animation: slide-down 0.2s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─────────────────────────────────────────
+   DocSearch — thème cohérent
+───────────────────────────────────────── */
+.docsearch {
+  @apply w-full;
+}
+
+.DocSearch {
+  font-family: var(--font-sans);
+
+  /* Couleurs primaires */
+  --docsearch-primary-color: var(--primary);
+  --docsearch-highlight-color: var(--primary);
+  --docsearch-soft-primary-color: color-mix(
+    in oklab,
+    var(--primary) 10%,
+    transparent
+  );
+
+  /* Texte */
+  --docsearch-text-color: var(--foreground);
+  --docsearch-secondary-text-color: color-mix(
+    in oklab,
+    var(--foreground) 70%,
+    transparent
+  );
+  --docsearch-muted-color: var(--muted-foreground);
+  --docsearch-muted-color-darker: color-mix(
+    in oklab,
+    var(--muted-foreground) 30%,
+    transparent
+  );
+  --docsearch-icon-color: var(--muted-foreground);
+  --docsearch-hit-color: var(--foreground);
+
+  /* Fonds */
+  --docsearch-background-color: var(--background);
+  --docsearch-modal-background: var(--background);
+  --docsearch-searchbox-background: color-mix(
+    in oklab,
+    var(--muted) 65%,
+    transparent
+  );
+  --docsearch-searchbox-focus-background: var(--background);
+  --docsearch-hit-background: var(--background);
+  --docsearch-hit-highlight-color: color-mix(
+    in oklab,
+    var(--primary) 10%,
+    transparent
+  );
+  --docsearch-footer-background: var(--background);
+  --docsearch-key-background: var(--muted);
+  --docsearch-key-color: var(--muted-foreground);
+
+  /* Container overlay */
+  --docsearch-container-background: color-mix(
+    in oklab,
+    var(--background) 40%,
+    transparent
+  );
+  --docsearch-search-button-background: color-mix(
+    in oklab,
+    var(--background) 70%,
+    transparent
+  );
+  --docsearch-search-button-text-color: var(--muted-foreground);
+
+  /* Ombres */
+  --docsearch-modal-shadow:
+    0 24px 56px color-mix(in oklab, #000 20%, transparent),
+    0 4px 16px color-mix(in oklab, #000 10%, transparent);
+  --docsearch-hit-shadow: 0 1px 0 0
+    color-mix(in oklab, var(--border) 80%, transparent);
+  --docsearch-footer-shadow: 0 -1px 0 0
+    color-mix(in oklab, var(--border) 80%, transparent);
+
+  /* Dimensions */
+  --docsearch-border-radius: 16px;
+  --docsearch-modal-width: 860px;
+  --docsearch-modal-height: 640px;
+  --docsearch-modal-variable-height: 70dvh;
+  --docsearch-searchbox-height: 52px;
+  --docsearch-searchbox-initial-height: 52px;
+  --docsearch-footer-height: 56px;
+}
+
+/* Dark mode overrides */
+.dark .DocSearch {
+  --docsearch-modal-shadow:
+    0 24px 64px color-mix(in oklab, #000 60%, transparent),
+    0 4px 20px color-mix(in oklab, #000 40%, transparent);
+  --docsearch-container-background: color-mix(in oklab, #000 40%, transparent);
+  --docsearch-search-button-background: color-mix(
+    in oklab,
+    var(--background) 88%,
+    transparent
+  );
+}
+
+/* ── Bouton trigger ── */
+.DocSearch-Button {
+  @apply inline-flex items-center gap-2.5 rounded-lg border border-border/70;
+  @apply bg-muted/50 px-3 py-2 text-sm text-muted-foreground;
+  @apply transition-all duration-200 ease-out;
+  @apply hover:bg-muted hover:text-foreground hover:border-border;
+  @apply hover:shadow-sm;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  @apply backdrop-blur-sm;
+}
+
+.docsearch .DocSearch-Button {
+  @apply w-full justify-between md:w-auto;
+}
+
+.DocSearch-Button-Placeholder {
+  @apply hidden md:inline text-sm;
+}
+
+.DocSearch-Button-Key {
+  @apply inline-flex items-center rounded border border-border/60 bg-background/80 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground/80;
+}
+
+.DocSearch-Button-Keys {
+  @apply inline-flex items-center gap-1;
+}
+
+/* ── Modal ── */
+.DocSearch-Modal {
+  @apply rounded-2xl border border-border/60 shadow-2xl;
+  animation: modal-in 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Search bar ── */
+.DocSearch-SearchBar {
+  @apply border-b border-border/60;
+}
+
+.DocSearch-SearchBar form {
+  @apply p-3;
+}
+
+.DocSearch-Form {
+  @apply rounded-xl border border-border/50 bg-muted/40;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.DocSearch-Form:focus-within {
+  @apply border-border/40 outline-0;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 8%, transparent);
+}
+
+.DocSearch-Search-Icon {
+  @apply text-muted-foreground;
+}
+
+.DocSearch-Input {
+  @apply text-base text-foreground placeholder:text-muted-foreground/60 focus:border-border;
+}
+
+/* ── Results ── */
+.DocSearch-Dropdown {
+  @apply px-3 pb-3;
+}
+
+.DocSearch-Hits {
+  @apply space-y-1.5;
+}
+
+.DocSearch-Hit {
+  @apply rounded-xl border border-border/50 bg-background transition-all duration-150 shadow-sm;
+}
+
+.DocSearch-Hit a {
+  @apply p-4 rounded-xl;
+}
+
+.DocSearch-Hit[aria-selected="true"] {
+  @apply border-primary/40 bg-primary/5 shadow-md;
+}
+
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-Title {
+  @apply text-primary;
+}
+
+.DocSearch-Hit-Container {
+  @apply gap-4;
+}
+
+.DocSearch-Hit-icon {
+  @apply text-muted-foreground/70;
+}
+
+.DocSearch-Hit-Title {
+  @apply text-sm font-semibold text-foreground leading-snug;
+}
+
+.DocSearch-Hit-Path {
+  @apply text-xs text-muted-foreground/70 mt-0.5;
+}
+
+.DocSearch-Hit-description {
+  @apply text-xs text-muted-foreground/80 leading-relaxed;
+}
+
+/* ── Footer ── */
+.DocSearch-Footer {
+  @apply border-t border-border/60 px-4;
+}
+
+.DocSearch-Commands-Key {
+  @apply rounded-md border border-border/50 bg-muted text-muted-foreground px-1.5 py-0.5 text-[11px];
+}
+
+.DocSearch-Footer-Logo {
+  @apply opacity-70 hover:opacity-100 transition-opacity;
+}
+
+.DocSearch-Footer-Commands {
+  @apply text-xs text-muted-foreground/80;
+}
+
+/* ─────────────────────────────────────────
+   Responsive — Mobile
+───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .DocSearch {
+    --docsearch-modal-width: 100%;
+    --docsearch-modal-height: 88dvh;
+    --docsearch-modal-variable-height: 88dvh;
+    --docsearch-searchbox-height: 48px;
+    --docsearch-searchbox-initial-height: 48px;
+    --docsearch-border-radius: 12px;
+  }
+
+  .DocSearch-Modal {
+    @apply rounded-2xl rounded-b-none;
+    /* Slide up depuis le bas sur mobile */
+    animation: modal-slide-up 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes modal-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .DocSearch-Hit a {
+    @apply p-3;
+  }
+}
