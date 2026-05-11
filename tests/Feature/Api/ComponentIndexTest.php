@@ -1,7 +1,7 @@
 <?php
 
 test('can list all components', function () {
-    $response = $this->getJson('/api/v1/components');
+    $response = $this->getJson(route('components.index'));
 
     $response->assertOk()
         ->assertJsonStructure([
@@ -12,7 +12,7 @@ test('can list all components', function () {
 });
 
 test('components list has correct structure', function () {
-    $response = $this->getJson('/api/v1/components');
+    $response = $this->getJson(route('components.index'));
 
     $response->assertOk()
         ->assertJsonStructure([
@@ -34,7 +34,7 @@ test('components list has correct structure', function () {
 });
 
 test('component does not include file contents by default', function () {
-    $response = $this->getJson('/api/v1/components');
+    $response = $this->getJson(route('components.index'));
 
     $response->assertOk();
     $data = $response->json('data');

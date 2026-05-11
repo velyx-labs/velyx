@@ -7,7 +7,7 @@
 
     <div class="mb-6 flex items-center justify-between gap-4">
         <p class="text-sm text-muted-foreground">{{ count($components) }} components available</p>
-        <x-ui.button href="/api/v1/components" variant="outline" size="sm" iconRight="arrow-up-right">Registry API</x-ui.button>
+        <x-ui.button href="{{ route('components.index') }}" variant="outline" size="sm" iconRight="arrow-up-right">Registry API</x-ui.button>
     </div>
 
     <div class="grid gap-3 sm:grid-cols-2">

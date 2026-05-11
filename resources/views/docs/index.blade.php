@@ -24,7 +24,7 @@
             <x-ui.badge variant="outline" icon="database">Registry</x-ui.badge>
             <h2 class="mt-4 text-lg font-semibold">One source of truth</h2>
             <p class="mt-2 text-sm leading-6 text-muted-foreground">Metadata, previews, API responses, and documentation live in one Laravel project boundary.</p>
-            <x-ui.button href="/api/v1/components" variant="outline" size="sm" class="mt-5" iconRight="arrow-up-right">API index</x-ui.button>
+            <x-ui.button href="{{ route('components.index') }}" variant="outline" size="sm" class="mt-5" iconRight="arrow-up-right">API index</x-ui.button>
         </x-ui.card>
     </div>
 

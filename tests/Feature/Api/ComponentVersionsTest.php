@@ -1,7 +1,7 @@
 <?php
 
 test('can get component versions', function () {
-    $response = $this->getJson('/api/v1/components/button/versions');
+    $response = $this->getJson(route('components.versions', 'button'));
 
     $response->assertOk()
         ->assertJsonStructure([
@@ -17,7 +17,7 @@ test('can get component versions', function () {
 });
 
 test('versions are in correct order', function () {
-    $response = $this->getJson('/api/v1/components/button/versions');
+    $response = $this->getJson(route('components.versions', 'button'));
 
     $response->assertOk();
     $versions = $response->json('data.versions');
@@ -28,14 +28,14 @@ test('versions are in correct order', function () {
 });
 
 test('returns 404 for non existent component versions', function () {
-    $response = $this->getJson('/api/v1/components/non-existent/versions');
+    $response = $this->getJson(route('components.versions', 'non-existent'));
 
     $response->assertNotFound()
         ->assertJsonPath('error', 'Component not found');
 });
 
 test('returns validation error for invalid component name', function () {
-    $response = $this->getJson('/api/v1/components/InvalidName/versions');
+    $response = $this->getJson(route('components.versions', 'InvalidName'));
 
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['name']);

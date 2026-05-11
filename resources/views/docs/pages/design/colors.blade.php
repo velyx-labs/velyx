@@ -219,19 +219,19 @@
         </section>
 
         <section class="grid gap-4 md:grid-cols-3">
-            <a href="/docs/design/typography" wire:navigate>
+            <a href="{{ route('docs.page', 'design/typography') }}" wire:navigate>
                 <x-ui.card class="h-full p-5 transition hover:border-primary/50">
                     <div class="font-semibold">Typography</div>
                     <p class="mt-2 text-sm leading-6 text-muted-foreground">Text scale, rhythm, and font usage.</p>
                 </x-ui.card>
             </a>
-            <a href="/docs/design/spacing" wire:navigate>
+            <a href="{{ route('docs.page', 'design/spacing') }}" wire:navigate>
                 <x-ui.card class="h-full p-5 transition hover:border-primary/50">
                     <div class="font-semibold">Spacing</div>
                     <p class="mt-2 text-sm leading-6 text-muted-foreground">Layout spacing and density rules.</p>
                 </x-ui.card>
             </a>
-            <a href="/docs/theming" wire:navigate>
+            <a href="{{ route('docs.page', 'theming') }}" wire:navigate>
                 <x-ui.card class="h-full p-5 transition hover:border-primary/50">
                     <div class="font-semibold">Theming</div>
                     <p class="mt-2 text-sm leading-6 text-muted-foreground">Override tokens for your brand.</p>

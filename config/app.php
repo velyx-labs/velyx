@@ -56,6 +56,11 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'domains' => [
+        'web' => env('WEB_DOMAIN', env('APP_URL')),
+        'api' => env('API_DOMAIN', env('APP_URL')),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

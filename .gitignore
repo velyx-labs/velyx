@@ -26,3 +26,4 @@ yarn-error.log
 !/CLAUDE.md
 rr
 .rr.yaml
+coverage.xml/

@@ -74,7 +74,7 @@ jobs:
         with:
           php-version: "8.4"
           tools: composer:v2
-          coverage: none
+          coverage: xdebug
 
       - name: Cache Composer dependencies
         uses: actions/cache@v4
@@ -113,7 +113,14 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: php artisan test --compact
+        run: php artisan test --compact --coverage --coverage-xml=coverage.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml/index.xml
+          fail_ci_if_error: false
 
   build:
     name: Build assets
@@ -134,6 +141,23 @@ jobs:
           node-version: "22"
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

@@ -198,6 +198,7 @@ function initDocsUi() {
 
 window.Alpine = Alpine;
 window.Livewire = Livewire;
+window.Prism = Prism;
 registerAlpineData(Alpine);
 
 document.addEventListener("alpine:init", () => {

@@ -67,6 +67,35 @@ if (! function_exists('canonical')) {
     }
 }
 
+if (! function_exists('docs_url')) {
+    function docs_url(string $path): string
+    {
+        $path = trim($path, '/');
+
+        if ($path === '') {
+            return route('home');
+        }
+
+        if ($path === 'docs') {
+            return route('docs.index');
+        }
+
+        if ($path === 'docs/components') {
+            return route('docs.page', 'components');
+        }
+
+        if (str_starts_with($path, 'docs/components/')) {
+            return route('docs.components.show', substr($path, strlen('docs/components/')));
+        }
+
+        if (str_starts_with($path, 'docs/')) {
+            return route('docs.page', substr($path, strlen('docs/')));
+        }
+
+        return url($path);
+    }
+}
+
 if (! function_exists('get_resource_content')) {
     /**
      * Get file content from resources directory
