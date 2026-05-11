@@ -11,7 +11,7 @@
     @foreach($navigation as $section => $item)
         <section>
             <a
-                href="/{{ $item['url'] }}"
+                href="{{ docs_url($item['url']) }}"
                 class="mb-2 flex items-center justify-between rounded-md px-2 py-1.5 font-semibold text-foreground hover:bg-accent"
             >
                 <span>{{ $section }}</span>
@@ -21,7 +21,7 @@
                 @foreach(($item['children'] ?? []) as $label => $url)
                     @php $active = $currentPath === trim($url, '/'); @endphp
                     <a
-                        href="/{{ $url }}"
+                        href="{{ docs_url($url) }}"
                         @class([
                             'block rounded-md px-2 py-1.5 transition-colors',
                             'bg-accent font-medium text-accent-foreground' => $active,

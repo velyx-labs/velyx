@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 // Registry API v1 endpoints
 Route::domain(config('app.domains.api'))->prefix('v1')->group(function () {
     // Component endpoints
-    Route::get('/components', [ComponentController::class, 'index']);
-    Route::get('/components/{name}', [ComponentController::class, 'show']);
-    Route::get('/components/{name}/versions', [ComponentController::class, 'versions']);
-    Route::get('/previews/{component}/source', PreviewSourceController::class);
+    Route::prefix('components')->as('components.')->group(function () {
+        Route::get('/', [ComponentController::class, 'index'])->name('index');
+        Route::get('/{name}', [ComponentController::class, 'show'])->name('show');
+        Route::get('/{name}/versions', [ComponentController::class, 'versions'])->name('versions');
+    });
+
+    Route::get('/previews/{component}/source', PreviewSourceController::class)->name('previews.source');
 });

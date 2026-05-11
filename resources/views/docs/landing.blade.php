@@ -20,8 +20,8 @@
                 </p>
 
                 <div class="mt-9 flex animate-fade-in flex-wrap justify-center gap-3">
-                    <x-ui.button href="/docs/installation" size="lg" iconRight="arrow-right">Get Started</x-ui.button>
-                    <x-ui.button href="/docs/components" variant="outline" size="lg" iconRight="arrow-right">Browse Components</x-ui.button>
+                    <x-ui.button href="{{ route('docs.page', 'installation') }}" size="lg" iconRight="arrow-right">Get Started</x-ui.button>
+                    <x-ui.button href="{{ route('docs.page', 'components') }}" variant="outline" size="lg" iconRight="arrow-right">Browse Components</x-ui.button>
                 </div>
 
                 <div class="mt-14 grid animate-fade-in overflow-hidden rounded-2xl border border-border md:grid-cols-3">
@@ -134,7 +134,7 @@
                     </p>
 
                     <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                        <x-ui.button href="/docs/installation" size="lg" iconRight="arrow-right">Read the Docs</x-ui.button>
+                        <x-ui.button href="{{ route('docs.page', 'installation') }}" size="lg" iconRight="arrow-right">Read the Docs</x-ui.button>
                         <x-ui.button href="https://github.com/velyx-labs" variant="outline" size="lg" :lucide='false' icon="icons.github">View on GitHub</x-ui.button>
                     </div>
 

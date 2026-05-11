@@ -16,14 +16,14 @@ new class extends Component {
         class="mx-auto max-w-screen-2xl flex h-16 items-center justify-between px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <!-- Logo -->
         <div class="flex items-center">
-            <a class="flex items-center space-x-3 transition-opacity hover:opacity-80" href="/">
+            <a class="flex items-center space-x-3 transition-opacity hover:opacity-80" href="{{ route('home') }}">
                 <span class="text-xl font-bold tracking-tight">Velyx</span>
             </a>
         </div>
 
         <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center space-x-1">
-            <x-ui.button variant="outline">Components</x-ui.button>
+            <x-ui.button href="{{ route('docs.page', 'components') }}" variant="outline">Components</x-ui.button>
         </nav>
 
         <!-- Right Actions -->
@@ -60,7 +60,7 @@ new class extends Component {
             </x-ui.button>
 
             <!-- CTA -->
-            <x-ui.button variant="default" class="hidden sm:inline-flex">
+            <x-ui.button href="{{ route('docs.page', 'installation') }}" variant="default" class="hidden sm:inline-flex">
                 Get Started
             </x-ui.button>
 
@@ -82,7 +82,7 @@ new class extends Component {
         style="display: none;">
         <div class="mx-auto max-w-screen-2xl px-4 py-4 md:px-6 lg:px-8">
             <nav class="flex flex-col space-y-3">
-                <x-ui.button href="/components" variant="link">
+                <x-ui.button href="{{ route('docs.page', 'components') }}" variant="link">
                     Components
                 </x-ui.button>
 

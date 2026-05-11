@@ -7,7 +7,7 @@
 @php
     $query = array_filter(['variant' => $variant]);
     $src = route('preview.component', ['component' => $name] + $query);
-    $sourceUrl = url('/api/v1/previews/'.$name.'/source'.($variant ? '?variant='.$variant : ''));
+    $sourceUrl = route('previews.source', ['component' => $name] + $query);
 @endphp
 
 <div

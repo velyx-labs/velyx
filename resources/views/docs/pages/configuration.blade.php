@@ -112,9 +112,9 @@
         <x-ui.card class="p-5">
             <h2 class="text-lg font-semibold">Next steps</h2>
             <div class="mt-4 flex flex-wrap gap-3">
-                <x-ui.button href="/docs/theming" variant="outline" iconRight="arrow-right">Theming</x-ui.button>
-                <x-ui.button href="/docs/components" variant="outline" iconRight="arrow-right">Components</x-ui.button>
-                <x-ui.button href="/docs/cli-reference" variant="outline" iconRight="arrow-right">CLI reference</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'theming') }}" variant="outline" iconRight="arrow-right">Theming</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'components') }}" variant="outline" iconRight="arrow-right">Components</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'cli-reference') }}" variant="outline" iconRight="arrow-right">CLI reference</x-ui.button>
             </div>
         </x-ui.card>
     </section>
