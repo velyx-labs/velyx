@@ -1,3 +1,10 @@
+<?php
+use Livewire\Component;
+
+new class extends Component {
+};
+?>
+
 <x-docs.layout :title="$title">
     <x-docs.page-header
         eyebrow="Design"
@@ -29,7 +36,7 @@
             <x-ui.card class="p-5">
                 <h2 class="text-lg font-semibold">Copied code</h2>
                 <p class="mt-2 text-sm leading-6 text-muted-foreground">Components are copied into your app, so theme overrides and component edits stay under your control.</p>
-                <x-ui.button href="{{ route('docs.page', 'configuration') }}" variant="outline" class="mt-4" iconRight="arrow-right">Configuration</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'configuration') }}" wire:navigate variant="outline" class="mt-4" iconRight="arrow-right">Configuration</x-ui.button>
             </x-ui.card>
         </div>
 
@@ -46,9 +53,9 @@ $variants = [
         <x-ui.card class="p-5">
             <h2 class="text-lg font-semibold">Design guides</h2>
             <div class="mt-4 flex flex-wrap gap-3">
-                <x-ui.button href="{{ route('docs.page', 'design/colors') }}" variant="outline" iconRight="arrow-right">Colors</x-ui.button>
-                <x-ui.button href="{{ route('docs.page', 'design/typography') }}" variant="outline" iconRight="arrow-right">Typography</x-ui.button>
-                <x-ui.button href="{{ route('docs.page', 'design/spacing') }}" variant="outline" iconRight="arrow-right">Spacing</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'design/colors') }}" wire:navigate variant="outline" iconRight="arrow-right">Colors</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'design/typography') }}" wire:navigate variant="outline" iconRight="arrow-right">Typography</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'design/spacing') }}" wire:navigate variant="outline" iconRight="arrow-right">Spacing</x-ui.button>
             </div>
         </x-ui.card>
     </section>

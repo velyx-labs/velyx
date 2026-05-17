@@ -12,8 +12,7 @@
         <x-lucide-copy class="w-4 h-4" />
         <span x-show="copied" class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs bg-foreground text-background px-2 py-1 rounded whitespace-nowrap">Copied!</span>
     </button>
-
-    {{ $slot }}
+    <pre><code class="language-{{$language}}">{{ $slot }}</code></pre>
 </div>
 
 <script>

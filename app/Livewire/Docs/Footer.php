@@ -6,7 +6,4 @@ namespace App\Livewire\Docs;
 
 use Livewire\Component;
 
-class Footer extends Component
-{
-    //
-}
+class Footer extends Component {}

@@ -1,3 +1,10 @@
+<?php
+use Livewire\Component;
+
+new class extends Component {
+};
+?>
+
 <x-docs.layout :title="$title">
     <x-docs.page-header
         eyebrow="Components"

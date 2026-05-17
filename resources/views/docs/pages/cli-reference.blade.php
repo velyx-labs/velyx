@@ -1,3 +1,10 @@
+<?php
+use Livewire\Component;
+
+new class extends Component {
+};
+?>
+
 <x-docs.layout :title="$title">
     <x-docs.page-header
         eyebrow="CLI"
@@ -9,8 +16,8 @@
         <div>
             <h2 class="text-2xl font-semibold">Global Options</h2>
             <p class="mt-2 text-sm leading-6 text-muted-foreground">Display the installed CLI version.</p>
-            <pre class="mt-4 overflow-x-auto rounded-lg border bg-muted p-4"><code class="language-bash">velyx --version
-velyx -v</code></pre>
+            <x-docs.code-block language="bash"> velyx --version
+velyx -v</x-docs.code-block>
         </div>
 
         <div>
