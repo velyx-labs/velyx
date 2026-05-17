@@ -27,9 +27,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install git-cliff
-        run: |
-          curl -sSL https://github.com/orhun/git-cliff/releases/download/v0.13.0/git-cliff-0.13.0-x86_64-unknown-linux-gnu.tar.gz | tar xz
-          sudo mv git-cliff /usr/local/bin/
+        uses: kenji-miyake/setup-git-cliff@v1
 
       - name: Generate changelog
         run: git-cliff --config cliff.toml --output CHANGELOG.md
