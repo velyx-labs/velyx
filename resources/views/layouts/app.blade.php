@@ -73,8 +73,8 @@
 
 <!-- Initialize theme -->
 <script>
-    // Theme initialization
-    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    // Theme initialization - default to dark
+    if (localStorage.getItem('theme') !== 'light') {
         document.documentElement.classList.add('dark');
     } else {
         document.documentElement.classList.remove('dark');
