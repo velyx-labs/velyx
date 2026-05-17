@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+### Added
+
+- Set dark mode as default theme ([`8b308ec`](https://github.com/velyx-labs/registry/commit/8b308ecda12c54d3460f91ad1038ef13bde7e2b7))
+
 ### Fixed
 
 - Use reliable git-cliff installation action in changelog workflow ([`cf06849`](https://github.com/velyx-labs/registry/commit/cf0684964f03c891191b11ad70c0745d1d98ade0))
@@ -14,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Set up automated changelog generation via GitHub Actions ([`3cecff6`](https://github.com/velyx-labs/registry/commit/3cecff6605b49269ab8c9f53f53148e8f2f74052))
 - Update CHANGELOG.md ([`b7180e2`](https://github.com/velyx-labs/registry/commit/b7180e2a36b086f712b422a8e662f0341aa851a3))
+- Update CHANGELOG.md ([`1093f34`](https://github.com/velyx-labs/registry/commit/1093f349fead481209114e30af181182ebbf3ac5))
 
 ### Refactored
 
