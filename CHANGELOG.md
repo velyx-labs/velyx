@@ -9,16 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Set dark mode as default theme ([`8b308ec`](https://github.com/velyx-labs/registry/commit/8b308ecda12c54d3460f91ad1038ef13bde7e2b7))
+- Add mobile-friendly navigation drawer for docs sidebar ([`690924d`](https://github.com/velyx-labs/registry/commit/690924de482c11b5df7d37bf72196a7f999b002a))
 
 ### Fixed
 
 - Use reliable git-cliff installation action in changelog workflow ([`cf06849`](https://github.com/velyx-labs/registry/commit/cf0684964f03c891191b11ad70c0745d1d98ade0))
+- Prevent body scroll when sidebar drawer is open and improve drawer scrolling ([`a01e5a6`](https://github.com/velyx-labs/registry/commit/a01e5a655a81fac9de015e29293b78591c873e98))
 
 ### Miscellaneous Tasks
 
 - Set up automated changelog generation via GitHub Actions ([`3cecff6`](https://github.com/velyx-labs/registry/commit/3cecff6605b49269ab8c9f53f53148e8f2f74052))
 - Update CHANGELOG.md ([`b7180e2`](https://github.com/velyx-labs/registry/commit/b7180e2a36b086f712b422a8e662f0341aa851a3))
 - Update CHANGELOG.md ([`1093f34`](https://github.com/velyx-labs/registry/commit/1093f349fead481209114e30af181182ebbf3ac5))
+- Update CHANGELOG.md ([`ccce079`](https://github.com/velyx-labs/registry/commit/ccce079c5f3ddb14c91818d5c879fe368fdec6d9))
 
 ### Refactored
 
