@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::domain(config('app.domains.web'))->group(function () {
 
-    Route::get('/', [DocsController::class, 'landing'])->name('home');
+    Route::livewire('/', 'pages::home')->name('home');
 
     Route::get('/docs', [DocsController::class, 'home'])->name('docs.index');
     Route::get('/docs/components/{component}', [DocsController::class, 'component'])->name('docs.components.show');

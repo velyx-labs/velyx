@@ -67,6 +67,7 @@
 <livewire:partials.header />
 {{ $slot }}
 <livewire:partials.footer />
+@livewireScriptConfig
 <!-- Livewire Scripts -->
 @livewireScripts
 

@@ -21,6 +21,13 @@
     $chartColors = ['--chart-1', '--chart-2', '--chart-3', '--chart-4', '--chart-5'];
 @endphp
 
+<?php
+use Livewire\Component;
+
+new class extends Component {
+};
+?>
+
 <x-docs.layout :title="$title">
     <x-docs.page-header
         eyebrow="Design"

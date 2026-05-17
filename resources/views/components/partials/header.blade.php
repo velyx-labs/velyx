@@ -5,93 +5,86 @@
 use Livewire\Component;
 
 new class extends Component {
-    //
+    public bool $mobileNavigationOpen = false;
+
+    public function toggleMobileNavigation(): void
+    {
+        $this->mobileNavigationOpen = ! $this->mobileNavigationOpen;
+    }
+
+    public function closeMobileNavigation(): void
+    {
+        $this->mobileNavigationOpen = false;
+    }
 };
 ?>
 
-<header
-    class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-background/60"
-    x-data="{ mobileMenuOpen: false }">
-    <div
-        class="mx-auto max-w-screen-2xl flex h-16 items-center justify-between px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        <!-- Logo -->
-        <div class="flex items-center">
-            <a class="flex items-center space-x-3 transition-opacity hover:opacity-80" href="{{ route('home') }}">
-                <span class="text-xl font-bold tracking-tight">Velyx</span>
-            </a>
-        </div>
+<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80" style="--header-height: 4rem;">
+    <div class="container-wrapper px-4 lg:px-6">
+        <div class="flex h-16 items-center gap-4">
+            <div class="flex min-w-0 items-center gap-4 lg:gap-8">
+                <a href="{{ route('home') }}" class="group flex items-center gap-2.5 font-bold text-foreground transition-colors hover:text-primary">
+                    <img class="h-7 w-7 transition-transform duration-300 group-hover:rotate-6 dark:hidden" src="{{asset("assets/img/logo.svg")}}" alt="Velyx logo" width="28" height="28">
+                    <img class="hidden h-7 w-7 transition-transform duration-300 group-hover:rotate-6 dark:block" src="{{asset("assets/img/logo-dark.svg")}}" alt="Velyx logo" width="28" height="28">
+                    <span class="text-[15px] tracking-tight sm:text-[17px]">Velyx</span>
+                    <span class="ml-0.5 hidden rounded-full border border-border bg-muted/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground sm:inline-flex">
+                        Copy. Adapt. Ship.
+                    </span>
+                </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center space-x-1">
-            <x-ui.button href="{{ route('docs.page', 'components') }}" variant="outline">Components</x-ui.button>
-        </nav>
-
-        <!-- Right Actions -->
-        <div class="flex items-center space-x-4">
-            <!-- Search -->
-            <div class="hidden lg:flex relative">
-                <x-ui.input type="text" placeholder="Search components..." />
+                <nav class="hidden items-center gap-1 text-sm font-medium md:flex" aria-label="Main navigation">
+                    <a href="{{ route('docs.page', 'installation') }}" wire:navigate class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Get Started</a>
+                    <a href="{{ route('docs.page', 'components') }}" wire:navigate class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Component Library</a>
+                    <a href="https://github.com/velyx-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">
+                        <x-icons.github class="h-4 w-4 text-foreground" />
+                        GitHub
+                    </a>
+                    <a href="https://gvcjmaad.mychariow.shop/velyx-dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">
+                        <x-lucide-heart class="h-4 w-4 fill-destructive text-destructive" />
+                        Support
+                    </a>
+                </nav>
             </div>
 
-            <!-- Theme Toggle -->
-            <button
-                x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }"
-                x-init="
-                    darkMode = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                    $watch('darkMode', value => {
-                        localStorage.setItem('theme', value ? 'dark' : 'light');
-                        if (value) {
-                            document.documentElement.classList.add('dark');
-                        } else {
-                            document.documentElement.classList.remove('dark');
-                        }
-                    });
-                    if (darkMode) document.documentElement.classList.add('dark');
-                " @click="darkMode = !darkMode"
-                class="relative h-9 w-9 rounded-md hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                aria-label="Toggle theme">
-                <x-lucide-sun class="h-4 w-4 transition-all dark:hidden" />
-                <x-lucide-moon class="h-4 w-4 transition-all hidden dark:block" />
-            </button>
+            <div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
+                <button
+                    type="button"
+                    class="dark-mode-toggle inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    aria-label="Toggle dark mode"
+                >
+                    <x-lucide-sun class="h-[1.1rem] w-[1.1rem] dark:hidden" />
+                    <x-lucide-moon class="hidden h-[1.1rem] w-[1.1rem] dark:block" />
+                </button>
 
-            <!-- GitHub -->
-            <x-ui.button variant="ghost" size="sm" class="size-9 px-0" href="https://github.com/velyx-labs/ui">
-                <x-icons.github class="size-9" />
-            </x-ui.button>
-
-            <!-- CTA -->
-            <x-ui.button href="{{ route('docs.page', 'installation') }}" variant="default" class="hidden sm:inline-flex">
-                Get Started
-            </x-ui.button>
-
-            <!-- Mobile Menu Button -->
-            <button @click="mobileMenuOpen = !mobileMenuOpen"
-                class="md:hidden relative h-9 w-9 rounded-md hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center transition-colors"
-                aria-label="Toggle menu">
-                <x-lucide-menu class="h-4 w-4" x-show="!mobileMenuOpen" />
-                <x-lucide-x class="h-4 w-4" x-show="mobileMenuOpen" />
-            </button>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden border-t border-border/40 bg-background"
-        style="display: none;">
-        <div class="mx-auto max-w-screen-2xl px-4 py-4 md:px-6 lg:px-8">
-            <nav class="flex flex-col space-y-3">
-                <x-ui.button href="{{ route('docs.page', 'components') }}" variant="link">
-                    Components
+                <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate class="hidden md:inline-flex" size="sm" iconRight="arrow-right">
+                    Start Building
                 </x-ui.button>
 
-                <div class="relative pt-4 lg:hidden">
-                    <x-lucide-search class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <x-ui.input type="text" placeholder="Search components..."
-                        class="h-9 w-full rounded-md border border-input bg-background pl-10 pr-3 text-sm ring-offset-background transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
-                </div>
-            </nav>
+                <button
+                    type="button"
+                    wire:click="toggleMobileNavigation"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 md:hidden"
+                    aria-label="Toggle navigation"
+                >
+                    @if($mobileNavigationOpen)
+                        <x-lucide-x class="h-4 w-4" />
+                    @else
+                        <x-lucide-menu class="h-4 w-4" />
+                    @endif
+                </button>
+            </div>
         </div>
+
+        @if($mobileNavigationOpen)
+            <div class="border-t border-border py-4 md:hidden">
+                <nav class="grid gap-2 text-sm">
+                    <a wire:click="closeMobileNavigation" href="{{ route('docs.page', 'installation') }}" wire:navigate class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Get Started</a>
+                    <a wire:click="closeMobileNavigation" href="{{ route('docs.page', 'components') }}" wire:navigate class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Component Library</a>
+                    <a wire:click="closeMobileNavigation" href="https://gvcjmaad.mychariow.shop/velyx-dev" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Support</a>
+                    <a wire:click="closeMobileNavigation" href="{{ route('components.index') }}" class="rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground">Registry API</a>
+                </nav>
+            </div>
+        @endif
     </div>
 </header>
+

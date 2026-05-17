@@ -1,3 +1,10 @@
+<?php
+use Livewire\Component;
+
+new class extends Component {
+};
+?>
+
 <x-docs.layout :title="$title">
     <x-docs.page-header
         eyebrow="Configuration"
@@ -112,9 +119,9 @@
         <x-ui.card class="p-5">
             <h2 class="text-lg font-semibold">Next steps</h2>
             <div class="mt-4 flex flex-wrap gap-3">
-                <x-ui.button href="{{ route('docs.page', 'theming') }}" variant="outline" iconRight="arrow-right">Theming</x-ui.button>
-                <x-ui.button href="{{ route('docs.page', 'components') }}" variant="outline" iconRight="arrow-right">Components</x-ui.button>
-                <x-ui.button href="{{ route('docs.page', 'cli-reference') }}" variant="outline" iconRight="arrow-right">CLI reference</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'theming') }}" wire:navigate variant="outline" iconRight="arrow-right">Theming</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline" iconRight="arrow-right">Components</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'cli-reference') }}" wire:navigate variant="outline" iconRight="arrow-right">CLI reference</x-ui.button>
             </div>
         </x-ui.card>
     </section>
