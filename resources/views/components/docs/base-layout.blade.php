@@ -20,9 +20,9 @@
     </script>
 </head>
 <body class="min-h-screen bg-background text-foreground antialiased">
-    <livewire:docs.header />
+    <livewire:partials.header />
     {{ $slot }}
-    <livewire:docs.footer />
+    <livewire:partials.footer />
     @livewireScriptConfig
 </body>
 </html>
