@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Miscellaneous Tasks
 
 - Set up automated changelog generation via GitHub Actions ([`3cecff6`](https://github.com/velyx-labs/registry/commit/3cecff6605b49269ab8c9f53f53148e8f2f74052))
+- Update CHANGELOG.md ([`b7180e2`](https://github.com/velyx-labs/registry/commit/b7180e2a36b086f712b422a8e662f0341aa851a3))
+
+### Refactored
+
+- Update Livewire component paths in base layout ([`344494e`](https://github.com/velyx-labs/registry/commit/344494e150e4d25ab9c821483aa032442aa6d97b))
 
 ## [v1.0.0] - 2026-05-17
 
