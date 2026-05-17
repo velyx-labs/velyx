@@ -22,7 +22,7 @@ new class extends Component {
 
                     <div class="mt-6 flex flex-wrap items-center gap-3">
                         <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate iconRight="arrow-right">Start Building</x-ui.button>
-                        <x-ui.button href="https://github.com/velyx-labs" variant="outline" icon="github">GitHub</x-ui.button>
+                        <x-ui.button href="https://github.com/velyx-labs/registry" variant="outline" icon="github">GitHub</x-ui.button>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@ new class extends Component {
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-normal text-muted-foreground">Community</p>
                         <div class="mt-4 flex flex-col gap-3 text-sm">
-                            <a href="https://github.com/velyx-labs" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">GitHub</a>
+                            <a href="https://github.com/velyx-labs/registry" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">GitHub</a>
                             <a href="https://x.com/velyxdev" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">X</a>
                             <a href="https://gvcjmaad.mychariow.shop/velyx-dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                                 <x-lucide-heart class="h-4 w-4 text-red-600" />

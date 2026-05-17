@@ -162,7 +162,7 @@ new class extends Component
 
                     <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                         <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate size="lg" iconRight="arrow-right">Get Started</x-ui.button>
-                        <x-ui.button href="https://github.com/velyx-labs" variant="outline" size="lg" :lucide='false' icon="icons.github">View on GitHub</x-ui.button>
+                        <x-ui.button href="https://github.com/velyx-labs/registry" variant="outline" size="lg" :lucide='false' icon="icons.github">View on GitHub</x-ui.button>
                     </div>
 
                     <p class="mt-8 text-[0.6875rem] font-light tracking-wide text-muted-foreground/60">

@@ -33,7 +33,7 @@ new class extends Component {
                     <a href="{{ route('docs.index') }}" wire:navigate class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Docs</a>
                     <a href="{{ route('docs.page', 'installation') }}" wire:navigate class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Get Started</a>
                     <a href="{{ route('docs.page', 'components') }}" wire:navigate class="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">Component Library</a>
-                    <a href="https://github.com/velyx-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">
+                    <a href="https://github.com/velyx-labs/registry" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground">
                         <x-icons.github class="h-4 w-4 text-foreground" />
                         GitHub
                     </a>
