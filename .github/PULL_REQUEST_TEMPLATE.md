@@ -1,6 +1,10 @@
 ## Summary
 
-Describe what changed and why.
+{{title}}
+
+**From:** `{{head}}` → **To:** `{{base}}`
+
+{{body}}
 
 ## Scope
 
@@ -11,6 +15,7 @@ Describe what changed and why.
     - [ ] Preview rendering
     - [ ] Tests only
     - [ ] Documentation only
+
 - Runtime impact:
     - [ ] Browser UI
     - [ ] API responses
@@ -22,7 +27,7 @@ Describe what changed and why.
 - [ ] None
 - [ ] Yes, described below
 
-If yes, explain the contract or migration impact.
+If yes, please explain the impact and migration steps.
 
 ## Validation
 
@@ -38,8 +43,8 @@ Paste the most relevant commands or output here.
 
 ## Related Issues
 
-Fixes #
-Relates to #
+- Fixes #
+- Relates to #
 
 ## Checklist
 
@@ -47,8 +52,7 @@ Relates to #
 - [ ] I reviewed the diff myself
 - [ ] Metadata, API, and preview contracts remain aligned
 - [ ] Tests or validation rules were updated where needed
-- [ ] Docs were updated if contributor-facing behavior changed
+- [ ] Documentation was updated if needed
+- [ ] No sensitive information included
 
 ## Additional Notes
-
-Add rollout notes, follow-up work, or edge cases.
