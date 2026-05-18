@@ -112,12 +112,12 @@ test('it resolves dropdown-menu dedicated preview view when available', function
         ->assertViewHas('previewView', 'preview.components.dropdown-menu.index');
 });
 
-test('it resolves empty-state dedicated preview view when available', function () {
-    $response = $this->get('/preview/empty-state');
+test('it resolves empty dedicated preview view when available', function () {
+    $response = $this->get('/preview/empty');
 
     $response->assertOk()
         ->assertViewIs('preview.template')
-        ->assertViewHas('previewView', 'preview.components.empty-state.index');
+        ->assertViewHas('previewView', 'preview.components.empty.index');
 });
 
 test('it resolves file-upload dedicated preview view when available', function () {

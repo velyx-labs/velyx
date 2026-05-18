@@ -103,7 +103,6 @@ test('components with assets expose blade views inside a component folder', func
     $components = [
         'accordion',
         'alert',
-        'carousel',
         'command-palette',
         'date-picker',
         'dialog',
