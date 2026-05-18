@@ -10,11 +10,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Set dark mode as default theme ([`8b308ec`](https://github.com/velyx-labs/registry/commit/8b308ecda12c54d3460f91ad1038ef13bde7e2b7))
 - Add mobile-friendly navigation drawer for docs sidebar ([`690924d`](https://github.com/velyx-labs/registry/commit/690924de482c11b5df7d37bf72196a7f999b002a))
+- Initialize TypeScript project with basic setup ([`d5fd051`](https://github.com/velyx-labs/registry/commit/d5fd05101a18ed967c6322f8d05a235afb26f181))
+- Implement add, init, and list commands for Velar CLI ([`2b9faef`](https://github.com/velyx-labs/registry/commit/2b9faef7ffa494e40b8ef9f04c0e82803b440972))
+- Implement init command for Velar CLI with theme selection and configuration generation ([`eeff9df`](https://github.com/velyx-labs/registry/commit/eeff9df9faaf209d190cf079a6ce100e021a0021))
+- Feat: implement add command with component selection and dependency resolution
+feat: add utility functions for file operations, registry management, and requirement checks
+feat: define VelarComponentMeta type for component metadata structure
+fix: disable no-explicit-any rule in ESLint configuration ([`ea1c8f8`](https://github.com/velyx-labs/registry/commit/ea1c8f862eff477fc8e813f209139df7e860fdb4))
+- Enhance add command and improve configuration handling with type safety ([`0dba7e3`](https://github.com/velyx-labs/registry/commit/0dba7e385cdb4755597df0ba88759bba53bf223c))
+- Update package manager version and add chalk dependency; enhance add command with error handling and user prompts ([`2ea3c44`](https://github.com/velyx-labs/registry/commit/2ea3c44c1d3e4d85aed0900f846ef20e3b4348ab))
+- Refactor init command and improve error handling ([`0f32628`](https://github.com/velyx-labs/registry/commit/0f32628b4c2caf85a6c3b8964d94a175ad3d3565))
+- Enhance init command with interactivity detection and improve error logging ([`645d0b4`](https://github.com/velyx-labs/registry/commit/645d0b4555c4df8c71389ec0b86019b3d8f36f41))
+- Refactor error handling and logging; enhance package manager detection and configuration management ([`2bec2fc`](https://github.com/velyx-labs/registry/commit/2bec2fc1197032a4fd11d915a88094a6c628b1cf))
+- Refactor Alpine.js and Livewire detection functions for improved type safety and clarity ([`b902d8a`](https://github.com/velyx-labs/registry/commit/b902d8a6d7d81ac57c399a321b016196629a06f2))
+- Enhance CLI commands with improved documentation and structure ([`61d79fa`](https://github.com/velyx-labs/registry/commit/61d79fa0cc8bd222eb9229086336cd1b96a359f1))
+- Refactor CLI architecture, add robust error handling, batch file operations, and theme support ([`25dbb4a`](https://github.com/velyx-labs/registry/commit/25dbb4a5f1518f8072ba371f88f358bc4f78e70b))
+- Add preflight checks for Laravel projects, improve CLI init flow, and update scripts ([`36b188f`](https://github.com/velyx-labs/registry/commit/36b188f5c05c62b41c9f8e68d22c6cbddc1058b2))
+- Add changeset dependency to package.json and update pnpm-lock.yaml ([`922001e`](https://github.com/velyx-labs/registry/commit/922001e75c2414ea6b4d950f3538943392f484d8))
+- Implement dependency management service and refactor related interfaces ([`097ac00`](https://github.com/velyx-labs/registry/commit/097ac00e794ade73df8604fcee6953f567176692))
+- Update package.json to define bin entry for velar ([`6b40d78`](https://github.com/velyx-labs/registry/commit/6b40d787f902d062053136082e7109f8a6b7789f))
+- Enhance dependency management by adding npm to Composer format conversion and streamline package manager detection ([`379a3f4`](https://github.com/velyx-labs/registry/commit/379a3f4cefbbe33e34bfa85d39767468274991ca))
+- Feat: implement VelyxRegistryService for interacting with Velyx Registry API v1 and refactor RegistryService to utilize it
+refactor: streamline registry service methods and remove deprecated remote registry utility
+fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://github.com/velyx-labs/registry/commit/3da133080fccca28d6ea024643762ef386aeccbf))
+- Improve development workflow and code formatting ([`54a5e61`](https://github.com/velyx-labs/registry/commit/54a5e6140a2c485b82b12fbb089e193e32663ec5))
+- Add config validation to list command and update registry types ([`2958ec2`](https://github.com/velyx-labs/registry/commit/2958ec2934d5ed3e2f0625d0b7eba9fb8ec79a37))
+- Add changesets support and improve CLI documentation ([`5e37a93`](https://github.com/velyx-labs/registry/commit/5e37a93ef3c302a2fecc9331a05347f1c4960980))
+- Add MIT License file ([`833a0a1`](https://github.com/velyx-labs/registry/commit/833a0a12c313cb02f79fc2d70bddffc2c2fcbe2c))
+- Add Contributor Covenant Code of Conduct ([`41d4bb3`](https://github.com/velyx-labs/registry/commit/41d4bb3abaf4e173ede199a5c5eac8782a09a8af))
+- Add contributing guidelines, issue templates, pull request template, and security policy ([`05fec2b`](https://github.com/velyx-labs/registry/commit/05fec2b986273fbbfc93640a3e07d494ab7655cf))
+- Add Tailwind CSS v4 @theme inline support to theme generation ([`6cf33e4`](https://github.com/velyx-labs/registry/commit/6cf33e4c38228e234b76fb72abd1af8a16f61c9a))
+- Ask user to override existing velyx.css theme file ([`237c55f`](https://github.com/velyx-labs/registry/commit/237c55f5457f92d796ee67b41a213b70d1504a6b))
 
 ### Fixed
 
 - Use reliable git-cliff installation action in changelog workflow ([`cf06849`](https://github.com/velyx-labs/registry/commit/cf0684964f03c891191b11ad70c0745d1d98ade0))
 - Prevent body scroll when sidebar drawer is open and improve drawer scrolling ([`a01e5a6`](https://github.com/velyx-labs/registry/commit/a01e5a655a81fac9de015e29293b78591c873e98))
+- Update package name to match the scoped format for better package management ([`1b9a05b`](https://github.com/velyx-labs/registry/commit/1b9a05ba831bef3a49614ff2b57c25fdf9d8fbf8))
+- Update package name and repository URL for consistency ([`d07f04d`](https://github.com/velyx-labs/registry/commit/d07f04db86afafbaeb69c2f9753d8b5f93d7a354))
+- Allow overwriting existing velyx.css theme file ([`235b627`](https://github.com/velyx-labs/registry/commit/235b6274130666062deb8f49d9be3a5ee9e16006))
 
 ### Miscellaneous Tasks
 
@@ -22,10 +56,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update CHANGELOG.md ([`b7180e2`](https://github.com/velyx-labs/registry/commit/b7180e2a36b086f712b422a8e662f0341aa851a3))
 - Update CHANGELOG.md ([`1093f34`](https://github.com/velyx-labs/registry/commit/1093f349fead481209114e30af181182ebbf3ac5))
 - Update CHANGELOG.md ([`ccce079`](https://github.com/velyx-labs/registry/commit/ccce079c5f3ddb14c91818d5c879fe368fdec6d9))
+- Update CHANGELOG.md ([`c42ee3d`](https://github.com/velyx-labs/registry/commit/c42ee3d63b696cda41fb0fe1d90dccdaa8480711))
+- Update pnpm-lock.yaml with new dependencies and versionschore: update **pnpm-lock.yaml** with new dependencies and updated package versions ([`803ab6e`](https://github.com/velyx-labs/registry/commit/803ab6e6f906345fac50ed6563d0e6faca94d06c))
+- Add coverage directory to .gitignore ([`e8d4290`](https://github.com/velyx-labs/registry/commit/e8d42900c8f707c4bcc47945c4da77f30b3f75f5))
+- Add coverage directory to .gitignore ([`be823af`](https://github.com/velyx-labs/registry/commit/be823af09ea7d851828cd48934644074afb77342))
+- Integrate `tsc-alias` into build and dev workflows, update TypeScript paths, and adjust ESLint and package configurations ([`7cf4fce`](https://github.com/velyx-labs/registry/commit/7cf4fcef77a5a9a760514d4ff69a376e2d9ba186))
+- Clean up debug logs and unused code in add flow ([`0b2ed42`](https://github.com/velyx-labs/registry/commit/0b2ed42555f22e11445e66c628f63090fff00e3a))
+- Update changeset ([`191dd8d`](https://github.com/velyx-labs/registry/commit/191dd8d543dc6a8fcb243f02a08269358edf8ff7))
+- Add pnpm-workspace and publish workflow for tools/cli ([`233d10e`](https://github.com/velyx-labs/registry/commit/233d10e9a610245a58dd295fb1dce34efb5e2f44))
+- Configure Changesets for monorepo releases ([`329cb3c`](https://github.com/velyx-labs/registry/commit/329cb3c1517e943ff5661db065b58e4a91e048c2))
+- Update tools/cli repository URL to velyx ([`8e2812d`](https://github.com/velyx-labs/registry/commit/8e2812d1dcf8ffaabf85f4379589d701633ce299))
 
 ### Refactored
 
 - Update Livewire component paths in base layout ([`344494e`](https://github.com/velyx-labs/registry/commit/344494e150e4d25ab9c821483aa032442aa6d97b))
+- Standardize file and import naming to kebab-case, update service references, and improve code formatting ([`136e02d`](https://github.com/velyx-labs/registry/commit/136e02d586984915059ce639e7954ac802463be1))
+- Remove unused preFlightInit import from init.ts ([`e67adf4`](https://github.com/velyx-labs/registry/commit/e67adf465d884ef19c591aec7a2eac81c3d2b31f))
+- Simplify mock implementation signatures in css utility tests ([`1fdfd3f`](https://github.com/velyx-labs/registry/commit/1fdfd3f2dddf1413300c1921b8d171fa9b8278a4))
+- Reorganize package.json structure for clarity and consistency ([`7e23f8e`](https://github.com/velyx-labs/registry/commit/7e23f8e3957ca98892f22ff3cd577674d5df0a72))
+- Standardize string quotes to single quotes across utility files ([`80ec57c`](https://github.com/velyx-labs/registry/commit/80ec57cc60f6f5f237fe099f3c8cdaa2e166d54f))
+- Remove Livewire support and related checks from initialization logic ([`b3b5c92`](https://github.com/velyx-labs/registry/commit/b3b5c92b4f363c8c2018bcdddb439cf6c72c7b19))
+- Align add command with Velyx Registry API v1 structure ([`f95ca49`](https://github.com/velyx-labs/registry/commit/f95ca496399972e07b00543b32400a8b5c24101e))
+- Remove unused accordion and avatar components; update Alpine.js dependency ([`5b5a921`](https://github.com/velyx-labs/registry/commit/5b5a9216913eb898d6d5ce83f50e4463d48a2026))
+- Update avatar-group component to use new avatar structure and improve preview view tests ([`8ca86ce`](https://github.com/velyx-labs/registry/commit/8ca86cefb4bd10f3f754143b23ea3b38b4399b50))
+- Remove unused components from ComponentShowTest ([`3662bcd`](https://github.com/velyx-labs/registry/commit/3662bcd9f692344c4f84f455b15cfd811b7b6d87))
+
+### Testing
+
+- Add unit tests for core services and utilities ([`2d80d14`](https://github.com/velyx-labs/registry/commit/2d80d14e1ee60660f4cd965f70ec309a790357fd))
+- Add unit tests for error handling and new methods in InitService and RegistryService ([`41dc1b5`](https://github.com/velyx-labs/registry/commit/41dc1b5c5194a7f7250841bcd4ed6b2fa0b27f56))
+- Add unit tests for config, css, package manager, requirements, tailwind, and theme utilities ([`3b7d912`](https://github.com/velyx-labs/registry/commit/3b7d912a46cf7a96d740ca2c536e343bfea8ed9b))
+- Add unit tests for errors, HttpService, list command, and remote-registry utilities ([`022705a`](https://github.com/velyx-labs/registry/commit/022705a6fbce73522bb3937e2f81cbdb88dd1880))
+- Add and update unit tests for AddService, ComponentService, ConfigManager, FileSystemService, InitService, and RegistryService ([`7e0d490`](https://github.com/velyx-labs/registry/commit/7e0d490b95089a85513d655c30aed915d41fd188))
+- Update and refactor unit tests across InitService, HttpService, and ComponentService ([`7905e02`](https://github.com/velyx-labs/registry/commit/7905e0276930d6af1ad667216a32fd17fc0c654f))
+- Relocate and refactor ListService tests for consistency and maintainability ([`3dded19`](https://github.com/velyx-labs/registry/commit/3dded193c6af5aaf8d462ba8c78b51e90de525fb))
+- Add unit tests for css utilities and improve tsconfig path handling in vitest config ([`f701b56`](https://github.com/velyx-labs/registry/commit/f701b5678201d71c38e79ae6f8be4ef2a997352c))
+- Add integration/e2e coverage and clean unused CLI options ([`2e8c6a5`](https://github.com/velyx-labs/registry/commit/2e8c6a5823310fd5ffc17c98ac2b56af88baf3e6))
+- Test release ([`95fb972`](https://github.com/velyx-labs/registry/commit/95fb9723df66b2c7b0f415e05f2cd6de79f15ace))
+- Test release ([`2f6d32c`](https://github.com/velyx-labs/registry/commit/2f6d32c73174453abbe2f66495d924a16a5f5ed0))
+- Test release ([`0d40fe9`](https://github.com/velyx-labs/registry/commit/0d40fe9c2d85944bb525a2611359daf6464d0aef))
 
 ## [v1.0.0] - 2026-05-17
 
