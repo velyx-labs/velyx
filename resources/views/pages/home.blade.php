@@ -1,174 +1,260 @@
 <?php
 
+use App\Services\ComponentService;
 use Livewire\Component;
 
 new class extends Component
 {
-    //
+    public array $components = [];
+
+    public function mount(ComponentService $componentService): void
+    {
+        $this->components = $componentService->getAllComponents();
+    }
 };
 ?>
 
 <div>
-    <section class="relative overflow-hidden border-b border-border bg-background">
-        <div class="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-linear-to-r from-transparent via-border to-transparent"></div>
+    {{-- Hero --}}
+    <section class="relative flex min-h-[55vh] flex-col items-center justify-center overflow-hidden px-4 text-center">
+        <div class="pointer-events-none absolute inset-0"
+             style="background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 100%);"></div>
 
-        <div class="pointer-events-none absolute inset-0 z-0"
-             style="background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 10%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 10%, transparent 100%);"></div>
+        <div class="relative z-10 flex flex-col items-center gap-5 py-20">
+            <a href="{{ route('docs.page', 'installation') }}" wire:navigate class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted">
+                {{ count($this->components) }} components available
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
 
-        <div class="pointer-events-none absolute inset-0 z-0">
-            <div class="absolute left-1/2 top-0 h-64 w-160 -translate-x-1/2 rounded-full bg-foreground/4 blur-3xl"></div>
-            <div class="absolute right-[6%] top-12 h-52 w-52 rounded-full bg-foreground/2.5 blur-3xl"></div>
-        </div>
+            <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                Build your UI.<br>
+                <span class="text-muted-foreground font-normal">Own every pixel.</span>
+            </h1>
 
-        <div class="container-wrapper relative z-10 px-4 py-20 lg:px-6 lg:py-28">
-            <div class="mx-auto max-w-5xl text-center">
-                <div class="animate-fade-in inline-flex items-center gap-2.5 rounded-full border border-border bg-primary/5 px-4 py-2 text-[0.625rem] font-semibold uppercase tracking-wide text-foreground backdrop-blur-sm">
-                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-foreground"></span>
-                    Blade Components For Product Teams
-                </div>
+            <p class="max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground">
+                Production-ready Blade components for Laravel teams. Copy them into your project, adapt to your brand, ship with confidence.
+            </p>
 
-                <h1 class="mt-8 animate-fade-in text-5xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-6xl lg:text-[5.25rem]">
-                    Copy the UI.<br>
-                    <em class="italic font-normal text-muted-foreground">Keep the control.</em>
-                </h1>
-
-                <p class="mx-auto mt-6 max-w-2xl animate-fade-in text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
-                    A Laravel-first component library built for teams shipping real products. Get polished, production-ready Blade components you own, modify, and control — no dependency lock-in.
-                </p>
-
-                <div class="mt-9 flex animate-fade-in flex-wrap justify-center gap-3">
-                    <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate iconRight="arrow-right">Get Started</x-ui.button>
-                    <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline" iconRight="arrow-right">Browse Components</x-ui.button>
-                </div>
-
-                <div class="mt-14 grid animate-fade-in overflow-hidden rounded-2xl border border-border md:grid-cols-3">
-                    <div class="border-b border-border p-6 text-left md:border-b-0 md:border-r">
-                        <p class="text-[0.6rem] font-bold uppercase tracking-wider text-muted-foreground">100% Ownership</p>
-                        <p class="mt-3 text-sm font-light leading-relaxed text-foreground">Components live in your repository. No package lock-in, no hidden abstractions.</p>
-                    </div>
-                    <div class="border-b border-border p-6 text-left md:border-b-0 md:border-r">
-                        <p class="text-[0.6rem] font-bold uppercase tracking-wider text-muted-foreground">Native Stack</p>
-                        <p class="mt-3 text-sm font-light leading-relaxed text-foreground">Built with Blade, Alpine.js, Tailwind CSS v4, and Livewire. Your stack, your way.</p>
-                    </div>
-                    <div class="p-6 text-left">
-                        <p class="text-[0.6rem] font-bold uppercase tracking-wider text-muted-foreground">Ship Instantly</p>
-                        <p class="mt-3 text-sm font-light leading-relaxed text-foreground">Polished baseline + copy-paste components. Production-ready on day one.</p>
-                    </div>
-                </div>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate iconRight="arrow-right">Get Started</x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline">Browse Components</x-ui.button>
             </div>
         </div>
     </section>
 
-    <section class="border-b border-border bg-muted/20">
-        <div class="container-wrapper px-4 py-14 lg:px-6">
-            <div class="grid gap-6 lg:grid-cols-3">
-                <x-ui.card class="flex flex-col p-8">
-                    <div class="inline-flex rounded-lg bg-primary/8 p-4 text-primary">
-                        <x-lucide-copy class="size-6" />
+    {{-- Components Grid --}}
+    <section class="border-t border-border bg-background/60 px-4 pb-24 lg:px-6">
+        <div class="container-wrapper">
+            <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 [&>*]:mb-4">
+
+                {{-- Button --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Button</p>
+                    <div class="flex flex-wrap gap-2">
+                        <x-ui.button size="sm">Primary</x-ui.button>
+                        <x-ui.button size="sm" variant="outline">Outline</x-ui.button>
+                        <x-ui.button size="sm" variant="ghost">Ghost</x-ui.button>
+                        <x-ui.button size="sm" variant="destructive">Delete</x-ui.button>
                     </div>
-                    <h2 class="mt-6 text-lg font-semibold leading-tight text-foreground">Copy. Customize. Own.</h2>
-                    <p class="mt-3 flex-1 text-sm font-light leading-relaxed text-muted-foreground">Pull components into your codebase, inspect every line, and adapt them to fit your product's unique needs and constraints.</p>
-                    <a href="{{ route('docs.page', 'installation') }}" wire:navigate class="mt-5 inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80">Learn more <x-lucide-arrow-right class="ml-1.5 size-3.5" /></a>
+                </div>
+
+                {{-- Badge --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Badge</p>
+                    <div class="flex flex-wrap gap-2">
+                        <x-ui.badge>Default</x-ui.badge>
+                        <x-ui.badge variant="secondary">Secondary</x-ui.badge>
+                        <x-ui.badge variant="outline">Outline</x-ui.badge>
+                        <x-ui.badge variant="destructive">Error</x-ui.badge>
+                        <x-ui.badge variant="success">Success</x-ui.badge>
+                    </div>
+                </div>
+
+                {{-- Card with form feel --}}
+                <x-ui.card>
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Input</p>
+                    <div class="space-y-3">
+                        <div>
+                            <x-ui.label>Email address</x-ui.label>
+                            <x-ui.input type="email" placeholder="you@example.com" class="mt-1.5" />
+                        </div>
+                        <div>
+                            <x-ui.label>Password</x-ui.label>
+                            <x-ui.input type="password" placeholder="••••••••" class="mt-1.5" />
+                        </div>
+                        <x-ui.button class="w-full" size="sm">Sign In</x-ui.button>
+                    </div>
                 </x-ui.card>
 
-                <x-ui.card class="flex flex-col p-8">
-                    <div class="inline-flex rounded-lg bg-primary/8 p-4 text-primary">
-                        <x-lucide-sliders-horizontal class="size-6" />
+                {{-- Alert --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Alert</p>
+                    <div class="space-y-3">
+                        <x-ui.alert variant="info" title="Heads up!" description="You can change this in your settings." />
+                        <x-ui.alert variant="success" title="Done!" description="Your changes have been saved." />
+                        <x-ui.alert variant="destructive" title="Error" description="Something went wrong." />
                     </div>
-                    <h2 class="mt-6 text-lg font-semibold leading-tight text-foreground">Built to be Edited</h2>
-                    <p class="mt-3 flex-1 text-sm font-light leading-relaxed text-muted-foreground">Clean utility classes, sensible structure, and zero abstraction overhead. Your design system can bend the UI however it needs to.</p>
-                    <a href="{{ route('docs.page', 'components') }}" wire:navigate class="mt-5 inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80">Browse components <x-lucide-arrow-right class="ml-1.5 size-3.5" /></a>
-                </x-ui.card>
+                </div>
 
-                <x-ui.card class="flex flex-col p-8">
-                    <div class="inline-flex rounded-lg bg-primary/8 p-4 text-primary">
-                        <x-lucide-layout-dashboard class="size-6" />
+                {{-- Avatar --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Avatar</p>
+                    <div class="flex items-center gap-4">
+                        <x-ui.avatar size="sm" initials="JD" />
+                        <x-ui.avatar initials="MK" />
+                        <x-ui.avatar size="lg" initials="AB" />
+                        <x-ui.avatar size="xl" initials="XL" />
                     </div>
-                    <h2 class="mt-6 text-lg font-semibold leading-tight text-foreground">Built for Product Teams</h2>
-                    <p class="mt-3 flex-1 text-sm font-light leading-relaxed text-muted-foreground">Patterns proven on real SaaS products. Admin panels, dashboards, forms, and search interfaces that ship fast and feel cohesive.</p>
-                    <a href="{{ route('docs.page', 'quick-start') }}" wire:navigate class="mt-5 inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80">Quick start <x-lucide-arrow-right class="ml-1.5 size-3.5" /></a>
-                </x-ui.card>
-            </div>
-        </div>
-    </section>
+                </div>
 
-    <section class="border-b border-border bg-background">
-        <div class="container-wrapper px-4 py-16 lg:px-6">
-            <div class="flex flex-col gap-4 text-center">
-                <p class="text-[0.625rem] font-bold uppercase tracking-wider text-muted-foreground">What You Actually Get</p>
-                <h2 class="text-3xl font-semibold leading-tight text-foreground sm:text-4xl">A polished baseline. Complete creative control.</h2>
-                <p class="mx-auto max-w-2xl text-[0.9375rem] leading-relaxed text-muted-foreground">Ship fast with a confident component library. Then bend every pixel to match your product's brand, data density, and workflows.</p>
-            </div>
-
-            <div class="mt-12 grid gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-                <x-ui.card class="p-6">
-                    <div class="grid gap-5 sm:grid-cols-2">
-                        @foreach([
-                            ['Documentation', 'Everything you need to ship fast', 'Installation, quick-start, component catalog, and real-world examples. No hidden surprises.'],
-                            ['30+ Components', 'Building blocks for any interface', 'Buttons, cards, tables, forms, modals, popovers, and more. All battle-tested on production apps.'],
-                            ['Ownership', 'Edit with zero friction', 'Clean Tailwind utility classes, sensible HTML. No abstractions, no magic. Exactly what you see is what you ship.'],
-                            ['Speed', 'From zero to shipped', 'Copy components into your app. Wire them to your data. Build. No build process drama, no compilation steps.'],
-                        ] as [$eyebrow, $heading, $body])
-                            <div class="rounded-2xl border border-border bg-background p-5">
-                                <p class="text-[0.6rem] font-bold uppercase tracking-normal text-muted-foreground">{{ $eyebrow }}</p>
-                                <p class="mt-3 text-base font-semibold text-foreground">{{ $heading }}</p>
-                                <p class="mt-2 text-[0.8125rem] leading-6 text-muted-foreground">{{ $body }}</p>
+                {{-- Progress --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Progress Bar</p>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="mb-1.5 flex justify-between text-xs text-muted-foreground">
+                                <span>Uploading...</span>
+                                <span>64%</span>
                             </div>
-                        @endforeach
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card class="bg-muted/30 p-6">
-                    <p class="text-[0.6rem] font-bold uppercase tracking-normal text-muted-foreground">Why Teams Reach For It</p>
-                    <div class="mt-6 space-y-4">
-                        @foreach([
-                            ['No lock-in', 'Your code stays in your repo. No runtime dependencies between your UI and Velyx. You control every update.'],
-                            ['Built-in defaults', 'Thoughtful patterns and spacing that look good out of the box. Still room for your brand to shine through.'],
-                            ['Laravel, all the way', 'Blade, Livewire, Alpine. Familiar patterns, natural Laravel. No mental model switching, just productive coding.'],
-                        ] as [$heading, $body])
-                            <div class="rounded-2xl border border-border bg-background px-4 py-4">
-                                <p class="text-sm font-semibold text-foreground">{{ $heading }}</p>
-                                <p class="mt-1 text-[0.8125rem] leading-6 text-muted-foreground">{{ $body }}</p>
+                            <x-ui.progress-bar :value="64" />
+                        </div>
+                        <div>
+                            <div class="mb-1.5 flex justify-between text-xs text-muted-foreground">
+                                <span>Installing</span>
+                                <span>100%</span>
                             </div>
-                        @endforeach
+                            <x-ui.progress-bar :value="100" color="success" />
+                        </div>
                     </div>
-                </x-ui.card>
-            </div>
-        </div>
-    </section>
-
-    <section class="border-t border-border bg-background">
-        <div class="container-wrapper px-4 py-20 lg:px-6 lg:py-24">
-            <div class="relative overflow-hidden rounded-3xl border border-border bg-card px-8 py-16 text-center md:px-16">
-                {{-- <div class="docs-grid-bg pointer-events-none absolute inset-0 z-0 opacity-60"></div> --}}
-                <div class="pointer-events-none absolute inset-0 z-0"
-                     style="background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 52px 52px; mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, transparent 18%, black 100%); -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, transparent 18%, black 100%);"></div>
-
-                <div class="pointer-events-none absolute inset-0 z-0">
-                    <div class="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-foreground/[0.035] blur-3xl"></div>
-                    <div class="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-foreground/2.5 blur-3xl"></div>
                 </div>
-                <div class="relative z-10">
-                    <x-ui.badge variant="outline" pill>Start Building</x-ui.badge>
 
-                    <h2 class="mx-auto mt-6 max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
-                        Start shipping. Keep shipping.
-                        <em class="block font-normal italic text-muted-foreground">Without losing control.</em>
-                    </h2>
-
-                    <p class="mx-auto mt-6 max-w-lg text-sm font-light leading-relaxed text-muted-foreground">
-                        Explore 30+ production-ready components. Copy them into your Laravel app. Adapt them to your brand. Build fast. Ship confidently.
-                    </p>
-
-                    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                        <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate size="lg" iconRight="arrow-right">Get Started</x-ui.button>
-                        <x-ui.button href="https://github.com/velyx-labs/registry" variant="outline" size="lg" :lucide='false' icon="icons.github">View on GitHub</x-ui.button>
+                {{-- Skeleton --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Skeleton</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <x-ui.skeleton class="h-10 w-10 rounded-full" />
+                            <div class="flex-1 space-y-2">
+                                <x-ui.skeleton class="h-3 w-3/4 rounded" />
+                                <x-ui.skeleton class="h-3 w-1/2 rounded" />
+                            </div>
+                        </div>
+                        <x-ui.skeleton class="h-20 w-full rounded-lg" />
                     </div>
-
-                    <p class="mt-8 text-[0.6875rem] font-light tracking-wide text-muted-foreground/60">
-                        No package required - <span class="font-medium text-muted-foreground/80">components live in your repo.</span>
-                    </p>
                 </div>
+
+                {{-- Breadcrumbs --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Breadcrumbs</p>
+                    <x-ui.breadcrumbs :items="[
+                        ['label' => 'Home', 'url' => '#'],
+                        ['label' => 'Settings', 'url' => '#'],
+                        ['label' => 'Profile'],
+                    ]" />
+                </div>
+
+                {{-- Card --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Card</p>
+                    <x-ui.card class="p-4">
+                        <div class="flex items-center gap-3">
+                            <x-ui.avatar initials="VX" />
+                            <div>
+                                <p class="text-sm font-medium text-foreground">Velyx Registry</p>
+                                <p class="text-xs text-muted-foreground">v1.0.0 released</p>
+                            </div>
+                        </div>
+                        <p class="mt-3 text-xs leading-5 text-muted-foreground">Production-ready components. Copy, adapt, and ship with zero lock-in.</p>
+                        <div class="mt-3 flex gap-2">
+                            <x-ui.badge variant="secondary">Laravel</x-ui.badge>
+                            <x-ui.badge variant="secondary">Livewire</x-ui.badge>
+                            <x-ui.badge variant="secondary">Tailwind</x-ui.badge>
+                        </div>
+                    </x-ui.card>
+                </div>
+
+                {{-- KBD --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Kbd</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs text-muted-foreground">
+                            <span>Save</span>
+                            <div class="flex gap-1"><x-ui.kbd>⌘</x-ui.kbd><x-ui.kbd>S</x-ui.kbd></div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-muted-foreground">
+                            <span>Search</span>
+                            <div class="flex gap-1"><x-ui.kbd>⌘</x-ui.kbd><x-ui.kbd>K</x-ui.kbd></div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-muted-foreground">
+                            <span>Copy</span>
+                            <div class="flex gap-1"><x-ui.kbd>⌘</x-ui.kbd><x-ui.kbd>C</x-ui.kbd></div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Toggle --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Toggle</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-foreground">Dark mode</span>
+                            <x-ui.toggle :checked="true" />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-foreground">Notifications</span>
+                            <x-ui.toggle :checked="false" />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-foreground">Auto-save</span>
+                            <x-ui.toggle :checked="true" />
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Rating --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Rating</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-muted-foreground">Quality</span>
+                            <x-ui.rating :value="5" :max="5" readonly />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-muted-foreground">Support</span>
+                            <x-ui.rating :value="4" :max="5" readonly />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-muted-foreground">Docs</span>
+                            <x-ui.rating :value="3" :max="5" readonly />
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Empty State --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Empty State</p>
+                    <x-ui.empty-state
+                        title="No components yet"
+                        description="Add your first component to get started."
+                        icon="layout-dashboard"
+                    />
+                </div>
+
+                {{-- Label --}}
+                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
+                    <p class="mb-4 text-xs font-medium text-muted-foreground">Label</p>
+                    <div class="space-y-3">
+                        <div>
+                            <x-ui.label required>Full Name</x-ui.label>
+                            <x-ui.input placeholder="John Doe" class="mt-1.5" />
+                        </div>
+                        <div>
+                            <x-ui.label hint="Optional">Company</x-ui.label>
+                            <x-ui.input placeholder="Acme Inc." class="mt-1.5" />
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
