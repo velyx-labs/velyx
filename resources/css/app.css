@@ -269,6 +269,14 @@ body::-webkit-scrollbar-thumb {
   code {
     @apply font-mono!;
   }
+  pre {
+    @apply scrollbar-thin scrollbar-thumb-muted/60 scrollbar-track-muted/10;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 /*@layer utilities {*/

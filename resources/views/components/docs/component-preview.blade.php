@@ -12,7 +12,7 @@
 @endphp
 
 <div
-    class="my-6 overflow-hidden rounded-lg border bg-card"
+    class="my-6 rounded-lg border bg-card"
     x-data="{
         mode: 'preview',
         source: '',
@@ -51,7 +51,7 @@
     }"
 >
     {{-- Toolbar --}}
-    <div class="flex items-center justify-between border-b bg-muted/30 px-4 py-2">
+    <div class="flex items-center justify-between rounded-t-lg border-b bg-muted/30 px-4 py-2">
         <div class="flex items-center gap-2">
             <x-ui.badge variant="secondary">{{ $name }}</x-ui.badge>
             @if($variant)
@@ -59,13 +59,13 @@
             @endif
         </div>
         <div class="flex items-center gap-1">
-            <x-ui.button type="button" variant="ghost" size="sm" iconRight="eye" x-show="mode === 'code'" x-cloak x-on:click="mode = 'preview'">Preview</x-ui.button>
-            <x-ui.button type="button" variant="ghost" size="sm" iconRight="code-2" x-show="mode === 'preview'" x-on:click="showCode()">Code</x-ui.button>
+            <x-ui.button type="button" variant="link" size="sm" x-show="mode === 'code'" x-cloak x-on:click="mode = 'preview'">Preview</x-ui.button>
+            <x-ui.button type="button" variant="link" size="sm" x-show="mode === 'preview'" x-on:click="showCode()">Code</x-ui.button>
         </div>
     </div>
 
     {{-- Inline preview --}}
-    <div x-show="mode === 'preview'" class="bg-background">
+    <div x-show="mode === 'preview'" class="bg-background relative z-[100]">
         @if($previewView)
             @include($previewView, ['props' => []])
         @else
@@ -76,7 +76,7 @@
     </div>
 
     {{-- Source code --}}
-    <div x-show="mode === 'code'" x-cloak class="border-t bg-muted/20">
+    <div x-show="mode === 'code'" x-cloak class="overflow-hidden rounded-b-lg border-t bg-muted/20">
         <div class="border-b px-4 py-2">
             <span class="truncate font-mono text-xs text-muted-foreground" x-text="sourcePath || 'preview source'"></span>
         </div>
