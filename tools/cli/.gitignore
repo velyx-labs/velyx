@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+bun-debug.log*
+
+# env files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor files
+.vscode/
+.idea/
+/coverage/
+
+# generated config artifacts
+eslint.config.js
+eslint.config.d.ts
+eslint.config.d.ts.map
+tsup.config.js
+tsup.config.d.ts
+tsup.config.d.ts.map
+vitest.config.js
+vitest.config.d.ts
+vitest.config.d.ts.map
+
+
+CLAUDE.md
