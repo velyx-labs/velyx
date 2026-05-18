@@ -66,6 +66,7 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Add pnpm-workspace and publish workflow for tools/cli ([`233d10e`](https://github.com/velyx-labs/registry/commit/233d10e9a610245a58dd295fb1dce34efb5e2f44))
 - Configure Changesets for monorepo releases ([`329cb3c`](https://github.com/velyx-labs/registry/commit/329cb3c1517e943ff5661db065b58e4a91e048c2))
 - Update tools/cli repository URL to velyx ([`8e2812d`](https://github.com/velyx-labs/registry/commit/8e2812d1dcf8ffaabf85f4379589d701633ce299))
+- Update CHANGELOG.md ([`0956176`](https://github.com/velyx-labs/registry/commit/0956176b0ccc1992b0f60a206af258222a6c2adb))
 
 ### Refactored
 
@@ -80,6 +81,7 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Remove unused accordion and avatar components; update Alpine.js dependency ([`5b5a921`](https://github.com/velyx-labs/registry/commit/5b5a9216913eb898d6d5ce83f50e4463d48a2026))
 - Update avatar-group component to use new avatar structure and improve preview view tests ([`8ca86ce`](https://github.com/velyx-labs/registry/commit/8ca86cefb4bd10f3f754143b23ea3b38b4399b50))
 - Remove unused components from ComponentShowTest ([`3662bcd`](https://github.com/velyx-labs/registry/commit/3662bcd9f692344c4f84f455b15cfd811b7b6d87))
+- Streamline publish workflow and improve Node.js setup ([`2b6c568`](https://github.com/velyx-labs/registry/commit/2b6c5681e17d1140fdc759a90b68276eb9e7d09b))
 
 ### Testing
 
