@@ -36,7 +36,7 @@ new class extends Component {
         <div>
             <h2 class="text-2xl font-semibold">Options</h2>
             <p class="mt-2 text-sm leading-6 text-muted-foreground">This is the complete configuration shape used by the Velyx CLI. The CLI reads these keys from `velyx.json` through its config manager.</p>
-            <x-ui.table class="mt-4 rounded-lg border">
+            <x-ui.table class="mt-4 scrollbar-thin scrollbar-thumb-slate-900/60 scrollbar-track-slate-900/10">
                 <x-ui.table.header class="bg-muted/50">
                     <x-ui.table.row>
                         <x-ui.table.head>Key</x-ui.table.head>

@@ -1,162 +1,90 @@
 @props([
-    'variant' => 'primary',
-    'lucide' => true,
-    'size' => 'md',
-    'type' => 'button',
-    'href' => null,
+    'variant'  => 'default',
+    'size'     => 'default',
+    'href'     => null,
+    'type'     => 'button',
     'disabled' => false,
-    'loading' => false,
-    'icon' => null,
+    'icon'     => null,
+    'iconLeft' => null,
     'iconRight' => null,
     'iconOnly' => false,
-    'pill' => false,
-    'block' => false,
-    'action' => null,
+    'lucide'   => true,
 ])
 
 @php
-    // Variant classes
+    // iconOnly="icon-name" is shorthand for iconLeft + :iconOnly="true"
+    $iconOnlyIcon = (is_string($iconOnly) && ! in_array($iconOnly, ['true', '1', 'false', '0'], true)) ? $iconOnly : null;
+    $isIconOnly   = $iconOnly !== false && $iconOnly !== null && $iconOnly !== '' && $iconOnly !== 'false' && $iconOnly !== '0';
+    $leftIcon     = $iconLeft ?? $icon ?? $iconOnlyIcon;
+
+    $resolveIcon = fn(?string $name) => $name === null ? null
+        : ($lucide ? 'lucide-' . $name : $name);
+
     $variantClasses = match($variant) {
-        'primary' => 'bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 shadow-md',
-        'secondary' => 'bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80 shadow-sm hover:shadow-md shadow-secondary/20 hover:shadow-secondary/30',
-        'destructive' => 'bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80 shadow-md hover:shadow-lg shadow-destructive/20 hover:shadow-destructive/30 active:shadow-destructive/10',
-        'outline' => 'border-2 border-input bg-transparent hover:bg-accent/50 active:bg-accent/70 hover:text-accent-foreground ',
-        'ghost' => 'hover:bg-accent/80 active:bg-accent hover:text-accent-foreground shadow-none',
-        'link' => 'text-primary underline-offset-4 hover:underline hover:text-primary/80 active:text-primary/60 shadow-none',
-        default => 'bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 shadow-md hover:shadow-lg',
+        'destructive' => 'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+        'outline'     => 'border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
+        'secondary'   => 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
+        'ghost'       => 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+        'link'        => 'text-primary underline-offset-4 hover:underline',
+        default       => 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
     };
 
-    // Size classes
     $sizeClasses = match($size) {
-        'xs' => $iconOnly ? 'p-1.5' : 'px-2.5 py-1.5 text-xs',
-        'sm' => $iconOnly ? 'p-2' : 'px-3 py-2 text-sm',
-        'md' => $iconOnly ? 'p-2.5' : 'px-4 py-2.5 text-sm',
-        'lg' => $iconOnly ? 'p-3' : 'px-6 py-3 text-base',
-        'xl' => $iconOnly ? 'p-4' : 'px-8 py-4 text-lg',
-        default => $iconOnly ? 'p-2.5' : 'px-4 py-2.5 text-sm',
+        'sm'    => 'h-8 rounded-md gap-1.5 px-3 text-xs has-[>svg]:px-2.5',
+        'lg'    => 'h-10 rounded-md px-6 text-base has-[>svg]:px-4',
+        'icon'  => 'size-9',
+        default => 'h-9 px-4 py-2 text-sm has-[>svg]:px-3',
     };
 
-    // Icon size classes
-    $iconSize = match($size) {
-        'xs' => 'w-3 h-3',
-        'sm' => 'w-4 h-4',
-        'md' => 'w-5 h-5',
-        'lg' => 'w-6 h-6',
-        'xl' => 'w-7 h-7',
-        default => 'w-5 h-5',
-    };
+    $baseClasses = 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all outline-none shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50';
 
-    // Base button classes
-    $baseClasses = 'inline-flex items-center justify-center gap-2 font-semibold tracking-wide transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:shadow-none disabled:transform-none';
-
-    // Border radius
-    $radiusClasses = $pill ? 'rounded-full' : 'rounded-lg';
-
-    // Block/Full width
-    $widthClasses = $block ? 'w-full' : '';
-
-    // Combine all classes
-    $buttonClasses = trim("{$baseClasses} {$variantClasses} {$sizeClasses} {$radiusClasses} {$widthClasses}");
-
-    // Determine if it's a link or button
     $tag = $href ? 'a' : 'button';
 @endphp
 
 @if($tag === 'a')
     <a
+        data-slot="button"
         href="{{ $href }}"
-        {{ $attributes->class([$buttonClasses]) }}
+        {{ $attributes->class([$baseClasses, $variantClasses, $sizeClasses]) }}
         @if($disabled) aria-disabled="true" @endif
     >
-        @if($loading)
-            <x-lucide-loader-circle class="{{ $iconSize }} animate-spin" />
-        @elseif($icon && !$iconOnly)
-            @if($lucide)
-                <x-dynamic-component :component="'lucide-' . $icon" class="{{ $iconSize }}" />
-            @else
-                <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-            @endif
-        @elseif($icon && $iconOnly)
-            @if($lucide)
-                <x-dynamic-component :component="'lucide-' . $icon" class="{{ $iconSize }}" />
-            @else
-                <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-            @endif
+        @if($leftIcon && !$isIconOnly)
+            <x-dynamic-component :component="$resolveIcon($leftIcon)" />
         @endif
-
-        @if(!$iconOnly)
+        @if(!$isIconOnly)
             {{ $slot }}
         @endif
-
-        @if($iconRight && !$iconOnly)
-            @if($lucide)
-                <x-dynamic-component :component="'lucide-' . $iconRight" class="{{ $iconSize }}" />
-            @else
-                <x-dynamic-component :component="$iconRight" class="{{ $iconSize }}" />
-            @endif
+        @if($iconRight && !$isIconOnly)
+            <x-dynamic-component :component="$resolveIcon($iconRight)" />
+        @endif
+        @if($isIconOnly)
+            <x-dynamic-component :component="$resolveIcon($leftIcon ?? $iconRight)" />
+            <span class="sr-only">{{ $slot }}</span>
         @endif
     </a>
 @else
     <button
+        data-slot="button"
         type="{{ $type }}"
-        {{ $attributes->class([$buttonClasses]) }}
-        @if($disabled || $loading) disabled @endif
+        {{ $attributes->class([$baseClasses, $variantClasses, $sizeClasses]) }}
+        @if($disabled) disabled @endif
         wire:loading.attr="disabled"
-        @if($action) wire:target="{{ $action }}" @endif
     >
-        <!-- Loading spinner - only shown during wire:loading or when loading prop is true -->
-        <span wire:loading>
-            <x-lucide-loader-circle class="{{ $iconSize }} animate-spin" />
-        </span>
-        @if($loading)
-            <span>
-                <x-lucide-loader-circle class="{{ $iconSize }} animate-spin" />
-            </span>
-        @endif
-
-        <!-- Normal left icon - hidden during loading -->
-        @if($icon && !$iconOnly)
-            <span wire:loading.remove @if($loading) style="display: none;" @endif>
-                @if($lucide)
-                    <x-dynamic-component :component="'lucide-' . $icon" class="{{ $iconSize }}" />
-                @else
-                    <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-                @endif
-            </span>
-        @elseif($icon && $iconOnly)
-            <span wire:loading.remove @if($loading) style="display: none;" @endif>
-                @if($lucide)
-                    <x-dynamic-component :component="'lucide-' . $icon" class="{{ $iconSize }}" />
-                @else
-                    <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-                @endif
-            </span>
-        @endif
-
-        <!-- Button text -->
-        @if(!$iconOnly)
-            <span wire:loading.remove @if($loading) style="display: none;" @endif>
+        <x-lucide-loader-circle wire:loading class="size-4 animate-spin" />
+        <span wire:loading.remove class="contents">
+            @if($leftIcon && !$isIconOnly)
+                <x-dynamic-component :component="$resolveIcon($leftIcon)" />
+            @endif
+            @if(!$isIconOnly)
                 {{ $slot }}
-            </span>
-        @endif
-
-        <!-- Right icon - hidden during loading -->
-        @if($iconRight && !$iconOnly)
-            <span wire:loading.remove @if($loading) style="display: none;" @endif>
-                @if($lucide)
-                    <x-dynamic-component :component="'lucide-' . $iconRight" class="{{ $iconSize }}" />
-                @else
-                    <x-dynamic-component :component="$iconRight" class="{{ $iconSize }}" />
-                @endif
-            </span>
-        @endif
-
-        <!-- Screen reader text for icon-only buttons -->
-        @if($iconOnly)
-            <span class="sr-only">
-                <span wire:loading.remove>{{ $attributes->get('title', 'Button') }}</span>
-                <span wire:loading>Loading...</span>
-            </span>
-        @endif
+            @endif
+            @if($iconRight && !$isIconOnly)
+                <x-dynamic-component :component="$resolveIcon($iconRight)" />
+            @endif
+            @if($isIconOnly)
+                <x-dynamic-component :component="$resolveIcon($leftIcon ?? $iconRight)" />
+                <span class="sr-only">{{ $slot }}</span>
+            @endif
+        </span>
     </button>
 @endif

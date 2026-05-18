@@ -1,18 +1,13 @@
 {
     "name": "avatar-group",
     "version": "1.0.0",
-    "description": "Stacked avatar group for displaying multiple users with overflow indicator.",
-    "categories": ["ui", "media", "layout"],
+    "description": "Stacked avatar group with negative spacing and optional overflow count.",
+    "categories": ["ui", "media"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
-        {
-            "path": "avatar-group.blade.php",
-            "type": "blade"
-        }
+        { "path": "avatar-group/index.blade.php", "type": "blade" },
+        { "path": "avatar-group/count.blade.php", "type": "blade" }
     ],
-    "requires": {
-        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": []
-    }
+    "requires": { "composer": [], "npm": [] }
 }

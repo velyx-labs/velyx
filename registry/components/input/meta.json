@@ -1,22 +1,12 @@
 {
     "name": "input",
     "version": "1.0.0",
-    "description": "Form input field with label, error handling, password toggle, and icons.",
-    "categories": ["forms", "ui", "input"],
+    "description": "Text input primitive with focus ring, aria-invalid state, file input support, and dark mode.",
+    "categories": ["forms", "ui"],
     "laravel": ">=10",
-    "requires_alpine": true,
+    "requires_alpine": false,
     "files": [
-        {
-            "path": "input/index.blade.php",
-            "type": "blade"
-        },
-        {
-            "path": "input.js",
-            "type": "js"
-        }
+        { "path": "input/index.blade.php", "type": "blade" }
     ],
-    "requires": {
-        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": ["alpinejs@^3.15.8"]
-    }
+    "requires": { "composer": [], "npm": [] }
 }

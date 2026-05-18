@@ -1,0 +1,21 @@
+{
+    "name": "field",
+    "version": "1.0.0",
+    "description": "Composable form field primitives: Field, FieldSet, FieldLegend, FieldGroup, FieldContent, FieldLabel, FieldTitle, FieldDescription, FieldSeparator, FieldError.",
+    "categories": ["ui", "forms", "layout"],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        { "path": "field/index.blade.php",       "type": "blade" },
+        { "path": "field/set.blade.php",          "type": "blade" },
+        { "path": "field/legend.blade.php",       "type": "blade" },
+        { "path": "field/group.blade.php",        "type": "blade" },
+        { "path": "field/content.blade.php",      "type": "blade" },
+        { "path": "field/label.blade.php",        "type": "blade" },
+        { "path": "field/title.blade.php",        "type": "blade" },
+        { "path": "field/description.blade.php",  "type": "blade" },
+        { "path": "field/separator.blade.php",    "type": "blade" },
+        { "path": "field/error.blade.php",        "type": "blade" }
+    ],
+    "requires": { "composer": [], "npm": [] }
+}

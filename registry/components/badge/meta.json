@@ -1,18 +1,12 @@
 {
     "name": "badge",
     "version": "1.0.0",
-    "description": "Badge component with variants, sizes, and optional remove functionality.",
-    "categories": ["ui", "feedback", "forms"],
+    "description": "Inline badge with variants: default, secondary, destructive, outline, success.",
+    "categories": ["ui", "feedback"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
-        {
-            "path": "badge.blade.php",
-            "type": "blade"
-        }
+        { "path": "badge/index.blade.php", "type": "blade" }
     ],
-    "requires": {
-        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": []
-    }
+    "requires": { "composer": [], "npm": [] }
 }

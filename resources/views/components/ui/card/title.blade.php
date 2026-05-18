@@ -1,3 +1,7 @@
-<h4 data-slot="card-title" {{ $attributes->merge(['class' => 'leading-none font-semibold']) }}>
-    {{ $slot }}
-</h4>
+<div
+    data-slot="card-title"
+    {{ $attributes->class([
+        'text-base leading-snug font-medium',
+        'group-data-[size=sm]/card:text-sm',
+    ]) }}
+>{{ $slot }}</div>

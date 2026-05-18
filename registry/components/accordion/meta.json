@@ -1,34 +1,18 @@
 {
     "name": "accordion",
     "version": "1.0.0",
-    "description": "Collapsible accordion component with smooth animations and multiple item support.",
+    "description": "Collapsible accordion with animated height via Alpine.js x-collapse. Sub-components: item, trigger, content.",
     "categories": ["ui", "interactive", "layout"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
-        {
-            "path": "accordion/index.blade.php",
-            "type": "blade"
-        },
-        {
-            "path": "accordion/item.blade.php",
-            "type": "blade"
-        },
-        {
-            "path": "accordion/trigger.blade.php",
-            "type": "blade"
-        },
-        {
-            "path": "accordion/content.blade.php",
-            "type": "blade"
-        },
-        {
-            "path": "accordion.js",
-            "type": "js"
-        }
+        { "path": "accordion/index.blade.php",   "type": "blade" },
+        { "path": "accordion/item.blade.php",    "type": "blade" },
+        { "path": "accordion/trigger.blade.php", "type": "blade" },
+        { "path": "accordion/content.blade.php", "type": "blade" }
     ],
     "requires": {
         "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": ["alpinejs@^3.15.8", "@alpinejs/collapse@^3.15.8"]
+        "npm": ["alpinejs@^3.15.12", "@alpinejs/collapse@^3.15.12"]
     }
 }

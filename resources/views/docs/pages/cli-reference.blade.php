@@ -30,8 +30,8 @@ velyx -v</x-docs.code-block>
                 bun="bunx --bun velyx@latest init"
             />
 
-            <x-ui.table class="mt-4 rounded-lg border">
-                <x-ui.table.header class="bg-muted/50">
+            <x-ui.table class="mt-4">
+                <x-ui.table.header >
                     <x-ui.table.row>
                         <x-ui.table.head>Option</x-ui.table.head>
                         <x-ui.table.head>Alias</x-ui.table.head>

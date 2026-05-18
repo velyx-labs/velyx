@@ -1,18 +1,12 @@
 {
     "name": "button",
     "version": "1.0.0",
-    "description": "A versatile button component with variants, sizes, and icon support.",
+    "description": "Versatile button with variants (default, destructive, outline, secondary, ghost, link), sizes, icon support (left/right/only), href for anchor rendering, and wire:loading state.",
     "categories": ["ui", "forms", "interactive"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
-        {
-            "path": "button.blade.php",
-            "type": "blade"
-        }
+        { "path": "button.blade.php", "type": "blade" }
     ],
-    "requires": {
-        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": []
-    }
+    "requires": { "composer": ["mallardduck/blade-lucide-icons@1.26.1"], "npm": [] }
 }

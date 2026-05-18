@@ -1,3 +1,9 @@
-<tr data-slot="table-row" {{ $attributes->merge(['class' => 'hover:bg-muted/50 border-b transition-colors data-[state=selected]:bg-muted']) }}>
-    {{ $slot }}
-</tr>
+<tr
+    data-slot="table-row"
+    {{ $attributes->class([
+        'border-b transition-colors',
+        'hover:bg-muted/50',
+        'has-aria-expanded:bg-muted/50',
+        'data-[state=selected]:bg-muted',
+    ]) }}
+>{{ $slot }}</tr>

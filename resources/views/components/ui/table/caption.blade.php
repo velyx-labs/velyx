@@ -1,3 +1,4 @@
-<caption data-slot="table-caption" {{ $attributes->merge(['class' => 'text-muted-foreground mt-4 text-sm']) }}>
-    {{ $slot }}
-</caption>
+<caption
+    data-slot="table-caption"
+    {{ $attributes->class(['mt-4 text-sm text-muted-foreground']) }}
+>{{ $slot }}</caption>

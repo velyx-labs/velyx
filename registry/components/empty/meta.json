@@ -1,0 +1,17 @@
+{
+    "name": "empty",
+    "version": "1.0.0",
+    "description": "Composable empty state with header, media (icon/image), title, description and actions.",
+    "categories": ["ui", "feedback", "layout"],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        { "path": "empty/index.blade.php",       "type": "blade" },
+        { "path": "empty/header.blade.php",      "type": "blade" },
+        { "path": "empty/media.blade.php",       "type": "blade" },
+        { "path": "empty/title.blade.php",       "type": "blade" },
+        { "path": "empty/description.blade.php", "type": "blade" },
+        { "path": "empty/content.blade.php",     "type": "blade" }
+    ],
+    "requires": { "composer": [], "npm": [] }
+}

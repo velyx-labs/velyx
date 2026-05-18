@@ -1,3 +1,7 @@
-<div data-slot="card-footer" {{ $attributes->merge(['class' => 'flex items-center px-6 pb-6 pt-4']) }}>
-    {{ $slot }}
-</div>
+<div
+    data-slot="card-footer"
+    {{ $attributes->class([
+        'flex items-center rounded-b-xl border-t bg-muted/50 p-4',
+        'group-data-[size=sm]/card:p-3',
+    ]) }}
+>{{ $slot }}</div>

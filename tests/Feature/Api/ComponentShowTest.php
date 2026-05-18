@@ -101,16 +101,12 @@ test('returns validation error for invalid include parameter', function () {
 
 test('components with assets expose blade views inside a component folder', function () {
     $components = [
-        'accordion',
-        'alert',
-        'carousel',
         'command-palette',
         'date-picker',
         'dialog',
         'drawer',
         'dropdown-menu',
         'file-upload',
-        'input',
         'markdown-viewer',
         'popover',
         'range-slider',

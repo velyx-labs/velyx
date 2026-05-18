@@ -1,18 +1,12 @@
 {
     "name": "label",
     "version": "1.0.0",
-    "description": "Form label component with accessibility features and optional descriptions.",
+    "description": "Form label with optional required asterisk and hint text. Aware of disabled peer and group context.",
     "categories": ["ui", "forms"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
-        {
-            "path": "label/index.blade.php",
-            "type": "blade"
-        }
+        { "path": "label/index.blade.php", "type": "blade" }
     ],
-    "requires": {
-        "composer": [],
-        "npm": []
-    }
+    "requires": { "composer": [], "npm": [] }
 }

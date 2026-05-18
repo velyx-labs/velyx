@@ -1,3 +1,4 @@
-<div data-slot="card-content" {{ $attributes->merge(['class' => 'px-6']) }}>
-    {{ $slot }}
-</div>
+<div
+    data-slot="card-content"
+    {{ $attributes->class(['px-4 group-data-[size=sm]/card:px-3']) }}
+>{{ $slot }}</div>
