@@ -4,7 +4,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "changeset": "changeset",
+        "version": "changeset version",
+        "release": "changeset publish"
     },
     "dependencies": {
         "@docsearch/core": "^4.6.3",
@@ -39,6 +42,8 @@
         "lightningcss-linux-x64-gnu": "^1.29.1"
     },
     "devDependencies": {
-        "prettier": "3.8.1"
+        "prettier": "3.8.1",
+        "@changesets/cli": "^2.29.8",
+        "@changesets/changelog-git": "^0.2.1"
     }
 }

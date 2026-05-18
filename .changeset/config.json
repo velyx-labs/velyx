@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@latest/schema.json",
+  "changelog": [
+    "@changesets/changelog-git",
+    { "repo": "velyx-labs/cli" }
+  ],
+  "commit": false,
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch"
+}
