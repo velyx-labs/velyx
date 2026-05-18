@@ -39,7 +39,7 @@
     })"
     data-slot="accordion"
     data-orientation="vertical"
-    {{ $attributes->merge(['class' => 'flex flex-col w-full divide-y divide-border rounded-lg bg-background']) }}
+    {{ $attributes->class(['flex w-full flex-col']) }}
 >
     @if($hasSlotContent)
         {{ $slot }}

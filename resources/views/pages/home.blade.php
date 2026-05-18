@@ -15,247 +15,129 @@ new class extends Component
 ?>
 
 <div>
-    {{-- Hero --}}
-    <section class="relative flex min-h-[55vh] flex-col items-center justify-center overflow-hidden px-4 text-center">
-        <div class="pointer-events-none absolute inset-0"
-             style="background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 100%);"></div>
+    <section class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-16 lg:px-6">
 
-        <div class="relative z-10 flex flex-col items-center gap-5 py-20">
-            <a href="{{ route('docs.page', 'installation') }}" wire:navigate class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted">
-                {{ count($this->components) }} components available
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
+        {{-- Grid background --}}
+        <div
+            class="pointer-events-none absolute inset-0"
+            style="background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%);"
+        ></div>
 
-            <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Build your UI.<br>
-                <span class="text-muted-foreground font-normal">Own every pixel.</span>
-            </h1>
+        <div class="container-wrapper relative z-10 flex w-full flex-col items-center gap-10">
 
-            <p class="max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground">
-                Production-ready Blade components for Laravel teams. Copy them into your project, adapt to your brand, ship with confidence.
-            </p>
-
-            <div class="flex flex-wrap items-center justify-center gap-3">
-                <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate iconRight="arrow-right">Get Started</x-ui.button>
-                <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline">Browse Components</x-ui.button>
+            {{-- Title + description + CTAs --}}
+            <div class="flex flex-col items-center gap-5 text-center">
+                <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Open-source · MIT License
+                </p>
+                <h1 class="max-w-2xl text-5xl font-semibold leading-[1.1] tracking-tight text-foreground xl:text-6xl">
+                    Blade components<br>
+                    <span class="font-normal text-muted-foreground">you actually own.</span>
+                </h1>
+                <p class="max-w-md text-base leading-relaxed text-muted-foreground">
+                    Production-ready UI for Laravel. Copy components into your project and adapt them freely — no lock-in, no abstractions.
+                </p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate iconRight="arrow-right">
+                        Get started
+                    </x-ui.button>
+                    <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline">
+                        Browse components
+                    </x-ui.button>
+                </div>
             </div>
-        </div>
-    </section>
 
-    {{-- Components Grid --}}
-    <section class="border-t border-border bg-background/60 px-4 pb-24 lg:px-6">
-        <div class="container-wrapper">
-            <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 [&>*]:mb-4">
+            {{-- Component preview --}}
+            <div class="w-full max-w-4xl">
+                {{-- Glow --}}
+                <div class="pointer-events-none absolute inset-x-0 mx-auto h-64 w-2/3 -translate-y-1/2 rounded-full bg-foreground/[0.04] blur-3xl"></div>
 
-                {{-- Button --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Button</p>
-                    <div class="flex flex-wrap gap-2">
-                        <x-ui.button size="sm">Primary</x-ui.button>
-                        <x-ui.button size="sm" variant="outline">Outline</x-ui.button>
-                        <x-ui.button size="sm" variant="ghost">Ghost</x-ui.button>
-                        <x-ui.button size="sm" variant="destructive">Delete</x-ui.button>
-                    </div>
-                </div>
+                <div class="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
 
-                {{-- Badge --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Badge</p>
-                    <div class="flex flex-wrap gap-2">
-                        <x-ui.badge>Default</x-ui.badge>
-                        <x-ui.badge variant="secondary">Secondary</x-ui.badge>
-                        <x-ui.badge variant="outline">Outline</x-ui.badge>
-                        <x-ui.badge variant="destructive">Error</x-ui.badge>
-                        <x-ui.badge variant="success">Success</x-ui.badge>
-                    </div>
-                </div>
-
-                {{-- Card with form feel --}}
-                <x-ui.card>
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Input</p>
-                    <div class="space-y-3">
-                        <div>
-                            <x-ui.label>Email address</x-ui.label>
-                            <x-ui.input type="email" placeholder="you@example.com" class="mt-1.5" />
+                    {{-- Browser chrome --}}
+                    <div class="flex items-center gap-3 border-b border-border bg-muted/30 px-4 py-3">
+                        <div class="flex gap-1.5">
+                            <span class="size-2.5 rounded-full bg-border"></span>
+                            <span class="size-2.5 rounded-full bg-border"></span>
+                            <span class="size-2.5 rounded-full bg-border"></span>
                         </div>
-                        <div>
-                            <x-ui.label>Password</x-ui.label>
-                            <x-ui.input type="password" placeholder="••••••••" class="mt-1.5" />
-                        </div>
-                        <x-ui.button class="w-full" size="sm">Sign In</x-ui.button>
-                    </div>
-                </x-ui.card>
-
-                {{-- Alert --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Alert</p>
-                    <div class="space-y-3">
-                        <x-ui.alert variant="info" title="Heads up!" description="You can change this in your settings." />
-                        <x-ui.alert variant="success" title="Done!" description="Your changes have been saved." />
-                        <x-ui.alert variant="destructive" title="Error" description="Something went wrong." />
-                    </div>
-                </div>
-
-                {{-- Avatar --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Avatar</p>
-                    <div class="flex items-center gap-4">
-                        <x-ui.avatar size="sm" initials="JD" />
-                        <x-ui.avatar initials="MK" />
-                        <x-ui.avatar size="lg" initials="AB" />
-                        <x-ui.avatar size="xl" initials="XL" />
-                    </div>
-                </div>
-
-                {{-- Progress --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Progress Bar</p>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="mb-1.5 flex justify-between text-xs text-muted-foreground">
-                                <span>Uploading...</span>
-                                <span>64%</span>
-                            </div>
-                            <x-ui.progress-bar :value="64" />
-                        </div>
-                        <div>
-                            <div class="mb-1.5 flex justify-between text-xs text-muted-foreground">
-                                <span>Installing</span>
-                                <span>100%</span>
-                            </div>
-                            <x-ui.progress-bar :value="100" color="success" />
+                        <div class="flex flex-1 items-center gap-2 rounded-md border border-border/60 bg-background/60 px-3 py-1 text-xs text-muted-foreground">
+                            <x-lucide-lock class="size-3 shrink-0" />
+                            velyx.dev/components
                         </div>
                     </div>
-                </div>
 
-                {{-- Skeleton --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Skeleton</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <x-ui.skeleton class="h-10 w-10 rounded-full" />
-                            <div class="flex-1 space-y-2">
-                                <x-ui.skeleton class="h-3 w-3/4 rounded" />
-                                <x-ui.skeleton class="h-3 w-1/2 rounded" />
+                    {{-- Content --}}
+                    <div class="space-y-4 p-5">
+
+                        {{-- Toolbar: Field + Button --}}
+                        <div class="flex items-end gap-3">
+                            <x-ui.field class="flex-1">
+                                <x-ui.field.label>Search</x-ui.field.label>
+                                <x-ui.field.content>
+                                    <x-ui.input placeholder="Filter components..." />
+                                </x-ui.field.content>
+                            </x-ui.field>
+                            <x-ui.button size="sm" iconLeft="plus">Add component</x-ui.button>
+                        </div>
+
+                        <x-ui.separator />
+
+                        {{-- Table --}}
+                        <x-ui.table>
+                            <x-ui.table.header>
+                                <x-ui.table.row>
+                                    <x-ui.table.head class="w-8">
+                                        <x-ui.checkbox />
+                                    </x-ui.table.head>
+                                    <x-ui.table.head>Name</x-ui.table.head>
+                                    <x-ui.table.head>Category</x-ui.table.head>
+                                    <x-ui.table.head>Status</x-ui.table.head>
+                                    <x-ui.table.head class="text-right"></x-ui.table.head>
+                                </x-ui.table.row>
+                            </x-ui.table.header>
+                            <x-ui.table.body>
+                                @foreach([
+                                    ['Button',    'Forms',    'success',   'Stable'],
+                                    ['Field',     'Forms',    'success',   'Stable'],
+                                    ['Separator', 'Layout',   'secondary', 'New'],
+                                    ['Table',     'Data',     'secondary', 'New'],
+                                    ['Card',      'Layout',   'success',   'Stable'],
+                                ] as [$name, $category, $badgeVariant, $badgeLabel])
+                                    <x-ui.table.row>
+                                        <x-ui.table.cell>
+                                            <x-ui.checkbox />
+                                        </x-ui.table.cell>
+                                        <x-ui.table.cell class="font-medium text-foreground">
+                                            {{ $name }}
+                                        </x-ui.table.cell>
+                                        <x-ui.table.cell class="text-muted-foreground">
+                                            {{ $category }}
+                                        </x-ui.table.cell>
+                                        <x-ui.table.cell>
+                                            <x-ui.badge variant="{{ $badgeVariant }}">{{ $badgeLabel }}</x-ui.badge>
+                                        </x-ui.table.cell>
+                                        <x-ui.table.cell class="text-right">
+                                            <x-ui.button size="sm" variant="ghost" iconOnly="arrow-right" />
+                                        </x-ui.table.cell>
+                                    </x-ui.table.row>
+                                @endforeach
+                            </x-ui.table.body>
+                        </x-ui.table>
+
+                        {{-- Table footer --}}
+                        <div class="flex items-center justify-between border-t border-border pt-3">
+                            <p class="text-xs text-muted-foreground">5 of {{ count($this->components) }} components</p>
+                            <div class="flex gap-1.5">
+                                <x-ui.button size="sm" variant="outline" iconOnly="chevron-left" />
+                                <x-ui.button size="sm" variant="outline" iconOnly="chevron-right" />
                             </div>
                         </div>
-                        <x-ui.skeleton class="h-20 w-full rounded-lg" />
+
                     </div>
                 </div>
-
-                {{-- Breadcrumbs --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Breadcrumbs</p>
-                    <x-ui.breadcrumbs :items="[
-                        ['label' => 'Home', 'url' => '#'],
-                        ['label' => 'Settings', 'url' => '#'],
-                        ['label' => 'Profile'],
-                    ]" />
-                </div>
-
-                {{-- Card --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Card</p>
-                    <x-ui.card class="p-4">
-                        <div class="flex items-center gap-3">
-                            <x-ui.avatar initials="VX" />
-                            <div>
-                                <p class="text-sm font-medium text-foreground">Velyx Registry</p>
-                                <p class="text-xs text-muted-foreground">v1.0.0 released</p>
-                            </div>
-                        </div>
-                        <p class="mt-3 text-xs leading-5 text-muted-foreground">Production-ready components. Copy, adapt, and ship with zero lock-in.</p>
-                        <div class="mt-3 flex gap-2">
-                            <x-ui.badge variant="secondary">Laravel</x-ui.badge>
-                            <x-ui.badge variant="secondary">Livewire</x-ui.badge>
-                            <x-ui.badge variant="secondary">Tailwind</x-ui.badge>
-                        </div>
-                    </x-ui.card>
-                </div>
-
-                {{-- KBD --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Kbd</p>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between text-xs text-muted-foreground">
-                            <span>Save</span>
-                            <div class="flex gap-1"><x-ui.kbd>⌘</x-ui.kbd><x-ui.kbd>S</x-ui.kbd></div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-muted-foreground">
-                            <span>Search</span>
-                            <div class="flex gap-1"><x-ui.kbd>⌘</x-ui.kbd><x-ui.kbd>K</x-ui.kbd></div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-muted-foreground">
-                            <span>Copy</span>
-                            <div class="flex gap-1"><x-ui.kbd>⌘</x-ui.kbd><x-ui.kbd>C</x-ui.kbd></div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Toggle --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Toggle</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-foreground">Dark mode</span>
-                            <x-ui.toggle :checked="true" />
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-foreground">Notifications</span>
-                            <x-ui.toggle :checked="false" />
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-foreground">Auto-save</span>
-                            <x-ui.toggle :checked="true" />
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Rating --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Rating</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-muted-foreground">Quality</span>
-                            <x-ui.rating :value="5" :max="5" readonly />
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-muted-foreground">Support</span>
-                            <x-ui.rating :value="4" :max="5" readonly />
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-muted-foreground">Docs</span>
-                            <x-ui.rating :value="3" :max="5" readonly />
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Empty State --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Empty State</p>
-                    <x-ui.empty-state
-                        title="No components yet"
-                        description="Add your first component to get started."
-                        icon="layout-dashboard"
-                    />
-                </div>
-
-                {{-- Label --}}
-                <div class="break-inside-avoid rounded-xl border border-border bg-card p-5">
-                    <p class="mb-4 text-xs font-medium text-muted-foreground">Label</p>
-                    <div class="space-y-3">
-                        <div>
-                            <x-ui.label required>Full Name</x-ui.label>
-                            <x-ui.input placeholder="John Doe" class="mt-1.5" />
-                        </div>
-                        <div>
-                            <x-ui.label hint="Optional">Company</x-ui.label>
-                            <x-ui.input placeholder="Acme Inc." class="mt-1.5" />
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
         </div>
     </section>
 </div>

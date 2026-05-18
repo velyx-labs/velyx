@@ -1,18 +1,15 @@
 {
     "name": "avatar",
     "version": "1.0.0",
-    "description": "User avatar with image fallback, initials, and status indicators.",
-    "categories": ["ui", "media", "feedback"],
+    "description": "Composable avatar with image, fallback initials, badge overlay, and size variants (sm, default, lg).",
+    "categories": ["ui", "media"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
-        {
-            "path": "avatar.blade.php",
-            "type": "blade"
-        }
+        { "path": "avatar/index.blade.php",    "type": "blade" },
+        { "path": "avatar/image.blade.php",    "type": "blade" },
+        { "path": "avatar/fallback.blade.php", "type": "blade" },
+        { "path": "avatar/badge.blade.php",    "type": "blade" }
     ],
-    "requires": {
-        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": []
-    }
+    "requires": { "composer": [], "npm": [] }
 }

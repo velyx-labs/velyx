@@ -1,35 +1,23 @@
 @props([
     'for' => null,
     'required' => false,
-    'description' => null,
+    'hint' => null,
 ])
 
-@php
-    $baseClasses = 'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70';
-    
-    $descriptionId = $description ? ($for ? $for . '-description' : null) : null;
-@endphp
-
-@if ($for)
-    <label 
-        for="{{ $for }}" 
-        {{ $attributes->class($baseClasses) }}
-        @if ($required) required @endif
-    >
-        {{ $slot }}
-    </label>
-    @if ($description && $descriptionId)
-        <p id="{{ $descriptionId }}" class="text-sm text-muted-foreground">
-            {{ $description }}
-        </p>
+<label
+    data-slot="label"
+    @if($for) for="{{ $for }}" @endif
+    {{ $attributes->class([
+        'flex items-center gap-1 text-sm leading-none font-medium select-none',
+        'peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+        'group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50',
+    ]) }}
+>
+    {{ $slot }}
+    @if($required)
+        <span aria-hidden="true" class="text-destructive">*</span>
     @endif
-@else
-    <span {{ $attributes->class($baseClasses) }}>
-        {{ $slot }}
-    </span>
-    @if ($description && $descriptionId)
-        <p id="{{ $descriptionId }}" class="text-sm text-muted-foreground">
-            {{ $description }}
-        </p>
+    @if($hint)
+        <span class="font-normal text-muted-foreground">({{ $hint }})</span>
     @endif
-@endif
+</label>

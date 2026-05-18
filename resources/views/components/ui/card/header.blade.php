@@ -1,3 +1,10 @@
-<div data-slot="card-header" {{ $attributes->merge(['class' => 'grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 [&:has([data-slot=card-action])]:grid-cols-[1fr_auto]']) }}>
-    {{ $slot }}
-</div>
+<div
+    data-slot="card-header"
+    {{ $attributes->class([
+        'group/card-header grid auto-rows-min items-start gap-1 rounded-t-xl px-4',
+        'group-data-[size=sm]/card:px-3',
+        'has-data-[slot=card-action]:grid-cols-[1fr_auto]',
+        'has-data-[slot=card-description]:grid-rows-[auto_auto]',
+        '[.border-b]:pb-4 group-data-[size=sm]/card:[.border-b]:pb-3',
+    ]) }}
+>{{ $slot }}</div>

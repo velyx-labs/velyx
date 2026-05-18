@@ -1,18 +1,12 @@
 {
     "name": "skeleton",
     "version": "1.0.0",
-    "description": "Skeleton loading component with multiple variants and customizable shapes.",
-    "categories": ["ui", "feedback", "layout"],
+    "description": "Animated loading placeholder with pulse animation.",
+    "categories": ["ui", "feedback"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
-        {
-            "path": "skeleton/index.blade.php",
-            "type": "blade"
-        }
+        { "path": "skeleton/index.blade.php", "type": "blade" }
     ],
-    "requires": {
-        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
-        "npm": []
-    }
+    "requires": { "composer": [], "npm": [] }
 }

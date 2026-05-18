@@ -1,0 +1,12 @@
+{
+    "name": "checkbox",
+    "version": "1.0.0",
+    "description": "Accessible checkbox using native input with custom visual layer. Supports wire:model, x-model, disabled and aria-invalid states.",
+    "categories": ["ui", "forms", "interactive"],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        { "path": "checkbox/index.blade.php", "type": "blade" }
+    ],
+    "requires": { "composer": ["mallardduck/blade-lucide-icons@1.26.1"], "npm": [] }
+}

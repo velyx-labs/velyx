@@ -3,13 +3,23 @@
 ])
 @php
     $variant = (string) ($props['variant'] ?? 'default');
-    $dismissible = filter_var($props['dismissible'] ?? true, FILTER_VALIDATE_BOOLEAN);
-    $title = (string) ($props['title'] ?? 'Update available');
+    $title   = (string) ($props['title'] ?? 'Update available');
     $message = (string) ($props['message'] ?? 'A new version is available. Please update to get the latest improvements.');
+
+    $icons = [
+        'destructive' => 'lucide-circle-alert',
+        'success'     => 'lucide-circle-check',
+        'warning'     => 'lucide-triangle-alert',
+        'info'        => 'lucide-info',
+        'default'     => 'lucide-info',
+    ];
+    $icon = $icons[$variant] ?? 'lucide-info';
 @endphp
 
-<div class="preview relative flex h-[260px] w-full items-start justify-center p-6 [&_[role=alert]]:max-w-lg">
-    <x-ui.alert :variant="$variant" :dismissible="$dismissible" :title="$title">
-        {{ $message }}
+<div class="preview relative flex h-[200px] w-full items-start justify-center p-6 [&_[role=alert]]:max-w-lg">
+    <x-ui.alert :variant="$variant">
+        <x-dynamic-component :component="$icon" />
+        <x-ui.alert.title>{{ $title }}</x-ui.alert.title>
+        <x-ui.alert.description>{{ $message }}</x-ui.alert.description>
     </x-ui.alert>
 </div>

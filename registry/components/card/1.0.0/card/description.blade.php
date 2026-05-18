@@ -1,3 +1,4 @@
-<p data-slot="card-description" {{ $attributes->merge(['class' => 'text-muted-foreground text-sm']) }}>
-    {{ $slot }}
-</p>
+<div
+    data-slot="card-description"
+    {{ $attributes->class(['text-sm text-muted-foreground']) }}
+>{{ $slot }}</div>
