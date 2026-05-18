@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+### Fixed
+
+- Ensure pnpm version is specified in publish workflow ([`e257a98`](https://github.com/velyx-labs/registry/commit/e257a980a81e3184004ca30949a0296685487ee5))
+
+## [v2.1.0] - 2026-05-18
+
 ### Added
 
 - Set dark mode as default theme ([`8b308ec`](https://github.com/velyx-labs/registry/commit/8b308ecda12c54d3460f91ad1038ef13bde7e2b7))
@@ -67,6 +73,8 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Configure Changesets for monorepo releases ([`329cb3c`](https://github.com/velyx-labs/registry/commit/329cb3c1517e943ff5661db065b58e4a91e048c2))
 - Update tools/cli repository URL to velyx ([`8e2812d`](https://github.com/velyx-labs/registry/commit/8e2812d1dcf8ffaabf85f4379589d701633ce299))
 - Update CHANGELOG.md ([`0956176`](https://github.com/velyx-labs/registry/commit/0956176b0ccc1992b0f60a206af258222a6c2adb))
+- Update version to 2.1.0 and add new components to CHANGELOG.md ([`25977c2`](https://github.com/velyx-labs/registry/commit/25977c26332bfaa971b9ab951b9cf875091f65a9))
+- Update CHANGELOG.md ([`cef3a07`](https://github.com/velyx-labs/registry/commit/cef3a07c2576683b914404884ce50d6b1d22e6b3))
 
 ### Refactored
 
@@ -217,5 +225,6 @@ refactor: remove unused range slider component and related files ([`a09099a`](ht
 - Remove installation tracking endpoints and improve stepper layout ([`ad33aa2`](https://github.com/velyx-labs/registry/commit/ad33aa23953a8bde3c3d207b9bde7d557c1e2d37))
 
 <!-- Links -->
+[v2.1.0]: https://github.com/velyx-labs/registry/compare/v1.0.0...v2.1.0
 [v1.0.0]: https://github.com/velyx-labs/registry/compare/...v1.0.0
 
