@@ -1,5 +1,11 @@
 # velyx
 
+## 2.1.0
+
+### Minor Changes
+
+- Add four new components: Checkbox, Separator, Field, and Empty (renamed from empty-state). Refactor all existing components (button, badge, alert, avatar, avatar-group, card, accordion, input, label, skeleton, table) to shadcn/ui style with `data-slot` attributes and Blade sub-component composition. Replace iframe-based doc previews with inline rendering.
+
 ## 2.0.2
 
 ### Patch Changes
