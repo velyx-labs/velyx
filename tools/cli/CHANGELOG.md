@@ -1,5 +1,15 @@
 # velyx
 
+## 2.1.1
+
+### Patch Changes
+
+- Fix registry URL not resolving for published CLI builds and improve network error messages.
+
+  The production registry URL was not being inlined at build time, causing the CLI to fall back to `http://velyx.test/api/v1` (a dev-only local domain) when run outside the development environment. The URL is now baked into the bundle via esbuild's `define` option.
+
+  Also removed a stray debug `console.log`, improved `NetworkError` messages to include the target URL and the underlying system error (e.g. `ENOTFOUND`, `ECONNREFUSED`), and added contextual hints in the error handler.
+
 ## 2.1.0
 
 ### Minor Changes
