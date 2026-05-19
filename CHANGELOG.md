@@ -8,7 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Ensure pnpm version is specified in publish workflow ([`e257a98`](https://github.com/velyx-labs/registry/commit/e257a980a81e3184004ca30949a0296685487ee5))
+- Update icon links to use asset helper for consistency ([`777e6a4`](https://github.com/velyx-labs/registry/commit/777e6a44de9456d5dbe82b15b16938b1a10d5d8b))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG.md ([`fb712e6`](https://github.com/velyx-labs/registry/commit/fb712e6f1d15630aafa96ab34090bbd55b48854b))
 
 ## [v2.1.0] - 2026-05-18
 
@@ -55,6 +59,7 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Update package name to match the scoped format for better package management ([`1b9a05b`](https://github.com/velyx-labs/registry/commit/1b9a05ba831bef3a49614ff2b57c25fdf9d8fbf8))
 - Update package name and repository URL for consistency ([`d07f04d`](https://github.com/velyx-labs/registry/commit/d07f04db86afafbaeb69c2f9753d8b5f93d7a354))
 - Allow overwriting existing velyx.css theme file ([`235b627`](https://github.com/velyx-labs/registry/commit/235b6274130666062deb8f49d9be3a5ee9e16006))
+- Ensure pnpm version is specified in publish workflow ([`e257a98`](https://github.com/velyx-labs/registry/commit/e257a980a81e3184004ca30949a0296685487ee5))
 
 ### Miscellaneous Tasks
 
