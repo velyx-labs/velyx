@@ -6,20 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
-### Added
+### Refactored
 
-- Update workflow ([`f0ad562`](https://github.com/velyx-labs/registry/commit/f0ad562e41541100537abf421bb8d2ac23152e9c))
+- Update layout ([`ebcdeaf`](https://github.com/velyx-labs/registry/commit/ebcdeaf7f1ddc4d2bfb44729c4a74c8ff8c05c5c))
+
+## [v2.1.1] - 2026-05-19
 
 ### Fixed
 
-- Update icon links to use asset helper for consistency ([`777e6a4`](https://github.com/velyx-labs/registry/commit/777e6a44de9456d5dbe82b15b16938b1a10d5d8b))
+- Fix(cli): inline registry URL at build time and improve network error
+messages
+
+- Add esbuildOptions.define in tsup.config.ts so VELYX_REGISTRY_URL is
+  baked
+  into the bundle at compile time — prevents fallback to velyx.test in
+  prod
+- Change default fallback in environment.ts to the production registry
+  URL
+- Improve NetworkError messages to show target URL and underlying system
+  error
+  (e.g. ENOTFOUND, ECONNREFUSED) extracted from TypeError.cause
+- Add contextual hints in ErrorHandler for common network failure
+  scenarios
+- Remove stray debug console.log from http-service.ts ([`ddeb037`](https://github.com/velyx-labs/registry/commit/ddeb0372010c64287e76c8db5b9bcf76adbf7024))
 
 ### Miscellaneous Tasks
 
-- Update CHANGELOG.md ([`fb712e6`](https://github.com/velyx-labs/registry/commit/fb712e6f1d15630aafa96ab34090bbd55b48854b))
-- Update CHANGELOG.md ([`c2a05fa`](https://github.com/velyx-labs/registry/commit/c2a05fade2d148af84c66ee5866b8980b7927160))
+- Update CHANGELOG.md ([`4d5eaf4`](https://github.com/velyx-labs/registry/commit/4d5eaf4528626d594a515153e6183aa8d44a883d))
 
-## [v2.1.0] - 2026-05-18
+## [v2.1.0] - 2026-05-19
 
 ### Added
 
@@ -56,6 +71,7 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Add contributing guidelines, issue templates, pull request template, and security policy ([`05fec2b`](https://github.com/velyx-labs/registry/commit/05fec2b986273fbbfc93640a3e07d494ab7655cf))
 - Add Tailwind CSS v4 @theme inline support to theme generation ([`6cf33e4`](https://github.com/velyx-labs/registry/commit/6cf33e4c38228e234b76fb72abd1af8a16f61c9a))
 - Ask user to override existing velyx.css theme file ([`237c55f`](https://github.com/velyx-labs/registry/commit/237c55f5457f92d796ee67b41a213b70d1504a6b))
+- Update workflow ([`f0ad562`](https://github.com/velyx-labs/registry/commit/f0ad562e41541100537abf421bb8d2ac23152e9c))
 
 ### Fixed
 
@@ -65,6 +81,7 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Update package name and repository URL for consistency ([`d07f04d`](https://github.com/velyx-labs/registry/commit/d07f04db86afafbaeb69c2f9753d8b5f93d7a354))
 - Allow overwriting existing velyx.css theme file ([`235b627`](https://github.com/velyx-labs/registry/commit/235b6274130666062deb8f49d9be3a5ee9e16006))
 - Ensure pnpm version is specified in publish workflow ([`e257a98`](https://github.com/velyx-labs/registry/commit/e257a980a81e3184004ca30949a0296685487ee5))
+- Update icon links to use asset helper for consistency ([`777e6a4`](https://github.com/velyx-labs/registry/commit/777e6a44de9456d5dbe82b15b16938b1a10d5d8b))
 
 ### Miscellaneous Tasks
 
@@ -85,6 +102,8 @@ fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://git
 - Update CHANGELOG.md ([`0956176`](https://github.com/velyx-labs/registry/commit/0956176b0ccc1992b0f60a206af258222a6c2adb))
 - Update version to 2.1.0 and add new components to CHANGELOG.md ([`25977c2`](https://github.com/velyx-labs/registry/commit/25977c26332bfaa971b9ab951b9cf875091f65a9))
 - Update CHANGELOG.md ([`cef3a07`](https://github.com/velyx-labs/registry/commit/cef3a07c2576683b914404884ce50d6b1d22e6b3))
+- Update CHANGELOG.md ([`fb712e6`](https://github.com/velyx-labs/registry/commit/fb712e6f1d15630aafa96ab34090bbd55b48854b))
+- Update CHANGELOG.md ([`c2a05fa`](https://github.com/velyx-labs/registry/commit/c2a05fade2d148af84c66ee5866b8980b7927160))
 
 ### Refactored
 
@@ -235,6 +254,7 @@ refactor: remove unused range slider component and related files ([`a09099a`](ht
 - Remove installation tracking endpoints and improve stepper layout ([`ad33aa2`](https://github.com/velyx-labs/registry/commit/ad33aa23953a8bde3c3d207b9bde7d557c1e2d37))
 
 <!-- Links -->
+[v2.1.1]: https://github.com/velyx-labs/registry/compare/v2.1.0...v2.1.1
 [v2.1.0]: https://github.com/velyx-labs/registry/compare/v1.0.0...v2.1.0
 [v1.0.0]: https://github.com/velyx-labs/registry/compare/...v1.0.0
 
