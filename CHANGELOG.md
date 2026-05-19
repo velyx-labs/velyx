@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+### Added
+
+- Update workflow ([`f0ad562`](https://github.com/velyx-labs/registry/commit/f0ad562e41541100537abf421bb8d2ac23152e9c))
+
 ### Fixed
 
 - Update icon links to use asset helper for consistency ([`777e6a4`](https://github.com/velyx-labs/registry/commit/777e6a44de9456d5dbe82b15b16938b1a10d5d8b))
@@ -13,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Miscellaneous Tasks
 
 - Update CHANGELOG.md ([`fb712e6`](https://github.com/velyx-labs/registry/commit/fb712e6f1d15630aafa96ab34090bbd55b48854b))
+- Update CHANGELOG.md ([`c2a05fa`](https://github.com/velyx-labs/registry/commit/c2a05fade2d148af84c66ee5866b8980b7927160))
 
 ## [v2.1.0] - 2026-05-18
 
