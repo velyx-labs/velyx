@@ -1,13 +1,9 @@
+import { NetworkError } from '../errors/errors'
+
 /**
  * Custom error class for Velyx-specific errors with code and context
  */
 export class VelyxError extends Error {
-  /**
-   * Create a new VelyxError
-   * @param message - Error message
-   * @param code - Error code for categorization
-   * @param context - Additional context data
-   */
   constructor(
     message: string,
     public readonly code: string,
@@ -22,21 +18,36 @@ export class VelyxError extends Error {
  * Handles and formats errors for display
  */
 export class ErrorHandler {
-  /**
-   * Handle an error and display it appropriately
-   * @param error - Error to handle
-   * @param context - Context where the error occurred
-   */
   handle(error: Error, context: string): void {
     if (error instanceof VelyxError) {
       console.error(`[${error.code}] ${error.message}`)
       if (error.context) {
         console.error('Context:', error.context)
       }
-    } else {
-      console.error(`Unexpected error in ${context}: ${error.message}`)
+      return
     }
 
-    // Don't exit here, let the caller handle it
+    if (error instanceof NetworkError) {
+      console.error(`✖ ${error.message}`)
+      const hint = this.networkHint(error)
+      if (hint) console.error(`  → ${hint}`)
+      return
+    }
+
+    console.error(`Unexpected error in ${context}: ${error.message}`)
+  }
+
+  private networkHint(error: NetworkError): string | null {
+    const msg = error.message + (error.cause?.message ?? '')
+    if (msg.includes('ENOTFOUND') || msg.includes('ECONNREFUSED')) {
+      return 'Check your internet connection or try again later'
+    }
+    if (msg.includes('timed out') || msg.includes('ETIMEDOUT')) {
+      return 'The registry took too long to respond — try again in a moment'
+    }
+    if (msg.includes('certificate') || msg.includes('SSL')) {
+      return 'SSL certificate error — check your network proxy settings'
+    }
+    return null
   }
 }

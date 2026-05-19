@@ -80,8 +80,16 @@ async function fetchWithTimeout(
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
       throw new NetworkError(
-        `Request timeout after ${timeout}ms for ${url}`,
+        `Request timed out after ${timeout}ms — the registry may be unreachable`,
         error,
+      )
+    }
+    if (error instanceof TypeError && error.message === 'fetch failed') {
+      const cause = (error as Error & { cause?: Error }).cause
+      const detail = cause?.message ?? 'network error'
+      throw new NetworkError(
+        `Cannot reach ${url} — ${detail}`,
+        cause ?? error,
       )
     }
     throw error
@@ -132,7 +140,6 @@ export class HttpService {
         ) {
           return response
         }
-        console.log('Attempt: ', attempt)
         // If this is the last attempt, throw error
         if (attempt === retryOptions.maxRetries) {
           throw new NetworkError(

@@ -10,5 +10,5 @@ export const getRegistryApiUrl = (): string => {
 
   // Default to local registry for development
   // In production, this would be https://registry.velyx.dev/api/v1
-  return 'http://velyx.test/api/v1'
+  return 'https://registry.velyx.dev/api/v1'
 }
