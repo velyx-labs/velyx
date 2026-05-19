@@ -1,15 +1,25 @@
 <?php
 
 use App\Services\ComponentService;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
 new class extends Component
 {
     public array $components = [];
+    public int $stars = 0;
 
     public function mount(ComponentService $componentService): void
     {
         $this->components = $componentService->getAllComponents();
+        $this->stars = Cache::remember('github_stars_velyx', 3600, function () {
+            $response = Http::withHeaders(['Accept' => 'application/vnd.github+json'])
+                ->timeout(5)
+                ->get('https://api.github.com/repos/velyx-labs/registry');
+
+            return $response->successful() ? (int) $response->json('stargazers_count', 0) : 0;
+        });
     }
 };
 ?>
@@ -27,9 +37,22 @@ new class extends Component
 
             {{-- Title + description + CTAs --}}
             <div class="flex flex-col items-center gap-5 text-center">
-                <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    Open-source · MIT License
-                </p>
+
+                {{-- GitHub stars badge --}}
+                <a
+                    href="https://github.com/velyx-labs/registry"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-border/80 hover:bg-muted hover:text-foreground"
+                >
+                    <x-lucide-star class="size-3.5 transition-colors group-hover:fill-yellow-400 group-hover:text-yellow-400" />
+                    @if($stars > 0)
+                        {{ number_format($stars) }} stars on GitHub
+                    @else
+                        Star us on GitHub
+                    @endif
+                </a>
+
                 <h1 class="max-w-2xl text-5xl font-semibold leading-[1.1] tracking-tight text-foreground xl:text-6xl">
                     Blade components<br>
                     <span class="font-normal text-muted-foreground">you actually own.</span>
@@ -37,6 +60,7 @@ new class extends Component
                 <p class="max-w-md text-base leading-relaxed text-muted-foreground">
                     Production-ready UI for Laravel. Copy components into your project and adapt them freely — no lock-in, no abstractions.
                 </p>
+
                 <div class="flex flex-wrap justify-center gap-3">
                     <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate iconRight="arrow-right">
                         Get started
@@ -45,6 +69,17 @@ new class extends Component
                         Browse components
                     </x-ui.button>
                 </div>
+
+                {{-- Support nudge — subtle, not a CTA --}}
+                <p class="text-xs text-muted-foreground/70">
+                    Built with ♥ for the Laravel community ·
+                    <a
+                        href="https://gvcjmaad.mychariow.shop/velyx-dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="underline decoration-dotted underline-offset-2 transition-colors hover:text-muted-foreground"
+                    >support the project</a>
+                </p>
             </div>
 
             {{-- Component preview --}}
