@@ -67,7 +67,9 @@ export function getBaseColor(name: VelyxTheme): BaseColor | undefined {
 }
 
 function renderCssVars(vars: Record<string, string>): string[] {
-  return Object.entries(vars).map(([key, value]) => `  --${key}: hsl(${value});`)
+  return Object.entries(vars).map(
+    ([key, value]) => `  --${key}: hsl(${value});`,
+  )
 }
 
 /**

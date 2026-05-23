@@ -87,10 +87,7 @@ async function fetchWithTimeout(
     if (error instanceof TypeError && error.message === 'fetch failed') {
       const cause = (error as Error & { cause?: Error }).cause
       const detail = cause?.message ?? 'network error'
-      throw new NetworkError(
-        `Cannot reach ${url} — ${detail}`,
-        cause ?? error,
-      )
+      throw new NetworkError(`Cannot reach ${url} — ${detail}`, cause ?? error)
     }
     throw error
   } finally {
