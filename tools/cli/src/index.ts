@@ -1,17 +1,15 @@
-import chalk from 'chalk'
+import { cyan, gray } from 'kleur/colors'
 import { Command } from 'commander'
 import { init } from '@/src/commands/init'
 import { add } from '@/src/commands/add'
 import { list } from '@/src/commands/list'
 
 import packageJson from '../package.json'
-/**
- * Display a nice introduction banner
- */
+
 function displayIntro(): void {
   console.log('')
-  console.log(chalk.bold.cyan(`  ▼ VELYX CLI v${packageJson.version}`))
-  console.log(chalk.gray('  Tailwind CSS v4+ components for Laravel'))
+  console.log(cyan(`  ▼ VELYX CLI v${packageJson.version}`))
+  console.log(gray('  Tailwind CSS v4+ components for Laravel'))
   console.log('')
 }
 

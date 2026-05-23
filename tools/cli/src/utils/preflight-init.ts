@@ -52,7 +52,6 @@ export async function getProjectInfo(cwd: string): Promise<ProjectInfo | null> {
     const originalDir = process.cwd()
     process.chdir(cwd)
     const pkgManager = detectPackageManager()
-    console.log(`Detected package manager: ${pkgManager}`)
     process.chdir(originalDir)
 
     const projectInfo: ProjectInfo = {

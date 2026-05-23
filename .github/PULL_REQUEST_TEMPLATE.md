@@ -1,10 +1,14 @@
-## Summary
+## Description
 
-{{title}}
+<!-- Describe what this PR does and why. -->
 
-**From:** `{{head}}` → **To:** `{{base}}`
+## Type of Change
 
-{{body}}
+- [ ] Bug fix (non-breaking change that fixes an issue)
+- [ ] New feature (non-breaking change that adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Documentation update
+- [ ] Refactoring / code cleanup
 
 ## Scope
 
@@ -22,24 +26,24 @@
     - [ ] Artisan commands
     - [ ] Database
 
-## Breaking Changes
-
-- [ ] None
-- [ ] Yes, described below
-
-If yes, please explain the impact and migration steps.
-
-## Validation
+## How Has This Been Tested?
 
 - [ ] `php artisan test`
 - [ ] `php artisan registry:validate`
-- [ ] API endpoint verification
-- [ ] Preview verification in browser
+- [ ] API endpoint verified
+- [ ] Preview verified in browser
 - [ ] Migration tested locally
 
 ```text
-Paste the most relevant commands or output here.
+Paste the most relevant output here.
 ```
+
+## Breaking Changes
+
+- [ ] None
+- [ ] Yes — described below
+
+<!-- If yes, explain the impact and migration steps. -->
 
 ## Related Issues
 
@@ -55,4 +59,10 @@ Paste the most relevant commands or output here.
 - [ ] Documentation was updated if needed
 - [ ] No sensitive information included
 
+## Screenshots
+
+<!-- If applicable, add screenshots or screen recordings. -->
+
 ## Additional Notes
+
+<!-- Anything else reviewers should know. -->

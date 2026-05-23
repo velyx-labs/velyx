@@ -12,14 +12,7 @@ export default defineConfig({
   target: 'esnext',
   outDir: 'dist',
   treeshake: true,
-  esbuildOptions(options) {
-    options.define = {
-      ...options.define,
-      'process.env.VELYX_REGISTRY_URL': JSON.stringify(
-        process.env.VELYX_REGISTRY_URL ?? 'https://registry.velyx.dev/api/v1',
-      ),
-    }
-  },
+  shims: true,
   onSuccess: async () => {
     cpSync('src/colors', 'dist/colors', { recursive: true, force: true })
   },

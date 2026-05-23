@@ -56,18 +56,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "^0.11.0",
-    "chalk": "^5.6.2",
     "cli-table3": "^0.6.5",
     "commander": "^14.0.2",
     "fs-extra": "^11.3.3",
     "kleur": "^4.1.5",
-    "log-symbols": "^7.0.1",
     "ora": "^9.1.0",
     "prompts": "^2.4.2",
     "vite-tsconfig-paths": "^6.0.5",
-    "zod": "^3.24.1",
-    "zod-to-json-schema": "^3.24.6"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
