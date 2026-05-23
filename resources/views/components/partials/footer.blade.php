@@ -7,7 +7,8 @@ new class extends Component {
 ?>
 
 <footer class="border-t border-border bg-background" role="contentinfo">
-    <div class="container-wrapper px-6 lg:px-12 py-14 lg:py-20">
+    <div class="px-6 lg:px-12 xl:px-24 py-14 lg:py-20">
+        <div class="max-w-7xl mx-auto">
 
         <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr]">
 
@@ -86,5 +87,6 @@ new class extends Component {
             </p>
         </div>
 
+        </div><!-- /.max-w-7xl -->
     </div>
 </footer>

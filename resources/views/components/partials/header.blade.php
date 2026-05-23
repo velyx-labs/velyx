@@ -7,8 +7,8 @@ new class extends Component {
 ?>
 
 <header class="sticky top-0 z-50 w-full border-b border-border/50 bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/75">
-    <div class="container-wrapper px-6 lg:px-12">
-        <div class="flex h-14 items-center justify-between gap-6">
+    <div class="px-6 lg:px-12 xl:px-24">
+        <div class="flex h-14 items-center justify-between gap-6 max-w-7xl mx-auto">
 
             {{-- Logo --}}
             <x-ui.button href="{{ route('home') }}" wire:navigate variant="ghost" class="gap-2 px-0 hover:bg-transparent">
