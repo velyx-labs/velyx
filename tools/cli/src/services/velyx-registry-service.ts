@@ -24,7 +24,9 @@ export class VelyxRegistryService implements IRegistryService {
     count: number
   }> {
     try {
-      const response = await this.httpService.fetch(`${this.baseUrl}/components`)
+      const response = await this.httpService.fetch(
+        `${this.baseUrl}/components`,
+      )
 
       if (!response.ok) {
         throw new NetworkError(
@@ -38,7 +40,9 @@ export class VelyxRegistryService implements IRegistryService {
       return { components, count: data.count }
     } catch (error) {
       if (error instanceof NetworkError) throw error
-      throw new NetworkError(`Failed to fetch registry: ${(error as Error).message}`)
+      throw new NetworkError(
+        `Failed to fetch registry: ${(error as Error).message}`,
+      )
     }
   }
 
@@ -63,8 +67,14 @@ export class VelyxRegistryService implements IRegistryService {
         ? result.data
         : this.convertRegistryComponentToMeta(result.data)
     } catch (error) {
-      if (error instanceof ComponentNotFoundError || error instanceof NetworkError) throw error
-      throw new NetworkError(`Failed to fetch component "${name}": ${(error as Error).message}`)
+      if (
+        error instanceof ComponentNotFoundError ||
+        error instanceof NetworkError
+      )
+        throw error
+      throw new NetworkError(
+        `Failed to fetch component "${name}": ${(error as Error).message}`,
+      )
     }
   }
 
@@ -74,7 +84,8 @@ export class VelyxRegistryService implements IRegistryService {
       const url = `${this.baseUrl}/components/${componentName}`
       const response = await this.httpService.fetch(url)
 
-      if (response.status === 404) throw new ComponentNotFoundError(componentName)
+      if (response.status === 404)
+        throw new ComponentNotFoundError(componentName)
       if (!response.ok) {
         throw new NetworkError(
           `Failed to fetch component: ${response.status} ${response.statusText}`,
@@ -85,13 +96,21 @@ export class VelyxRegistryService implements IRegistryService {
       const fileContent = component.files[filePath]
 
       if (fileContent === undefined) {
-        throw new NetworkError(`File "${filePath}" not found in component "${componentName}"`)
+        throw new NetworkError(
+          `File "${filePath}" not found in component "${componentName}"`,
+        )
       }
 
       return fileContent
     } catch (error) {
-      if (error instanceof ComponentNotFoundError || error instanceof NetworkError) throw error
-      throw new NetworkError(`Failed to fetch file "${filePath}": ${(error as Error).message}`)
+      if (
+        error instanceof ComponentNotFoundError ||
+        error instanceof NetworkError
+      )
+        throw error
+      throw new NetworkError(
+        `Failed to fetch file "${filePath}": ${(error as Error).message}`,
+      )
     }
   }
 
@@ -125,8 +144,14 @@ export class VelyxRegistryService implements IRegistryService {
 
       return (await response.json()) as RegistryVersionsResponse
     } catch (error) {
-      if (error instanceof ComponentNotFoundError || error instanceof NetworkError) throw error
-      throw new NetworkError(`Failed to fetch versions for "${name}": ${(error as Error).message}`)
+      if (
+        error instanceof ComponentNotFoundError ||
+        error instanceof NetworkError
+      )
+        throw error
+      throw new NetworkError(
+        `Failed to fetch versions for "${name}": ${(error as Error).message}`,
+      )
     }
   }
 
