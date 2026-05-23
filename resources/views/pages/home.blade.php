@@ -249,13 +249,13 @@ new class extends Component
                     <span class="font-mono text-xs text-muted-foreground/50">Avatar</span>
                     <div class="pt-1 flex items-center gap-2">
                         <x-ui.avatar size="lg">
-                            <x-ui.avatar.fallback>JD</x-ui.avatar.fallback>
+                            <x-ui.avatar.image src="https://i.pravatar.cc/80?img=3" alt="Jordan D." />
                         </x-ui.avatar>
                         <x-ui.avatar>
-                            <x-ui.avatar.fallback>AK</x-ui.avatar.fallback>
+                            <x-ui.avatar.image src="https://i.pravatar.cc/80?img=15" alt="Alex K." />
                         </x-ui.avatar>
                         <x-ui.avatar size="sm">
-                            <x-ui.avatar.fallback>MR</x-ui.avatar.fallback>
+                            <x-ui.avatar.image src="https://i.pravatar.cc/80?img=44" alt="Maria R." />
                         </x-ui.avatar>
                     </div>
                 </div>
