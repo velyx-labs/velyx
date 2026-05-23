@@ -1,0 +1,94 @@
+name: Enrich PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    name: Auto-label
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Label by changed paths and PR size
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+
+            const paths = files.map(f => f.filename);
+            const labels = new Set();
+
+            // Area labels
+            if (paths.some(p => p.startsWith('tools/cli/')))
+              labels.add('cli');
+            if (paths.some(p =>
+              p.startsWith('app/') ||
+              p.startsWith('routes/') ||
+              p.startsWith('database/') ||
+              p.startsWith('config/')
+            ))
+              labels.add('registry');
+            if (paths.some(p =>
+              p.startsWith('resources/views/components/ui/') ||
+              p.startsWith('resources/views/preview/')
+            ))
+              labels.add('ui');
+            if (paths.some(p =>
+              p.startsWith('resources/views/docs/') ||
+              p.startsWith('resources/css/') ||
+              p.endsWith('.md')
+            ))
+              labels.add('documentation');
+            if (paths.some(p => p.includes('test') || p.includes('spec')))
+              labels.add('tests');
+            if (paths.some(p => p.startsWith('.github/')))
+              labels.add('ci');
+
+            // PR size label
+            const additions = files.reduce((sum, f) => sum + f.additions, 0);
+            const deletions = files.reduce((sum, f) => sum + f.deletions, 0);
+            const changes = additions + deletions;
+
+            const sizeLabels = ['size: XS', 'size: S', 'size: M', 'size: L', 'size: XL'];
+            const sizeLabel =
+              changes < 10  ? 'size: XS' :
+              changes < 50  ? 'size: S'  :
+              changes < 200 ? 'size: M'  :
+              changes < 500 ? 'size: L'  : 'size: XL';
+            labels.add(sizeLabel);
+
+            // Remove stale size labels before adding the current one
+            const { data: current } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const staleSize = current
+              .map(l => l.name)
+              .filter(n => sizeLabels.includes(n) && n !== sizeLabel);
+
+            for (const stale of staleSize) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: stale,
+              });
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [...labels],
+            });
