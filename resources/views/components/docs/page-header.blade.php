@@ -1,15 +1,21 @@
 @props([
-    'eyebrow' => 'Documentation',
+    'eyebrow' => null,
     'title',
     'description' => null,
 ])
 
 <header class="mb-10 border-b border-border pb-8">
-    <div class="mb-4">
-        <x-ui.badge variant="outline">{{ $eyebrow }}</x-ui.badge>
-    </div>
-    <h1 class="max-w-4xl text-4xl font-semibold tracking-normal text-foreground md:text-5xl">{{ $title }}</h1>
+    @if($eyebrow)
+        <p class="mb-3 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground/50">
+            {{ $eyebrow }}
+        </p>
+    @endif
+    <h1 class="text-[2rem] font-bold leading-tight tracking-tight text-foreground md:text-[2.5rem]">
+        {{ $title }}
+    </h1>
     @if($description)
-        <p class="mt-4 max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">{{ $description }}</p>
+        <p class="mt-3 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
+            {{ $description }}
+        </p>
     @endif
 </header>

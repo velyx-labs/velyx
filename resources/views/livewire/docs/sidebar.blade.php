@@ -1,13 +1,15 @@
 @php($currentPath = trim(request()->path(), '/'))
 
-<nav class="space-y-6 text-sm custom-scrollbar">
+<nav class="space-y-7 text-sm" aria-label="Documentation">
     @foreach($this->navigation as $section => $item)
-        <section>
-            <a href="{{ docs_url($item['url']) }}" wire:navigate class="mb-2 flex items-center justify-between rounded-md px-2 py-1.5 font-semibold text-foreground hover:bg-accent">
-                <span>{{ $section }}</span>
-            </a>
+        <div>
+            {{-- Section label — recedes, does not compete --}}
+            <p class="mb-2 px-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/40">
+                {{ $section }}
+            </p>
 
-            <div class="space-y-0.5 border-l border-border pl-2">
+            {{-- Child links — no side stripe, just padding --}}
+            <div class="space-y-0.5">
                 @foreach(($item['children'] ?? []) as $label => $url)
                     @php($active = $currentPath === trim($url, '/'))
                     <a
@@ -15,14 +17,14 @@
                         wire:navigate
                         @class([
                             'block rounded-md px-2 py-1.5 transition-colors',
-                            'bg-accent font-medium text-accent-foreground' => $active,
-                            'text-muted-foreground hover:bg-accent/70 hover:text-foreground' => ! $active,
+                            'bg-muted font-medium text-foreground' => $active,
+                            'text-muted-foreground hover:bg-muted/60 hover:text-foreground' => ! $active,
                         ])
                     >
                         {{ $label }}
                     </a>
                 @endforeach
             </div>
-        </section>
+        </div>
     @endforeach
 </nav>
