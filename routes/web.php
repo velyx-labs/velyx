@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::domain(config('app.domains.web'))->group(function () {
 
     Route::livewire('/', 'pages::home')->name('home');
+    Route::get('/llms.txt', [DocsController::class, 'llmsTxt'])->name('llms.txt');
 
     Route::redirect('/docs', '/docs/installation');
     Route::get('/docs-index', [DocsController::class, 'home'])->name('docs.index');
