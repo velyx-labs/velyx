@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update CHANGELOG.md ([`8a72852`](https://github.com/velyx-labs/registry/commit/8a7285280238d77f533117ae47e2a28e414fcc33))
 - Update CHANGELOG.md ([`fe503ba`](https://github.com/velyx-labs/registry/commit/fe503baa5cfb2199b5a3d920adac4d3f23cb8cce))
+- Update CHANGELOG.md ([`19becb6`](https://github.com/velyx-labs/registry/commit/19becb6379e303c6d53932cdf691fdab6ecd1a62))
 
 ### Refactored
 
