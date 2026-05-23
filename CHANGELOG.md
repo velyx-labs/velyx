@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update CHANGELOG.md ([`19becb6`](https://github.com/velyx-labs/registry/commit/19becb6379e303c6d53932cdf691fdab6ecd1a62))
 - Update CHANGELOG.md ([`e54f211`](https://github.com/velyx-labs/registry/commit/e54f2110728126782ed9c314e78f0c22e0517d3b))
 - Update CHANGELOG.md ([`b2060df`](https://github.com/velyx-labs/registry/commit/b2060df64776afa3783826f92b30ea54a948b5a4))
+- Update CHANGELOG.md ([`76f8550`](https://github.com/velyx-labs/registry/commit/76f8550c5ed704e5d4961d35345840689f6877c6))
 
 ### Refactored
 
