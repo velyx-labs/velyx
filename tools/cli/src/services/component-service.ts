@@ -119,8 +119,14 @@ export class ComponentService {
       includeFiles: true,
     })
 
-    // Resolve dependencies (fetch without files for dependencies)
-    await this.registryService.resolveDependencies(component)
+    // Install velyx component dependencies first (recursive)
+    const velyxDeps = component.requires?.velyx ?? []
+    for (const depName of velyxDeps) {
+      const depResult = await this.addComponent(depName)
+      result.added.push(...depResult.added)
+      result.skipped.push(...depResult.skipped)
+      result.failed.push(...depResult.failed)
+    }
 
     // Install component dependencies (npm/composer)
     const dependencies = this.buildDependencies(component)

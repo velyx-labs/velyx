@@ -17,5 +17,5 @@
         { "path": "field/separator.blade.php",    "type": "blade" },
         { "path": "field/error.blade.php",        "type": "blade" }
     ],
-    "requires": { "composer": [], "npm": [] }
+    "requires": { "composer": [], "npm": [], "velyx": ["separator"] }
 }

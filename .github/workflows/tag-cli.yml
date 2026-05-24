@@ -1,11 +1,12 @@
 name: Tag CLI Release
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CLI CI"]
+    types:
+      - completed
     branches:
       - main
-    paths:
-      - 'tools/cli/package.json'
 
 permissions:
   contents: write
@@ -13,6 +14,7 @@ permissions:
 jobs:
   tag:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v4
         with:
