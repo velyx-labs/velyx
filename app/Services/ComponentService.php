@@ -188,12 +188,14 @@ class ComponentService
             return [
                 'composer' => $requires,
                 'npm' => [],
+                'velyx' => [],
             ];
         }
 
         return [
             'composer' => array_values(array_filter($requires['composer'] ?? [], 'is_string')),
             'npm' => array_values(array_filter($requires['npm'] ?? [], 'is_string')),
+            'velyx' => array_values(array_filter($requires['velyx'] ?? [], 'is_string')),
         ];
     }
 

@@ -33,6 +33,8 @@ export interface VelyxDependency {
   composer?: readonly string[]
   /** npm/yarn/pnpm/bun dependencies */
   npm?: readonly string[]
+  /** Velyx component dependencies (auto-installed) */
+  velyx?: readonly string[]
 }
 
 /**

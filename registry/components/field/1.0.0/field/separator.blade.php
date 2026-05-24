@@ -6,7 +6,7 @@
         'group-data-[variant=outline]/field-group:-mb-2',
     ]) }}
 >
-    <hr class="absolute inset-0 top-1/2 border-border" />
+    <x-ui.separator class="absolute inset-0 top-1/2" />
     @unless($slot->isEmpty())
         <span
             data-slot="field-separator-content"

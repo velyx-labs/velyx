@@ -1,5 +1,11 @@
 # velyx
 
+## 2.1.3
+
+### Patch Changes
+
+- Add velyx component dependency resolution — components can now declare other velyx components as dependencies via `requires.velyx` in meta.json; they are auto-installed recursively before the parent component
+
 ## 2.1.2
 
 ### Patch Changes
