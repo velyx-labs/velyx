@@ -1,8 +1,18 @@
+import { gray } from 'kleur/colors'
 import type { AddResult, RegistryData } from '@/src/types'
 import type { IRegistryService, IConfigManager } from '../types/interfaces'
 import { ComponentService } from './component-service'
 import { FilesystemService } from './filesystem-service'
 import { logger } from '../utils/logger'
+import { highlighter } from '../utils/highlighter'
+
+function extractComponentName(filePath: string): string {
+  const uiMatch = filePath.match(/components\/ui\/([^/]+)/)
+  if (uiMatch) return uiMatch[1]
+  const jsMatch = filePath.match(/js\/ui\/([^.]+)/)
+  if (jsMatch) return jsMatch[1]
+  return filePath
+}
 
 /**
  * Service for handling component addition operations
@@ -83,22 +93,37 @@ export class AddService {
    * @param result - Result of the add operation
    */
   displayResults(result: AddResult): void {
-    result.added.forEach((name) => logger.success(`Added ${name}`))
-    result.skipped.forEach((name) => logger.warn(`Skipped ${name}`))
+    const byComponent = new Map<string, string[]>()
+    result.added.forEach((filePath) => {
+      const name = extractComponentName(filePath)
+      if (!byComponent.has(name)) byComponent.set(name, [])
+      byComponent.get(name)!.push(filePath)
+    })
+
+    byComponent.forEach((files, name) => {
+      logger.success(name)
+      files.forEach((f) => console.log(`    ${gray(f)}`))
+    })
+
+    result.skipped.forEach((name) =>
+      logger.warn(`Skipped ${extractComponentName(name)}`),
+    )
     result.failed.forEach(({ name, error }) =>
-      logger.error(`Failed to add ${name}: ${error}`),
+      logger.error(`Failed ${extractComponentName(name)}: ${error}`),
     )
   }
 
-  /**
-   * Display next steps after adding components
-   * @param result - Result of the add operation
-   */
   displayNextSteps(result: AddResult): void {
     if (result.added.length === 0) {
       return
     }
 
-    console.log('\n🎉 Happy coding! Enjoy building beautiful components!')
+    const names = Array.from(new Set(result.added.map(extractComponentName)))
+    const tag = names[0]
+
+    logger.break()
+    console.log('  Use it in your Blade templates:')
+    console.log(`    ${highlighter.info(`<x-ui.${tag} />`)}`)
+    logger.break()
   }
 }

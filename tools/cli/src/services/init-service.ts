@@ -15,7 +15,9 @@ import { findMainJs } from '../utils/js'
 import { copyTheme } from '../utils/theme'
 import { writeVelyxConfig } from '../utils/config'
 import fs from 'fs'
+import { gray } from 'kleur/colors'
 import { logger } from '../utils/logger'
+import { highlighter } from '../utils/highlighter'
 import packageJson from '../../package.json'
 
 /**
@@ -102,31 +104,14 @@ export class InitService {
    * @param validation - Environment validation result
    */
   displayEnvironmentInfo(validation: EnvironmentValidation): void {
-    // Display interactivity framework status
-    if (!validation.hasAlpine) {
-      logger.warn('Alpine.js not detected')
-      logger.log(
-        `Install Alpine.js: ${validation.detectedPackageManager} install alpinejs`,
-      )
-    } else {
-      logger.success(
-        'Alpine.js detected - components will be fully interactive',
-      )
-    }
-
-    // Display CSS file status
     if (!validation.cssFile) {
-      logger.warn('No main CSS file found')
-      logger.log('Styles will be created but not auto-imported')
+      logger.log(gray('  → no CSS entry found — styles will not be auto-imported'))
     } else if (!validation.canInjectCss) {
-      logger.warn('Tailwind import not found in CSS')
-      logger.log('Velyx styles will not be auto-imported')
+      logger.log(gray('  → Tailwind import missing — styles will not be auto-imported'))
     }
 
-    // Display JS file status
     if (!validation.jsFile) {
-      logger.warn('No main JS file found')
-      logger.log('Component scripts will not be auto-imported')
+      logger.log(gray('  → no JS entry found — scripts will not be auto-imported'))
     }
   }
 
@@ -156,39 +141,28 @@ export class InitService {
     const dirPath = targetPath.split('/').slice(0, -1).join('/')
     await this.fileSystem.ensureDir(dirPath)
 
-    // Create theme file if it doesn't exist
     if (!fs.existsSync(targetPath)) {
       try {
         copyTheme(theme, targetPath)
-        logger.success('Velyx theme created')
-        logger.info(targetPath)
       } catch (error) {
         throw new Error(
           `Failed to create theme file: ${(error as Error).message}`,
         )
       }
     } else {
-      // File exists, ask user if they want to override it
       const { override } = await prompts(
         {
           type: 'confirm',
           name: 'override',
-          message: `Velyx theme file already exists at "${targetPath}". Overwrite with current theme?`,
+          message: `${targetPath} already exists — overwrite?`,
           initial: false,
         },
-        {
-          onCancel: () => {
-            logger.info('Keeping existing velyx.css')
-            return false
-          },
-        },
+        { onCancel: () => false },
       )
 
       if (override) {
         try {
           copyTheme(theme, targetPath)
-          logger.success('Velyx theme updated')
-          logger.info(targetPath)
         } catch (error) {
           throw new Error(
             `Failed to update theme file: ${(error as Error).message}`,
@@ -205,8 +179,6 @@ export class InitService {
    */
   async injectStylesImport(cssPath: string): Promise<void> {
     injectVelyxImport(cssPath)
-    logger.success('Velyx styles imported')
-    logger.info(cssPath)
   }
 
   /**
@@ -236,7 +208,6 @@ export class InitService {
     }
 
     writeVelyxConfig(config)
-    logger.success('velyx.json config generated')
   }
 
   /**
@@ -250,23 +221,15 @@ export class InitService {
     validation: EnvironmentValidation,
     stylesImported: boolean,
   ): void {
-    console.log('\n---')
-    logger.success('Laravel project detected')
-    logger.success('Tailwind CSS v4 detected')
-    logger.success(`Theme selected: ${options.theme}`)
-    logger.success(`Package manager: ${options.packageManager}`)
-    logger.success('UI components directory ready')
-    if (validation.jsFile) {
-      logger.success('Main JS file detected')
+    const parts: string[] = [options.theme, options.packageManager]
+    if (validation.cssFile) {
+      parts.push(stylesImported ? 'styles imported' : 'styles skipped')
     }
-    logger.success(
-      stylesImported ? 'Styles import complete' : 'Styles import pending',
-    )
-    logger.success('velyx.json created')
-    console.log('\nNext steps:')
-    console.log('  velyx add button')
-    console.log(
-      '\n💡 Want to customize your Tailwind palette? Try https://tweakcn.com/ — a visual generator for Tailwind-compatible color scales.',
-    )
+
+    logger.break()
+    console.log(gray(`  ✓  ${parts.join('  ·  ')}`))
+    logger.break()
+    console.log(`  ${highlighter.info('velyx add button')}`)
+    logger.break()
   }
 }

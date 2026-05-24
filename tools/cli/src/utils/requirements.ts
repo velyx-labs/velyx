@@ -52,9 +52,24 @@ export function hasAlpineInLayouts(): boolean {
 }
 
 /**
+ * Check if Livewire is installed — it bundles Alpine.js automatically (v3+)
+ * @returns True if livewire/livewire is found in composer.json
+ */
+export function hasLivewireInComposer(): boolean {
+  try {
+    const composer = JSON.parse(fs.readFileSync('composer.json', 'utf8')) as {
+      require?: Readonly<Record<string, string>>
+    }
+    return !!(composer.require?.['livewire/livewire'])
+  } catch {
+    return false
+  }
+}
+
+/**
  * Check if Alpine.js is available in the project
- * @returns True if Alpine.js is detected
+ * @returns True if Alpine.js is detected (standalone or via Livewire)
  */
 export function hasAlpineJs(): boolean {
-  return hasAlpineInPackageJson() || hasAlpineInLayouts()
+  return hasAlpineInPackageJson() || hasAlpineInLayouts() || hasLivewireInComposer()
 }

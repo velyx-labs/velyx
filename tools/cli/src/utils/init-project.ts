@@ -23,6 +23,7 @@ async function promptTheme(): Promise<VelyxTheme> {
     logger.error('No base colors available.')
     process.exit(1)
   }
+  const neutralIndex = Math.max(0, baseColors.findIndex((c) => c.name === 'neutral'))
   const { theme } = await prompts(
     {
       type: 'select',
@@ -32,6 +33,7 @@ async function promptTheme(): Promise<VelyxTheme> {
         title: color.label,
         value: color.name,
       })),
+      initial: neutralIndex,
     },
     {
       onCancel: () => {

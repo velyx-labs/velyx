@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { AddService } from '../../../src/services/add-service'
 import { logger } from '../../../src/utils/logger'
 import type { AddResult } from '../../../src/types'
@@ -8,6 +8,10 @@ import type {
 } from '../../../src/types/interfaces'
 
 describe('AddService output', () => {
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
   it('logs added, skipped and failed items in displayResults', () => {
     const successSpy = vi
       .spyOn(logger, 'success')
@@ -52,14 +56,17 @@ describe('AddService output', () => {
       ],
     }
 
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => undefined)
+
     service.displayResults(result)
 
-    expect(successSpy).toHaveBeenCalledWith(
-      'Added resources/views/components/ui/button/index.blade.php',
-    )
-    expect(warnSpy).toHaveBeenCalledWith('Skipped resources/js/ui/card.js')
-    expect(errorSpy).toHaveBeenCalledWith(
-      'Failed to add resources/views/components/ui/badge/index.blade.php: network error',
+    expect(successSpy).toHaveBeenCalledWith('button')
+    expect(warnSpy).toHaveBeenCalledWith('Skipped card')
+    expect(errorSpy).toHaveBeenCalledWith('Failed badge: network error')
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(
+        'resources/views/components/ui/button/index.blade.php',
+      ),
     )
   })
 
@@ -93,11 +100,15 @@ describe('AddService output', () => {
     service.displayNextSteps({ added: [], skipped: [], failed: [] })
     expect(logSpy).not.toHaveBeenCalled()
 
+    logSpy.mockClear()
+
     service.displayNextSteps({
-      added: ['button/file'],
+      added: ['resources/views/components/ui/button/index.blade.php'],
       skipped: [],
       failed: [],
     })
-    expect(logSpy).toHaveBeenCalledTimes(1)
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining('<x-ui.button />'),
+    )
   })
 })

@@ -1,5 +1,11 @@
 # velyx
 
+## 2.1.2
+
+### Patch Changes
+
+- Migrate color themes to OKLCH, add mauve/olive/mist/taupe palettes, fix concurrent spinners, set neutral as default theme selection
+
 ## 2.1.1
 
 ### Patch Changes
