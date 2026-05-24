@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+### Miscellaneous Tasks
+
+- Update CHANGELOG.md ([`03ba64a`](https://github.com/velyx-labs/registry/commit/03ba64ad92480f0319f2033e4e46bb126596a3f2))
+
+## [v2.1.2] - 2026-05-24
+
 ### Added
 
 - Revamp UX — unified grey/cyan palette, silent init, spinner consolidation ([`1fca9a8`](https://github.com/velyx-labs/registry/commit/1fca9a88adb5d4f9f58c541fa736f77dc8441248))
@@ -273,6 +279,7 @@ refactor: remove unused range slider component and related files ([`a09099a`](ht
 - Remove installation tracking endpoints and improve stepper layout ([`ad33aa2`](https://github.com/velyx-labs/registry/commit/ad33aa23953a8bde3c3d207b9bde7d557c1e2d37))
 
 <!-- Links -->
+[v2.1.2]: https://github.com/velyx-labs/registry/compare/v2.1.1...v2.1.2
 [v2.1.1]: https://github.com/velyx-labs/registry/compare/v2.1.0...v2.1.1
 [v2.1.0]: https://github.com/velyx-labs/registry/compare/v1.0.0...v2.1.0
 [v1.0.0]: https://github.com/velyx-labs/registry/compare/...v1.0.0
