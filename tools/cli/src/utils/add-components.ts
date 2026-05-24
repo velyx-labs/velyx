@@ -2,7 +2,6 @@ import { ConfigManager } from '@/src/config/config-manager'
 import { AddService } from '@/src/services/add-service'
 import { RegistryService } from '@/src/services/registry-service'
 import { logger } from '@/src/utils/logger'
-import { spinner } from '@/src/utils/spinner'
 import { z } from 'zod'
 import prompts from 'prompts'
 
@@ -71,9 +70,7 @@ export async function addComponents(options: AddOptions): Promise<void> {
     process.exit(1)
   }
 
-  const registry = await spinner.withTask('Fetching registry...', () =>
-    addService.getAvailableComponents(),
-  )
+  const registry = await addService.getAvailableComponents()
 
   const available = registry.components
     .map((component: { name: string }) => component.name)

@@ -2,7 +2,6 @@ import { bold, cyan, gray, green } from 'kleur/colors'
 import type { VelyxComponentMeta } from '@/src/types'
 import { RegistryService } from '@/src/services/registry-service'
 import { logger } from '@/src/utils/logger'
-import { spinner } from '@/src/utils/spinner'
 
 export type ListOptions = {
   query?: string
@@ -63,9 +62,7 @@ function truncate(str: string, max: number): string {
 
 export async function listComponents(options: ListOptions): Promise<void> {
   const registryService = new RegistryService()
-  const registry = await spinner.withTask('Fetching registry...', () =>
-    registryService.fetchRegistry(),
-  )
+  const registry = await registryService.fetchRegistry()
 
   const sorted = [...registry.components].sort((a, b) =>
     a.name.localeCompare(b.name),

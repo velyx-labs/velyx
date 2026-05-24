@@ -11,7 +11,7 @@ export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun'
 /**
  * Available color themes
  */
-export type VelyxTheme = 'neutral' | 'gray' | 'slate' | 'stone' | 'zinc'
+export type VelyxTheme = 'neutral' | 'stone' | 'zinc' | 'mauve' | 'olive' | 'mist' | 'taupe'
 
 /**
  * Represents a file in a Velyx component (with content)
