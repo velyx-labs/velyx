@@ -1,4 +1,7 @@
-<p
-    data-slot="field-title"
-    {{ $attributes->class(['text-base font-medium leading-snug']) }}
->{{ $slot }}</p>
+<div
+    data-slot="field-label"
+    {{ $attributes->class([
+        'flex w-fit items-center gap-2 text-sm font-medium',
+        'group-data-[disabled=true]/field:opacity-50',
+    ]) }}
+>{{ $slot }}</div>

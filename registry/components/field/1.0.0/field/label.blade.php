@@ -4,10 +4,12 @@
     data-slot="field-label"
     @if($for) for="{{ $for }}" @endif
     {{ $attributes->class([
-        'flex items-center gap-1 text-sm leading-none font-medium select-none',
-        'peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
-        'group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50',
-        'group-data-[orientation=horizontal]/field:pt-2',
+        'group/field-label peer/field-label flex w-fit gap-2 leading-snug',
+        'group-data-[disabled=true]/field:opacity-50',
+        'has-data-checked:border-primary/30 has-data-checked:bg-primary/5',
+        'dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10',
+        'has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
+        '*:data-[slot=field]:p-2.5',
     ]) }}
 >
     {{ $slot }}

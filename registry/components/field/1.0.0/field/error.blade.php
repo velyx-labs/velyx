@@ -1,4 +1,7 @@
-<p
-    data-slot="field-error"
-    {{ $attributes->class(['text-sm font-medium text-destructive']) }}
->{{ $slot }}</p>
+@unless($slot->isEmpty())
+    <div
+        role="alert"
+        data-slot="field-error"
+        {{ $attributes->class(['text-sm font-normal text-destructive']) }}
+    >{{ $slot }}</div>
+@endunless
