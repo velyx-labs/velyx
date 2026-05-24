@@ -1,4 +1,4 @@
-import { cyan, gray } from 'kleur/colors'
+import { bold, gray } from 'kleur/colors'
 import { Command } from 'commander'
 import { init } from '@/src/commands/init'
 import { add } from '@/src/commands/add'
@@ -8,8 +8,8 @@ import packageJson from '../package.json'
 
 function displayIntro(): void {
   console.log('')
-  console.log(cyan(`  ▼ VELYX CLI v${packageJson.version}`))
-  console.log(gray('  Tailwind CSS v4+ components for Laravel'))
+  console.log(`  ${bold(packageJson.name)}  ${gray(`v${packageJson.version}`)}`)
+  console.log(`  ${gray('Blade components for Laravel')}`)
   console.log('')
 }
 

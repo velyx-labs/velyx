@@ -1,8 +1,8 @@
-import chalk from 'chalk'
-import Table from 'cli-table3'
+import { bold, cyan, gray, green } from 'kleur/colors'
 import type { VelyxComponentMeta } from '@/src/types'
 import { RegistryService } from '@/src/services/registry-service'
 import { logger } from '@/src/utils/logger'
+import { spinner } from '@/src/utils/spinner'
 
 export type ListOptions = {
   query?: string
@@ -47,9 +47,25 @@ function sliceComponents(
   return components.slice(start, start + Math.max(0, limit))
 }
 
+// Strip ANSI escape codes to measure visible length
+// eslint-disable-next-line no-control-regex
+const ANSI_RE = /\x1B\[[0-9;]*m/g
+
+function pad(str: string, width: number): string {
+  const visible = str.replace(ANSI_RE, '')
+  const diff = width - visible.length
+  return diff > 0 ? str + ' '.repeat(diff) : str
+}
+
+function truncate(str: string, max: number): string {
+  return str.length > max ? str.slice(0, max - 1) + '…' : str
+}
+
 export async function listComponents(options: ListOptions): Promise<void> {
   const registryService = new RegistryService()
-  const registry = await registryService.fetchRegistry()
+  const registry = await spinner.withTask('Fetching registry...', () =>
+    registryService.fetchRegistry(),
+  )
 
   const sorted = [...registry.components].sort((a, b) =>
     a.name.localeCompare(b.name),
@@ -80,32 +96,23 @@ export async function listComponents(options: ListOptions): Promise<void> {
     return
   }
 
-  console.log(chalk.bold('\nAvailable components:'))
-  console.log('')
+  const NAME_W = 22
+  const DESC_W = 48
+  const CAT_W = 20
 
-  const table = new Table({
-    head: [
-      chalk.bold('Component'),
-      chalk.bold('Description'),
-      chalk.bold('Categories'),
-    ],
-    colWidths: [24, 50, 24],
-    wordWrap: true,
-    style: {
-      head: [],
-      border: [],
-    },
-  })
+  console.log('')
+  console.log(
+    `  ${bold(pad('Component', NAME_W))}  ${bold(pad('Description', DESC_W))}  ${bold('Categories')}`,
+  )
+  console.log(`  ${gray('─'.repeat(NAME_W + DESC_W + CAT_W + 4))}`)
 
   for (const component of sliced) {
-    table.push([
-      chalk.cyan(component.name),
-      chalk.white(component.description || 'No description'),
-      chalk.gray(component.categories?.join(', ') || '-'),
-    ])
+    const name = pad(cyan(component.name), NAME_W + 9)
+    const desc = pad(truncate(component.description || '—', DESC_W), DESC_W)
+    const cats = gray(truncate(component.categories?.join(', ') || '—', CAT_W))
+    console.log(`  ${name}  ${desc}  ${cats}`)
   }
 
-  console.log(table.toString())
   console.log('')
-  logger.info(`Run ${chalk.green('velyx add <component>')} to add one.`)
+  logger.info(`Run ${green('velyx add <component>')} to add one.`)
 }

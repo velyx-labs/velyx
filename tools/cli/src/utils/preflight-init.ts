@@ -1,6 +1,7 @@
 import { exec } from 'child_process'
 import path from 'path'
 import fs from 'fs-extra'
+import { gray } from 'kleur/colors'
 import { promisify } from 'util'
 import { highlighter } from '@/src/utils/highlighter'
 import { logger } from '@/src/utils/logger'
@@ -48,7 +49,6 @@ export async function getProjectInfo(cwd: string): Promise<ProjectInfo | null> {
       return null
     }
 
-    // Détecter le package manager
     const originalDir = process.cwd()
     process.chdir(cwd)
     const pkgManager = detectPackageManager()
@@ -72,25 +72,12 @@ export async function getProjectInfo(cwd: string): Promise<ProjectInfo | null> {
       },
     }
 
-    // Vérifier les dépendances frontend
     if (fs.existsSync(packagePath)) {
       const pkg = await fs.readJson(packagePath)
       projectInfo.hasAlpine = !!(
         pkg.dependencies?.alpinejs || pkg.devDependencies?.alpinejs
       )
       projectInfo.hasVite = !!pkg.devDependencies?.vite
-    }
-
-    // Vérifier la structure des dossiers
-    const viewsPath = path.resolve(cwd, 'resources/views')
-    const assetsPath = path.resolve(cwd, 'resources/js')
-
-    if (fs.existsSync(viewsPath)) {
-      projectInfo.paths.views = 'resources/views'
-    }
-
-    if (fs.existsSync(assetsPath)) {
-      projectInfo.paths.assets = 'resources/js'
     }
 
     return projectInfo
@@ -105,139 +92,87 @@ export async function preFlightInit(options: InitOptions): Promise<{
 }> {
   const errors: Record<string, boolean> = {}
 
-  // Vérifier si le répertoire existe
   if (!fs.existsSync(options.cwd)) {
     errors['MISSING_DIR'] = true
     return { errors, projectInfo: null }
   }
 
-  const projectSpinner = spinner.start('Checking project environment...')
-
-  // Vérifier si velyx.json existe déjà
   const velyxConfigPath = path.resolve(options.cwd, 'velyx.json')
   if (fs.existsSync(velyxConfigPath) && !options.force) {
-    projectSpinner.fail()
-    logger.break()
+    const { action } = await prompts(
+      {
+        type: 'select',
+        name: 'action',
+        message: 'velyx.json already exists',
+        choices: [
+          { title: 'Re-initialize', value: 'reinit' },
+          { title: 'Keep existing', value: 'keep' },
+          { title: 'Exit', value: 'exit' },
+        ],
+        initial: 0,
+      },
+      { onCancel: () => process.exit(0) },
+    )
 
-    const { action } = await prompts({
-      type: 'select',
-      name: 'action',
-      message: `A ${highlighter.info('velyx.json')} file already exists. What would you like to do?`,
-      choices: [
-        {
-          title: 'Re-initialize Velyx configuration',
-          value: 'reinit',
-        },
-        {
-          title: 'Keep existing configuration',
-          value: 'keep',
-        },
-        {
-          title: 'Exit',
-          value: 'exit',
-        },
-      ],
-      initial: 0,
-    })
-
-    if (action === 'exit') {
-      logger.log('Operation cancelled.')
+    if (!action || action === 'exit' || action === 'keep') {
       process.exit(0)
     }
-
-    if (action === 'keep') {
-      logger.log('Keeping existing configuration.')
-      process.exit(0)
-    }
-
-    // Continue with re-initialization
-    logger.log(`Re-initializing Velyx configuration...`)
   }
 
-  // Récupérer les infos du projet
+  const envSpinner = spinner.start('Checking environment...')
   const projectInfo = await getProjectInfo(options.cwd)
 
   if (!projectInfo || projectInfo.framework.name !== 'laravel') {
     errors['UNSUPPORTED_PROJECT'] = true
-    projectSpinner.fail()
-    logger.break()
-    logger.error(
-      `We could not detect a supported Laravel project at ${highlighter.info(
-        options.cwd,
-      )}.\nVelyx is designed to work with Laravel projects.`,
-    )
+    envSpinner.fail('No Laravel project found')
     logger.break()
     process.exit(1)
   }
 
-  projectSpinner.succeed(
-    `Found ${highlighter.info(projectInfo.framework.label)} project`,
-  )
-
-  // Vérifier Alpine.js
-  const alpineSpinner = spinner.start('Checking Alpine.js...')
+  envSpinner.stop()
 
   if (!projectInfo.hasAlpine) {
-    alpineSpinner.fail()
-    logger.break()
-    logger.warn(`Alpine.js is required but not found in your project.`)
-
-    // Proposer d'installer Alpine.js directement
-    const { installAlpine } = await prompts({
-      type: 'confirm',
-      name: 'installAlpine',
-      message: 'Would you like to install Alpine.js now?',
-      initial: true,
-    })
+    const { installAlpine } = await prompts(
+      {
+        type: 'confirm',
+        name: 'installAlpine',
+        message: 'Alpine.js not found — install it now?',
+        initial: true,
+      },
+      { onCancel: () => process.exit(0) },
+    )
 
     if (installAlpine) {
-      // Installer Alpine.js avec le package manager détecté
-      const pkgManager = projectInfo.packageManager
-      const installSpinner = spinner.start(
-        `Installing Alpine.js with ${pkgManager}...`,
-      )
-
+      const installSpinner = spinner.start('Installing Alpine.js...')
       try {
-        await execAsync(`${pkgManager} install alpinejs`, {
+        await execAsync(`${projectInfo.packageManager} install alpinejs`, {
           cwd: options.cwd,
         })
-        installSpinner.succeed('Alpine.js installed successfully')
+        installSpinner.stop()
         projectInfo.hasAlpine = true
-      } catch (error) {
-        installSpinner.fail(
-          `Failed to install Alpine.js: ${(error as Error).message}`,
+      } catch {
+        installSpinner.fail('Failed to install Alpine.js')
+        logger.log(
+          gray(
+            `  Install manually: ${highlighter.info(`${projectInfo.packageManager} install alpinejs`)}`,
+          ),
         )
-        logger.error(
-          `Please install Alpine.js manually: ${highlighter.info(`${pkgManager} install alpinejs`)}`,
-        )
-        logger.break()
         process.exit(1)
       }
     } else {
-      const pkgManager = projectInfo.packageManager
-      logger.error(
-        `Alpine.js is required. Install it with: ${highlighter.info(`${pkgManager} install alpinejs`)}`,
+      logger.log(
+        gray(
+          `  Run: ${highlighter.info(`${projectInfo.packageManager} install alpinejs`)}`,
+        ),
       )
-      logger.break()
       process.exit(1)
     }
-  } else {
-    alpineSpinner.succeed('Alpine.js found')
   }
 
-  // Vérifier Vite (recommandé pour Velyx)
-  const viteSpinner = spinner.start('Checking build tools...')
+  const parts = [projectInfo.framework.label, projectInfo.packageManager]
+  if (projectInfo.hasAlpine) parts.push('Alpine.js')
+  console.log(gray(`  ✓  ${parts.join('  ·  ')}`))
 
-  if (!projectInfo.hasVite) {
-    logger.warn(
-      `Vite not found. Using Vite is recommended for better development experience.`,
-    )
-    viteSpinner.warn('Vite not found (but optional)')
-  } else {
-    viteSpinner.succeed('Vite found')
-  }
-
-  // Afficher les erreurs bloquantes
   if (Object.keys(errors).length > 0) {
     logger.break()
     process.exit(1)
