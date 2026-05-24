@@ -72,12 +72,22 @@ export async function getProjectInfo(cwd: string): Promise<ProjectInfo | null> {
       },
     }
 
+    // Livewire v3+ bundles Alpine.js — no separate install needed
+    const hasLivewire = !!(composer.require?.['livewire/livewire'])
+
     if (fs.existsSync(packagePath)) {
       const pkg = await fs.readJson(packagePath)
-      projectInfo.hasAlpine = !!(
-        pkg.dependencies?.alpinejs || pkg.devDependencies?.alpinejs
+      const allDeps = {
+        ...pkg.dependencies,
+        ...pkg.devDependencies,
+      } as Record<string, string>
+      const hasAlpineInPkg = Object.keys(allDeps).some(
+        (dep) => dep === 'alpinejs' || dep.startsWith('@alpinejs/'),
       )
+      projectInfo.hasAlpine = hasAlpineInPkg || hasLivewire
       projectInfo.hasVite = !!pkg.devDependencies?.vite
+    } else {
+      projectInfo.hasAlpine = hasLivewire
     }
 
     return projectInfo
