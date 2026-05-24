@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+### Added
+
+- Revamp UX — unified grey/cyan palette, silent init, spinner consolidation ([`1fca9a8`](https://github.com/velyx-labs/registry/commit/1fca9a88adb5d4f9f58c541fa736f77dc8441248))
+
+### CI/CD
+
+- Add tag-cli workflow to auto-tag on CLI version bump ([`207b8fe`](https://github.com/velyx-labs/registry/commit/207b8fe93149be18302358a7bff1900a0ac35694))
+
 ### Miscellaneous Tasks
 
 - Update CHANGELOG.md ([`8a72852`](https://github.com/velyx-labs/registry/commit/8a7285280238d77f533117ae47e2a28e414fcc33))
@@ -14,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update CHANGELOG.md ([`e54f211`](https://github.com/velyx-labs/registry/commit/e54f2110728126782ed9c314e78f0c22e0517d3b))
 - Update CHANGELOG.md ([`b2060df`](https://github.com/velyx-labs/registry/commit/b2060df64776afa3783826f92b30ea54a948b5a4))
 - Update CHANGELOG.md ([`76f8550`](https://github.com/velyx-labs/registry/commit/76f8550c5ed704e5d4961d35345840689f6877c6))
+- Update CHANGELOG.md ([`4cc51a3`](https://github.com/velyx-labs/registry/commit/4cc51a38d89ceee7d5ae26c7dbf55338ee839729))
+- Release v2.1.2 — OKLCH themes, new palettes, UX fixes ([`092e9ac`](https://github.com/velyx-labs/registry/commit/092e9aceb6d4968b7f7d1de806c148d204711626))
 
 ### Refactored
 
