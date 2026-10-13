@@ -53,7 +53,8 @@ it('renders the redesigned sidebar, breadcrumbs, pager and component header', fu
         ->toContain('/-/tree/main/registry/components/button')
         ->toContain('Edit this page on GitLab')
         ->toContain('Velyx CLI')
-        ->toContain('Data &amp; media');
+        ->toContain('Data &amp; media')
+        ->toContain('wire:navigate class="font-normal text-muted-foreground transition-colors hover:text-foreground"');
 });
 
 it('links guide pages to their Blade source for editing', function () {

@@ -48,7 +48,7 @@
                         @class([
                             'docs-nav-link flex min-h-8 items-center gap-2.5 rounded-md px-2 py-1 transition-colors',
                             'bg-muted font-medium text-foreground' => $active,
-                            'text-muted-foreground hover:bg-muted/60 hover:text-foreground' => ! $active,
+                            'font-normal text-muted-foreground hover:bg-muted/60 hover:text-foreground' => ! $active,
                         ])
                     >
                         @if($item['icon'])
@@ -89,7 +89,7 @@
                                     @class([
                                         'docs-nav-link block rounded-md px-2 py-1.5 transition-colors',
                                         'bg-muted font-medium text-foreground' => $active,
-                                        'text-muted-foreground hover:bg-muted/60 hover:text-foreground' => ! $active,
+                                        'font-normal text-muted-foreground hover:bg-muted/60 hover:text-foreground' => ! $active,
                                     ])
                                 >
                                     {{ $item['label'] }}
@@ -116,8 +116,8 @@
         </div>
         <code class="rounded-md bg-background px-2 py-1.5 font-mono text-xs break-all text-foreground">npx velyx@latest init</code>
         <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-            <a href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-foreground"><x-icons.gitlab class="size-3" />GitLab</a>
-            <a href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-foreground"><x-icons.buymeacoffee class="size-3" />Buy me a coffee</a>
+            <a href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-normal text-muted-foreground hover:text-foreground"><x-icons.gitlab class="size-3" />GitLab</a>
+            <a href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-normal text-muted-foreground hover:text-foreground"><x-icons.buymeacoffee class="size-3" />Buy me a coffee</a>
         </div>
     </div>
 </div>

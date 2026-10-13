@@ -88,7 +88,7 @@
                         @foreach($breadcrumbs as $crumb)
                             <li class="flex items-center gap-1.5">
                                 @if($crumb['url'])
-                                    <a href="{{ $crumb['url'] }}" wire:navigate class="transition-colors hover:text-foreground">{{ $crumb['label'] }}</a>
+                                    <a href="{{ $crumb['url'] }}" wire:navigate class="font-normal text-muted-foreground transition-colors hover:text-foreground">{{ $crumb['label'] }}</a>
                                     <x-lucide-chevron-right class="size-3 text-muted-foreground/50" />
                                 @else
                                     <span aria-current="page" class="font-medium text-foreground">{{ $crumb['label'] }}</span>
@@ -104,7 +104,7 @@
             @if($neighbours['previous'] || $neighbours['next'])
                 <nav aria-label="Pagination" class="mt-16 grid gap-4 sm:grid-cols-2">
                     @if($neighbours['previous'])
-                        <a href="{{ $neighbours['previous']['url'] }}" wire:navigate class="docs-pager motion-lift neo-shadow flex flex-col gap-1 rounded-lg border border-border bg-background px-4 py-3.5 transition-colors hover:bg-muted/60">
+                        <a href="{{ $neighbours['previous']['url'] }}" wire:navigate class="docs-pager font-normal motion-lift neo-shadow flex flex-col gap-1 rounded-lg border border-border bg-background px-4 py-3.5 transition-colors hover:bg-muted/60">
                             <span class="text-xs text-muted-foreground">← Previous</span>
                             <span class="font-medium text-foreground">{{ $neighbours['previous']['label'] }}</span>
                         </a>
@@ -112,7 +112,7 @@
                         <span class="hidden sm:block"></span>
                     @endif
                     @if($neighbours['next'])
-                        <a href="{{ $neighbours['next']['url'] }}" wire:navigate class="docs-pager motion-lift neo-shadow flex flex-col gap-1 rounded-lg border border-border bg-background px-4 py-3.5 text-right transition-colors hover:bg-muted/60">
+                        <a href="{{ $neighbours['next']['url'] }}" wire:navigate class="docs-pager font-normal motion-lift neo-shadow flex flex-col gap-1 rounded-lg border border-border bg-background px-4 py-3.5 text-right transition-colors hover:bg-muted/60">
                             <span class="text-xs text-muted-foreground">Next →</span>
                             <span class="font-medium text-foreground">{{ $neighbours['next']['label'] }}</span>
                         </a>
@@ -126,11 +126,11 @@
             <x-docs.toc />
 
             <div class="mt-6 flex flex-col gap-2 border-t border-border pt-4 text-[13px] text-muted-foreground">
-                <a href="{{ $editUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 transition-colors hover:text-foreground">
+                <a href="{{ $editUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-normal text-muted-foreground transition-colors hover:text-foreground">
                     <x-lucide-pencil class="size-3.5" />
                     {{ $editPath ? 'Edit this page on GitLab' : 'View on GitLab' }}
                 </a>
-                <a href="#top" class="inline-flex items-center gap-1.5 transition-colors hover:text-foreground">
+                <a href="#top" class="inline-flex items-center gap-1.5 font-normal text-muted-foreground transition-colors hover:text-foreground">
                     <x-lucide-arrow-up class="size-3.5" />
                     Back to top
                 </a>
