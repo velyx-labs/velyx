@@ -108,6 +108,7 @@ it('points the support link to Buy Me a Coffee', function () {
     $this->get(route('home'))
         ->assertOk()
         ->assertSee('https://buymeacoffee.com/jiordiviera', false)
+        ->assertSee('https://x.com/jiordiviera', false)
         ->assertSee('Buy me a coffee', false);
 });
 

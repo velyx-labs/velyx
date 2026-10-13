@@ -10,7 +10,7 @@ return [
 
     'links' => [
         'gitlab' => 'https://gitlab.com/jiordiviera/velyx',
-        'twitter' => 'https://x.com/velyxdev',
+        'twitter' => 'https://x.com/jiordiviera',
         'support' => 'https://buymeacoffee.com/jiordiviera',
     ],
 
