@@ -287,6 +287,13 @@
   font-weight: 800;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-style="neo"] .motion-lift:hover { translate: -2px -2px; }
+  :root[data-style="neo"] .neo-shadow.motion-lift:hover,
+  :root[data-style="neo"] .neo-bento > .motion-lift:hover { box-shadow: 6px 6px 0 var(--neo-line); }
+  :root[data-style="neo"] .neo-shadow-lg.motion-lift:hover { box-shadow: 10px 10px 0 var(--neo-line); }
+}
+
 @media (max-width: 640px) {
   :root[data-style="neo"] { --neo-shadow: 3px 3px 0 var(--neo-line); --neo-shadow-lg: 5px 5px 0 var(--neo-line); }
   :root[data-style="neo"] :is(.neo-tilt-l, .neo-tilt-r) { transform: none; }

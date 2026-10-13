@@ -134,3 +134,22 @@ it('marks the active docs nav link for both styles', function () {
         ->assertOk()
         ->assertSee('data-active aria-current="page"', false);
 });
+
+it('uses the svgl brand logos in the header and footer', function () {
+    $html = $this->get(route('home'))->assertOk()->getContent();
+
+    expect($html)
+        ->toContain('fill="#E24329"')
+        ->toContain('fill="#FFDD00"');
+});
+
+it('ships the subtle landing motion hooks', function () {
+    $html = $this->get(route('home'))->assertOk()->getContent();
+
+    expect($html)
+        ->toContain('motion-rise')
+        ->toContain('data-reveal')
+        ->toContain('motion-lift')
+        ->toContain('motion-caret')
+        ->and(substr_count($html, '<span>Command palette</span>'))->toBe(2);
+});

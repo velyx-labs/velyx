@@ -57,13 +57,13 @@ new class extends Component {};
                 <div class="flex flex-col gap-4">
                     <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground/60">Community</p>
                     <div class="-ml-3 flex flex-col items-start">
-                        <x-ui.button href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" class="text-muted-foreground hover:text-foreground">
+                        <x-ui.button href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.gitlab" :lucide="false" class="text-muted-foreground hover:text-foreground">
                             GitLab
                         </x-ui.button>
-                        <x-ui.button href="{{ config('velyx-docs.links.twitter') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" class="text-muted-foreground hover:text-foreground">
+                        <x-ui.button href="{{ config('velyx-docs.links.twitter') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.twitter" :lucide="false" class="text-muted-foreground hover:text-foreground">
                             X (Twitter)
                         </x-ui.button>
-                        <x-ui.button href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" iconLeft="coffee" class="text-muted-foreground hover:text-foreground">
+                        <x-ui.button href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" iconLeft="icons.buymeacoffee" :lucide="false" class="text-muted-foreground hover:text-foreground">
                             Buy me a coffee
                         </x-ui.button>
                     </div>

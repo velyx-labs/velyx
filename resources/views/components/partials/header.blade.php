@@ -38,7 +38,7 @@ new class extends Component {};
                     aria-label="Buy me a coffee"
                     class="inline-flex h-9 items-center gap-1.5 rounded-md px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                    <x-lucide-coffee class="h-4 w-4" />
+                    <x-icons.buymeacoffee class="h-4 w-4" />
                     <span class="hidden lg:inline">Buy me a coffee</span>
                 </a>
 

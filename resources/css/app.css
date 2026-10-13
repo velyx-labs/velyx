@@ -9,6 +9,7 @@
 @import "./utils/navigation.css" layer(components);
 @import "./utils/documentation.css" layer(components);
 @import "./utils/search.css" layer(components);
+@import "./utils/motion.css" layer(components);
 @import "@fontsource/geist/400.css" layer(base);
 @import "@fontsource/geist/500.css" layer(base);
 @import "@fontsource/geist/600.css" layer(base);
