@@ -2,15 +2,7 @@ body {
   font-size: 17px;
 }
 
-a {
-  @apply font-semibold;
-  @apply no-underline;
-  @apply text-primary;
-
-  &:hover {
-    @apply text-primary/80;
-  }
-}
+/* Links inherit colour and weight (Tailwind preflight); style them where they are used. */
 
 blockquote {
   @apply border-primary/30;
