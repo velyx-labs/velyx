@@ -28,7 +28,7 @@ default:
   interruptible: true
 
 variables:
-  PHP_EXTENSIONS: intl zip pcntl pcov
+  PHP_EXTENSIONS: intl zip pcntl sockets pcov
 
 # ─── Templates ──────────────────────────────────────────────────────────────
 
