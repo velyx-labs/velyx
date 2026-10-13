@@ -49,9 +49,9 @@ repo root — read it before styling anything. Non-negotiables:
   `theme-color` / `og:` / `twitter:` block. Brand files live in `public/brand/` (+ `favicon.svg`,
   `site.webmanifest` at `public/` root). The mark is inline as `<x-icons.velyx>`
   (`stroke="currentColor"`, one file for both themes) — not an `<img>` swap. OG copy is English.
-- **Links & repo:** GitHub / X / support URLs and the stars-API repo slug come from
-  `config('velyx-docs.links.*')` and `config('velyx-docs.github_repo')`. Canonical repo is
-  `velyx-labs/velyx`. Never hard-code a GitHub URL in a view.
+- **Links & repo:** GitLab / X / support URLs and the stars-API project path come from
+  `config('velyx-docs.links.*')` and `config('velyx-docs.gitlab_project')`. Canonical repo is
+  `jiordiviera/velyx` on GitLab. Never hard-code a repo URL in a view.
 
 ## Documentation site
 
@@ -86,7 +86,7 @@ docs page renders straight from them.
 
 - `<x-icon name="arrow-right-02" />` — HugeIcons, general UI.
 - `<x-lucide-* />` — Lucide, used across `x-ui.*` and docs.
-- `<x-icons.* />` — brand marks (`icons.github`, `icons.velyx`, `icons.terminal`, …) in
+- `<x-icons.* />` — brand marks (`icons.gitlab`, `icons.github`, `icons.velyx`, `icons.terminal`, …) in
   `resources/views/components/icons/`.
 - Never use emoji in UI.
 
@@ -105,6 +105,6 @@ docs page renders straight from them.
 - Any chromatic colour beyond `--link` / `--destructive`; warm/cream backgrounds; serif body
   (the old "Cursor Warm Gothic" system is retired).
 - A forced dark default, or a second divergent full HTML document instead of `<x-layout>`.
-- Hard-coded GitHub / social URLs — use `config('velyx-docs.links.*')`.
+- Hard-coded repo / social URLs — use `config('velyx-docs.links.*')`.
 - `@livewireScripts` in the layout (double-loads Livewire).
 - A bespoke `docs/pages/components/{name}.blade.php` when the generic page would do.

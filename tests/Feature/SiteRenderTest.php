@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 it('renders the landing page through the shared layout', function () {
     $response = $this->get(route('home'));
 
@@ -62,7 +64,20 @@ it('renders the header and footer with the inline mark and canonical repo link',
 
     expect($html)
         ->toContain('M6 3H10M3 7L8 13L13 7')
-        ->toContain('https://github.com/velyx-labs/velyx');
+        ->toContain('https://gitlab.com/jiordiviera/velyx');
 
     $this->get(route('home'))->assertDontSee('assets/img/logo', false);
+});
+
+it('reads the star count from the GitLab project API', function () {
+    Http::fake([
+        'gitlab.com/api/v4/projects/jiordiviera%2Fvelyx' => Http::response(['star_count' => 1234]),
+    ]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('1,234', false)
+        ->assertSee('stars on GitLab', false);
+
+    Http::assertSent(fn ($request) => str_starts_with($request->url(), 'https://gitlab.com/api/v4/projects/jiordiviera%2Fvelyx'));
 });

@@ -15,14 +15,14 @@ new class extends Component
     {
         $this->components = $componentService->getAllComponents();
 
-        $repo = config('velyx-docs.github_repo');
+        $project = rawurlencode(config('velyx-docs.gitlab_project'));
 
-        $this->stars = Cache::remember('github_stars_velyx', 3600, function () use ($repo) {
-            $response = Http::withHeaders(['Accept' => 'application/vnd.github+json'])
+        $this->stars = Cache::remember('gitlab_stars_velyx', 3600, function () use ($project) {
+            $response = Http::acceptJson()
                 ->timeout(5)
-                ->get("https://api.github.com/repos/{$repo}");
+                ->get("https://gitlab.com/api/v4/projects/{$project}");
 
-            return $response->successful() ? (int) $response->json('stargazers_count', 0) : 0;
+            return $response->successful() ? (int) $response->json('star_count', 0) : 0;
         });
     }
 };
@@ -73,16 +73,16 @@ new class extends Component
 
             <p class="mt-5 text-sm text-muted-foreground/70">
                 <a
-                    href="{{ config('velyx-docs.links.github') }}"
+                    href="{{ config('velyx-docs.links.gitlab') }}"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
                 >
                     <x-lucide-star class="size-3.5" />
                     @if($stars > 0)
-                        <strong class="font-semibold text-foreground">{{ number_format($stars) }}</strong>&nbsp;stars on GitHub
+                        <strong class="font-semibold text-foreground">{{ number_format($stars) }}</strong>&nbsp;stars on GitLab
                     @else
-                        Star on GitHub
+                        Star on GitLab
                     @endif
                 </a>
             </p>
@@ -122,7 +122,7 @@ new class extends Component
                     </div>
                     <div class="flex flex-wrap gap-2.5">
                         <x-ui.button iconRight="arrow-right">Get started</x-ui.button>
-                        <x-ui.button variant="outline" icon="icons.github" :lucide="false">GitHub</x-ui.button>
+                        <x-ui.button variant="outline" icon="icons.gitlab" :lucide="false">GitLab</x-ui.button>
                     </div>
                 </div>
 

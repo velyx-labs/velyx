@@ -28,7 +28,7 @@ git push origin vX.Y.Z
 
 ### 3. Create GitHub Release
 
-- Go to [Releases](https://github.com/velyx-labs/registry/releases)
+- Go to [Releases](https://gitlab.com/jiordiviera/velyx/-/releases)
 - Click "Create a new release"
 - Select the tag
 - Add release notes and changelog
