@@ -151,13 +151,21 @@ deploy:
     name: production
   rules:
     - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+  variables:
+    # Owner of storage/, bootstrap/cache and public/build: the user the app
+    # (Octane) runs as.
+    DEPLOY_APP_USER: www-data
   before_script:
-    - apk add --no-cache openssh-client > /dev/null
+    - apk add --no-cache openssh-client tar > /dev/null
     - chmod 600 "$DEPLOY_SSH_KEY"
+    - SSH="ssh -i $DEPLOY_SSH_KEY -p ${DEPLOY_PORT:-22} -o StrictHostKeyChecking=accept-new $DEPLOY_USER@$DEPLOY_HOST"
   script:
+    # The server has no Node toolchain: ship the assets built by the `assets`
+    # job instead of rebuilding them there.
+    - BUILD_ARCHIVE="/tmp/velyx-build-$CI_PIPELINE_ID.tgz"
+    - tar -C public -czf - build | $SSH "cat > '$BUILD_ARCHIVE'"
     - |
-      ssh -i "$DEPLOY_SSH_KEY" -p "${DEPLOY_PORT:-22}" -o StrictHostKeyChecking=accept-new \
-        "$DEPLOY_USER@$DEPLOY_HOST" "DEPLOY_PATH='$DEPLOY_PATH' bash -se" <<'EOF'
+      $SSH "DEPLOY_PATH='$DEPLOY_PATH' BUILD_ARCHIVE='$BUILD_ARCHIVE' APP_USER='$DEPLOY_APP_USER' bash -se" <<'EOF'
       set -e
       cd "$DEPLOY_PATH"
       git fetch --all --prune
@@ -165,17 +173,27 @@ deploy:
       git reset --hard origin/main
       composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
       php artisan migrate --force
+
+      # Swap the new assets in with a rename, so no request sees a half-written build.
+      rm -rf public/build.new public/build.old
+      mkdir public/build.new
+      tar -xzf "$BUILD_ARCHIVE" -C public/build.new --strip-components=1
+      if [ -d public/build ]; then mv public/build public/build.old; fi
+      mv public/build.new public/build
+      rm -rf public/build.old "$BUILD_ARCHIVE"
+
       php artisan optimize:clear
       php artisan optimize
       php artisan queue:restart || true
 
-      # Reload Octane workers to pick up new code in memory.
-      php artisan octane:reload
-
-      if command -v pnpm >/dev/null 2>&1; then
-        pnpm install --frozen-lockfile
-        pnpm build
+      # Deploying as root leaves the files it writes owned by root, which the
+      # app user can then no longer rewrite (compiled views, caches, logs).
+      if [ "$(id -u)" -eq 0 ]; then
+        chown -R "$APP_USER:$APP_USER" storage bootstrap/cache public/build
       fi
+
+      # Reload Octane workers to pick up new code (and the new Vite manifest) in memory.
+      php artisan octane:reload
       EOF
 
 changelog:
