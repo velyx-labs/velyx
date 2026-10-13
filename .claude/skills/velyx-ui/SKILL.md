@@ -17,7 +17,7 @@ markup of the shipped components themselves.
 The site follows the Vercel / Geist visual language. The full contract is in **`DESIGN.md`** at the
 repo root — read it before styling anything. Non-negotiables:
 
-- **Monochrome.** Black / white / a neutral grey scale. The only chromatic colours are `--link`
+- **Monochrome** (Simple style). Black / white / a neutral grey scale. The only chromatic colours are `--link`
   (blue, text links only) and `--destructive`. No brand colour, no gradients, no glows.
 - **Tokens only.** Every colour comes from the semantic Tailwind classes backed by
   `resources/css/app.css` (`--background`, `--foreground`, `--muted-foreground`, `--border`,
@@ -31,6 +31,21 @@ repo root — read it before styling anything. Non-negotiables:
 - **Themes are equal.** Light and dark both first-class. No forced default — the theme resolves
   from `localStorage('theme')` then `prefers-color-scheme` (see below). Never reintroduce a
   "default to dark" branch.
+
+## Style variants: Simple (default) and Neo
+
+The site ships two looks, switched by `<x-style-switch />` (header + footer):
+
+- **Simple** — the Geist system above. It is the default and the only one `DESIGN.md` describes.
+- **Neo** — a neobrutalist variant (cream ground, ink borders, hard offset shadows, flat
+  yellow/blue/pink/green fills, Geist 800 headings, JetBrains Mono). It lives entirely in
+  `resources/css/utils/neo.css`, scoped to `html[data-style="neo"]`, and works in light and dark.
+- The choice is `localStorage('style')` (`simple` | `neo`), applied before paint by the inline
+  script in `<x-layout>` (and `preview/template.blade.php`) and by `applyStyle()` in `app.js`.
+- Neo restyles components through their `data-slot` / `data-variant` attributes — keep those on
+  `x-ui.*` components. Landing-only accents use `neo-*` hook classes (`neo-highlight`,
+  `neo-bento`, `neo-fill-*`, `neo-tilt-*`, `neo-shadow`…), which are no-ops in Simple.
+- Never put Neo colours in a view: add tokens or hooks to `neo.css`.
 
 ## Site architecture
 

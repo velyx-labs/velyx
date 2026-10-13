@@ -18,6 +18,10 @@
                 : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.classList.toggle('dark', theme === 'dark');
             document.documentElement.dataset.theme = theme;
+
+            let style = 'simple';
+            try { style = localStorage.getItem('style') === 'neo' ? 'neo' : 'simple'; } catch (e) {}
+            document.documentElement.dataset.style = style;
         })();
     </script>
 </head>

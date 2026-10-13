@@ -4,10 +4,6 @@
 @endphp
 
 <nav class="space-y-6 text-sm">
-    <div class="lg:hidden">
-        <x-ui.input placeholder="Search docs..." icon="search" aria-label="Search docs" />
-    </div>
-
     @foreach($navigation as $section => $item)
         <section>
             <a
@@ -22,8 +18,9 @@
                     @php $active = $currentPath === trim($url, '/'); @endphp
                     <a
                         href="{{ docs_url($url) }}"
+                        @if($active) data-active aria-current="page" @endif
                         @class([
-                            '-ml-px block border-l py-1.5 pl-3 transition-colors',
+                            'docs-nav-link -ml-px block border-l py-1.5 pl-3 transition-colors',
                             'border-foreground font-medium text-foreground' => $active,
                             'border-transparent text-muted-foreground hover:border-border hover:text-foreground' => ! $active,
                         ])

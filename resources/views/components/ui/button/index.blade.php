@@ -44,6 +44,7 @@
 @if($tag === 'a')
     <a
         data-slot="button"
+        data-variant="{{ $variant }}"
         href="{{ $href }}"
         {{ $attributes->class([$baseClasses, $variantClasses, $sizeClasses]) }}
         @if($disabled) aria-disabled="true" @endif
@@ -65,6 +66,7 @@
 @else
     <button
         data-slot="button"
+        data-variant="{{ $variant }}"
         type="{{ $type }}"
         {{ $attributes->class([$baseClasses, $variantClasses, $sizeClasses]) }}
         @if($disabled) disabled @endif

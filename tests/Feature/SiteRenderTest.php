@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\DocsSearchIndex;
 use Illuminate\Support\Facades\Http;
 
 it('renders the landing page through the shared layout', function () {
@@ -80,4 +81,56 @@ it('reads the star count from the GitLab project API', function () {
         ->assertSee('stars on GitLab', false);
 
     Http::assertSent(fn ($request) => str_starts_with($request->url(), 'https://gitlab.com/api/v4/projects/jiordiviera%2Fvelyx'));
+});
+
+it('boots the Simple / Neo style before paint and renders the switch', function () {
+    $html = $this->get(route('home'))->assertOk()->getContent();
+
+    expect($html)
+        ->toContain("localStorage.getItem('style') === 'neo'")
+        ->toContain('document.documentElement.dataset.style = style')
+        ->toContain('data-style-value="simple"')
+        ->toContain('data-style-value="neo"');
+});
+
+it('exposes the Neo hooks on the landing and variants on shared components', function () {
+    $html = $this->get(route('home'))->assertOk()->getContent();
+
+    expect($html)
+        ->toContain('neo-highlight')
+        ->toContain('neo-bento')
+        ->toContain('data-slot="button"')
+        ->toContain('data-variant="destructive"')
+        ->toContain('data-slot="badge"');
+});
+
+it('points the support link to Buy Me a Coffee', function () {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('https://buymeacoffee.com/jiordiviera', false)
+        ->assertSee('Buy me a coffee', false);
+});
+
+it('renders the docs search with an index built from the navigation', function () {
+    $items = app(DocsSearchIndex::class)->items();
+
+    $button = collect($items)->firstWhere('title', 'Button');
+
+    expect($button)
+        ->not->toBeNull()
+        ->and($button['section'])->toBe('Components')
+        ->and($button['url'])->toEndWith('docs/components/button')
+        ->and($button['description'])->not->toBeEmpty()
+        ->and(collect($items)->pluck('title'))->toContain('Quick Start', 'Getting Started');
+
+    $this->get(route('docs.page', 'installation'))
+        ->assertOk()
+        ->assertSee('Search documentation', false)
+        ->assertSee('Search docs and components', false);
+});
+
+it('marks the active docs nav link for both styles', function () {
+    $this->get(route('docs.components.show', 'button'))
+        ->assertOk()
+        ->assertSee('data-active aria-current="page"', false);
 });

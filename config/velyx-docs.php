@@ -11,7 +11,7 @@ return [
     'links' => [
         'gitlab' => 'https://gitlab.com/jiordiviera/velyx',
         'twitter' => 'https://x.com/velyxdev',
-        'support' => 'https://gvcjmaad.mychariow.shop/velyx-dev',
+        'support' => 'https://buymeacoffee.com/jiordiviera',
     ],
 
     'navigation' => [

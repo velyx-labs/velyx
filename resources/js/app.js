@@ -118,6 +118,36 @@ function initDarkMode() {
     });
 }
 
+function preferredStyle() {
+    try {
+        return localStorage.getItem("style") === "neo" ? "neo" : "simple";
+    } catch {
+        return "simple";
+    }
+}
+
+function applyStyle(style = preferredStyle()) {
+    document.documentElement.dataset.style = style;
+    document.querySelectorAll("[data-style-value]").forEach((option) => {
+        option.setAttribute("aria-pressed", String(option.dataset.styleValue === style));
+    });
+}
+
+document.addEventListener("click", (event) => {
+    const option = event.target instanceof Element ? event.target.closest("[data-style-value]") : null;
+    if (!option) return;
+
+    const style = option.dataset.styleValue === "neo" ? "neo" : "simple";
+
+    try {
+        localStorage.setItem("style", style);
+    } catch {
+        // Storage unavailable (private mode): the choice lasts for this page only.
+    }
+
+    applyStyle(style);
+});
+
 async function initDocSearch() {
     const docsearchContainer = document.getElementById("docsearch");
     if (!docsearchContainer || docsearchContainer.dataset.initialized === "true") return;
@@ -197,6 +227,7 @@ function initCodeCopyButtons() {
 function initDocsUi() {
     registerAlpineData(window.Alpine ?? Alpine);
     initDarkMode();
+    applyStyle();
     void initDocSearch();
     Prism.highlightAll();
     initCodeCopyButtons();
