@@ -15,8 +15,9 @@
                     <a
                         href="{{ docs_url($url) }}"
                         wire:navigate
+                        @if($active) data-active aria-current="page" @endif
                         @class([
-                            'block rounded-md px-2 py-1.5 transition-colors',
+                            'docs-nav-link block rounded-md px-2 py-1.5 transition-colors',
                             'bg-muted font-medium text-foreground' => $active,
                             'text-muted-foreground hover:bg-muted/60 hover:text-foreground' => ! $active,
                         ])

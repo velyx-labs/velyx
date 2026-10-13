@@ -118,6 +118,61 @@ function initDarkMode() {
     });
 }
 
+function preferredStyle() {
+    try {
+        return localStorage.getItem("style") === "neo" ? "neo" : "simple";
+    } catch {
+        return "simple";
+    }
+}
+
+function applyStyle(style = preferredStyle()) {
+    document.documentElement.dataset.style = style;
+    document.querySelectorAll("[data-style-value]").forEach((option) => {
+        option.setAttribute("aria-pressed", String(option.dataset.styleValue === style));
+    });
+}
+
+document.addEventListener("click", (event) => {
+    const option = event.target instanceof Element ? event.target.closest("[data-style-value]") : null;
+    if (!option) return;
+
+    const style = option.dataset.styleValue === "neo" ? "neo" : "simple";
+
+    try {
+        localStorage.setItem("style", style);
+    } catch {
+        // Storage unavailable (private mode): the choice lasts for this page only.
+    }
+
+    applyStyle(style);
+});
+
+let revealObserver;
+
+function initReveal() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion || !("IntersectionObserver" in window)) return;
+
+    document.documentElement.classList.add("js-reveal");
+    revealObserver?.disconnect();
+    revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                entry.target.classList.add("is-revealed");
+                revealObserver.unobserve(entry.target);
+            });
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
+    );
+
+    document.querySelectorAll("[data-reveal]:not(.is-revealed)").forEach((element) => {
+        revealObserver.observe(element);
+    });
+}
+
 async function initDocSearch() {
     const docsearchContainer = document.getElementById("docsearch");
     if (!docsearchContainer || docsearchContainer.dataset.initialized === "true") return;
@@ -197,6 +252,8 @@ function initCodeCopyButtons() {
 function initDocsUi() {
     registerAlpineData(window.Alpine ?? Alpine);
     initDarkMode();
+    applyStyle();
+    initReveal();
     void initDocSearch();
     Prism.highlightAll();
     initCodeCopyButtons();

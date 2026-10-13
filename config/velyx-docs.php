@@ -10,8 +10,8 @@ return [
 
     'links' => [
         'gitlab' => 'https://gitlab.com/jiordiviera/velyx',
-        'twitter' => 'https://x.com/velyxdev',
-        'support' => 'https://gvcjmaad.mychariow.shop/velyx-dev',
+        'twitter' => 'https://x.com/jiordiviera',
+        'support' => 'https://buymeacoffee.com/jiordiviera',
     ],
 
     'navigation' => [

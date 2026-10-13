@@ -57,14 +57,14 @@ new class extends Component {};
                 <div class="flex flex-col gap-4">
                     <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground/60">Community</p>
                     <div class="-ml-3 flex flex-col items-start">
-                        <x-ui.button href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" class="text-muted-foreground hover:text-foreground">
+                        <x-ui.button href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.gitlab" :lucide="false" class="text-muted-foreground hover:text-foreground">
                             GitLab
                         </x-ui.button>
-                        <x-ui.button href="{{ config('velyx-docs.links.twitter') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" class="text-muted-foreground hover:text-foreground">
+                        <x-ui.button href="{{ config('velyx-docs.links.twitter') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.twitter" :lucide="false" class="text-muted-foreground hover:text-foreground">
                             X (Twitter)
                         </x-ui.button>
-                        <x-ui.button href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" iconLeft="heart" class="text-muted-foreground hover:text-foreground">
-                            Support
+                        <x-ui.button href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" iconLeft="icons.buymeacoffee" :lucide="false" class="text-muted-foreground hover:text-foreground">
+                            Buy me a coffee
                         </x-ui.button>
                     </div>
                 </div>
@@ -72,6 +72,11 @@ new class extends Component {};
             </div>
 
             <x-ui.separator class="my-8" />
+
+            <div class="mb-6 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                <span class="font-mono uppercase tracking-wider text-muted-foreground/60">Style</span>
+                <x-style-switch />
+            </div>
 
             <div class="flex flex-col gap-3 text-xs text-muted-foreground/70 sm:flex-row sm:items-center sm:justify-between">
                 <p>&copy; {{ date('Y') }} Velyx. UI components for Laravel teams that value ownership.</p>

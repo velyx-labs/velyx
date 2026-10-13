@@ -131,6 +131,11 @@
   @apply my-8 border-border;
 }
 
+/* Let long descriptions wrap instead of pushing tables past the column. */
+.documentation-main [data-slot="table-cell"] {
+  @apply whitespace-normal!;
+}
+
 .prose table {
   @apply my-6 w-full border-collapse border border-border rounded-lg overflow-hidden;
 }
