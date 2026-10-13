@@ -132,8 +132,13 @@
 }
 
 /* Let long descriptions wrap instead of pushing tables past the column. */
-.documentation-main [data-slot="table-cell"] {
-  @apply whitespace-normal!;
+/* Docs tables: keys and values stay on one line, prose columns wrap at a readable width. */
+.documentation-main :is([data-slot="table-cell"], [data-slot="table-head"]) {
+  @apply px-3 py-2.5 align-top!;
+}
+
+.documentation-main [data-slot="table-cell"]:not(.font-mono) {
+  @apply min-w-56 whitespace-normal! leading-relaxed;
 }
 
 .prose table {

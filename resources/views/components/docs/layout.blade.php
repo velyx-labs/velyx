@@ -1,7 +1,20 @@
 @props([
     'title' => 'Velyx Documentation',
     'description' => config('velyx-docs.site_description'),
+    'editPath' => null,
 ])
+
+@php
+    $docsNavigation = app(\App\Support\DocsNavigation::class);
+    $docsPath = trim(request()->path(), '/');
+    $breadcrumbs = $docsNavigation->breadcrumbs($docsPath);
+    $neighbours = $docsNavigation->neighbours($docsPath);
+    if ($editPath === null && str_starts_with($docsPath, 'docs/')) {
+        $pageView = 'resources/views/docs/pages/'.substr($docsPath, 5).'.blade.php';
+        $editPath = is_file(base_path($pageView)) ? $pageView : null;
+    }
+    $editUrl = rtrim(config('velyx-docs.links.gitlab'), '/').($editPath ? '/-/blob/main/'.ltrim($editPath, '/') : '');
+@endphp
 
 <x-docs.base-layout :title="$title" :description="$description">
     <div
@@ -69,12 +82,59 @@
 
         {{-- Main content --}}
         <main class="documentation-main min-w-0 pb-20">
+            @if(count($breadcrumbs) > 1)
+                <nav aria-label="Breadcrumb" class="mb-6">
+                    <ol class="flex flex-wrap items-center gap-1.5 text-[13px] text-muted-foreground">
+                        @foreach($breadcrumbs as $crumb)
+                            <li class="flex items-center gap-1.5">
+                                @if($crumb['url'])
+                                    <a href="{{ $crumb['url'] }}" wire:navigate class="font-normal text-muted-foreground transition-colors hover:text-foreground">{{ $crumb['label'] }}</a>
+                                    <x-lucide-chevron-right class="size-3 text-muted-foreground/50" />
+                                @else
+                                    <span aria-current="page" class="font-medium text-foreground">{{ $crumb['label'] }}</span>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ol>
+                </nav>
+            @endif
+
             {{ $slot }}
+
+            @if($neighbours['previous'] || $neighbours['next'])
+                <nav aria-label="Pagination" class="mt-16 grid gap-4 sm:grid-cols-2">
+                    @if($neighbours['previous'])
+                        <a href="{{ $neighbours['previous']['url'] }}" wire:navigate class="docs-pager font-normal motion-lift neo-shadow flex flex-col gap-1 rounded-lg border border-border bg-background px-4 py-3.5 transition-colors hover:bg-muted/60">
+                            <span class="text-xs text-muted-foreground">← Previous</span>
+                            <span class="font-medium text-foreground">{{ $neighbours['previous']['label'] }}</span>
+                        </a>
+                    @else
+                        <span class="hidden sm:block"></span>
+                    @endif
+                    @if($neighbours['next'])
+                        <a href="{{ $neighbours['next']['url'] }}" wire:navigate class="docs-pager font-normal motion-lift neo-shadow flex flex-col gap-1 rounded-lg border border-border bg-background px-4 py-3.5 text-right transition-colors hover:bg-muted/60">
+                            <span class="text-xs text-muted-foreground">Next →</span>
+                            <span class="font-medium text-foreground">{{ $neighbours['next']['label'] }}</span>
+                        </a>
+                    @endif
+                </nav>
+            @endif
         </main>
 
         {{-- On this page --}}
         <aside class="documentation-toc">
             <x-docs.toc />
+
+            <div class="mt-6 flex flex-col gap-2 border-t border-border pt-4 text-[13px] text-muted-foreground">
+                <a href="{{ $editUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-normal text-muted-foreground transition-colors hover:text-foreground">
+                    <x-lucide-pencil class="size-3.5" />
+                    {{ $editPath ? 'Edit this page on GitLab' : 'View on GitLab' }}
+                </a>
+                <a href="#top" class="inline-flex items-center gap-1.5 font-normal text-muted-foreground transition-colors hover:text-foreground">
+                    <x-lucide-arrow-up class="size-3.5" />
+                    Back to top
+                </a>
+            </div>
         </aside>
 
     </div>

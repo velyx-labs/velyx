@@ -7,8 +7,8 @@
                 <a
                     :href="'#' + item.id"
                     @click.prevent="go(item.id)"
-                    class="-ml-px block border-l border-transparent py-1 pl-3 leading-snug text-muted-foreground transition-colors hover:text-foreground"
-                    :class="{ 'border-foreground text-foreground': active === item.id, 'pl-6': item.level === 1 }"
+                    class="-ml-px block border-l border-transparent py-1 pl-3 font-normal leading-snug text-muted-foreground transition-colors hover:text-foreground"
+                    :class="{ 'border-foreground font-medium text-foreground': active === item.id, 'pl-6': item.level === 1 }"
                     x-text="item.text"
                 ></a>
             </li>

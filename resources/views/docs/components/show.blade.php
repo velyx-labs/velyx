@@ -15,12 +15,41 @@ new class extends Component {};
     $categories = array_filter($meta['categories'] ?? []);
 @endphp
 
-<x-docs.layout :title="$title">
+<x-docs.layout :title="$title" :edit-path="'registry/components/'.$componentName.'/meta.json'">
     <x-docs.page-header
-        eyebrow="Component"
         :title="\Illuminate\Support\Str::headline($componentName)"
         :description="$meta['description'] ?? 'Velyx component.'"
-    />
+    >
+        <x-slot:actions>
+            <x-ui.button
+                variant="outline"
+                size="sm"
+                iconLeft="link"
+                x-data="{ copied: false }"
+                x-on:click="navigator.clipboard.writeText(window.location.href); copied = true; setTimeout(() => copied = false, 1500)"
+            >
+                <span x-text="copied ? 'Copied' : 'Copy link'">Copy link</span>
+            </x-ui.button>
+            <x-ui.button
+                href="{{ rtrim(config('velyx-docs.links.gitlab'), '/') }}/-/tree/main/registry/components/{{ $componentName }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                size="sm"
+                iconLeft="file-code"
+            >
+                View source
+            </x-ui.button>
+        </x-slot:actions>
+
+        <x-slot:meta>
+            <x-ui.badge variant="outline" class="neo-fill-yellow font-mono">Laravel {{ $meta['laravel'] ?? '>=10' }}</x-ui.badge>
+            <x-ui.badge variant="outline" class="neo-fill-green font-mono">{{ ($meta['requires_alpine'] ?? false) ? 'Alpine.js' : 'No Alpine' }}</x-ui.badge>
+            <x-ui.badge variant="outline" class="neo-fill-pink font-mono">v{{ $componentData['version'] ?? '1.0.0' }}</x-ui.badge>
+            @foreach(array_slice(array_values(array_diff($categories, ['ui'])), 0, 3) as $category)
+                <x-ui.badge variant="secondary" class="font-mono">{{ $category }}</x-ui.badge>
+            @endforeach
+        </x-slot:meta>
+    </x-docs.page-header>
 
     <div class="space-y-12">
         <section>

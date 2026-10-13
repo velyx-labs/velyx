@@ -145,7 +145,7 @@
 
 :root[data-style="neo"] [data-slot="badge"][data-variant="success"] { background: var(--neo-green); color: #111111; }
 :root[data-style="neo"] [data-slot="badge"][data-variant="destructive"] { background: var(--neo-red); color: #111111; }
-:root[data-style="neo"] [data-slot="badge"][data-variant="outline"] { background: var(--card); }
+:root[data-style="neo"] [data-slot="badge"]:where([data-variant="outline"]) { background: var(--card); }
 
 :root[data-style="neo"] :is([data-slot="input"], textarea, select) {
   border: var(--neo-bw) solid var(--neo-line);
@@ -224,14 +224,18 @@
 }
 
 :root[data-style="neo"] .docs-nav-link[data-active] {
-  margin: 0.125rem 0 0.125rem 0.5rem;
-  padding-left: 0.625rem;
+  margin: 0.125rem 0;
   border: var(--neo-bw) solid var(--neo-line);
   border-radius: calc(var(--radius) - 2px);
   background: var(--neo-yellow);
   color: #111111;
   font-weight: 700;
   box-shadow: var(--neo-shadow-sm);
+}
+
+:root[data-style="neo"] .docs-nav-link[data-active] .docs-nav-icon {
+  background: #ffffff;
+  color: #111111;
 }
 
 /* ─── Landing hooks (no-ops in Simple) ─────────────────────────────────── */
