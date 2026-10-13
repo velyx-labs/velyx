@@ -17,6 +17,13 @@ return [
     'navigation' => [
         'Getting Started' => [
             'url' => 'docs/installation',
+            'overview' => 'Installation',
+            'icons' => [
+                'Installation' => 'download',
+                'Quick Start' => 'zap',
+                'CLI Reference' => 'terminal',
+                'Configuration' => 'sliders-horizontal',
+            ],
             'children' => [
                 'Quick Start' => 'docs/quick-start',
                 'CLI Reference' => 'docs/cli-reference',
@@ -25,6 +32,8 @@ return [
         ],
         'Components' => [
             'url' => 'docs/components',
+            'overview' => 'Overview',
+            'grouped' => true,
             'children' => [
                 'Accordion' => 'docs/components/accordion',
                 'Alert' => 'docs/components/alert',
@@ -66,6 +75,13 @@ return [
         ],
         'Design' => [
             'url' => 'docs/theming',
+            'overview' => 'Theming',
+            'icons' => [
+                'Theming' => 'layout-grid',
+                'Colors' => 'palette',
+                'Typography' => 'type',
+                'Spacing' => 'ruler',
+            ],
             'children' => [
                 'Colors' => 'docs/design/colors',
                 'Typography' => 'docs/design/typography',

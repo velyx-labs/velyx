@@ -25,7 +25,7 @@
         })();
     </script>
 </head>
-<body class="min-h-screen bg-background text-foreground antialiased">
+<body id="top" class="min-h-screen bg-background text-foreground antialiased">
     <livewire:partials.header />
     {{ $slot }}
     <livewire:partials.footer />
