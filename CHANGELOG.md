@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update CHANGELOG.md ([`43574fb`](https://gitlab.com/jiordiviera/velyx/-/commit/43574fbbe119f69981693f79e6f197566c721b80))
 - Update CHANGELOG.md ([`e7be277`](https://gitlab.com/jiordiviera/velyx/-/commit/e7be2774d512cfe7fb4397ac8a4f41a3d311e48b))
 - Update CHANGELOG.md ([`1ec59f4`](https://gitlab.com/jiordiviera/velyx/-/commit/1ec59f4839b2d439b121ffd718cb931b8d0b6fff))
+- Update CHANGELOG.md ([`365b54f`](https://gitlab.com/jiordiviera/velyx/-/commit/365b54f152c98cf4ba4e605007f87215b90b7321))
 
 ## [v2.1.3] - 2026-05-24
 
@@ -67,58 +68,13 @@ messages
   (e.g. ENOTFOUND, ECONNREFUSED) extracted from TypeError.cause
 - Add contextual hints in ErrorHandler for common network failure
   scenarios
-- Remove stray debug console.log from http-service.ts
- ([`ddeb037`](https://gitlab.com/jiordiviera/velyx/-/commit/ddeb0372010c64287e76c8db5b9bcf76adbf7024))
+- Remove stray debug console.log from http-service.ts ([`ddeb037`](https://gitlab.com/jiordiviera/velyx/-/commit/ddeb0372010c64287e76c8db5b9bcf76adbf7024))
 
 ### Miscellaneous Tasks
 
 - Update CHANGELOG.md ([`4d5eaf4`](https://gitlab.com/jiordiviera/velyx/-/commit/4d5eaf4528626d594a515153e6183aa8d44a883d))
 
 ## [v2.1.0] - 2026-05-19
-
-### Added
-
-- Update workflow ([`f0ad562`](https://gitlab.com/jiordiviera/velyx/-/commit/f0ad562e41541100537abf421bb8d2ac23152e9c))
-
-### Fixed
-
-- Ensure pnpm version is specified in publish workflow ([`e257a98`](https://gitlab.com/jiordiviera/velyx/-/commit/e257a980a81e3184004ca30949a0296685487ee5))
-- Update icon links to use asset helper for consistency ([`777e6a4`](https://gitlab.com/jiordiviera/velyx/-/commit/777e6a44de9456d5dbe82b15b16938b1a10d5d8b))
-
-### Miscellaneous Tasks
-
-- Add pnpm-workspace and publish workflow for tools/cli ([`233d10e`](https://gitlab.com/jiordiviera/velyx/-/commit/233d10e9a610245a58dd295fb1dce34efb5e2f44))
-- Configure Changesets for monorepo releases ([`329cb3c`](https://gitlab.com/jiordiviera/velyx/-/commit/329cb3c1517e943ff5661db065b58e4a91e048c2))
-- Update tools/cli repository URL to velyx ([`8e2812d`](https://gitlab.com/jiordiviera/velyx/-/commit/8e2812d1dcf8ffaabf85f4379589d701633ce299))
-- Update CHANGELOG.md ([`0956176`](https://gitlab.com/jiordiviera/velyx/-/commit/0956176b0ccc1992b0f60a206af258222a6c2adb))
-- Update version to 2.1.0 and add new components to CHANGELOG.md ([`25977c2`](https://gitlab.com/jiordiviera/velyx/-/commit/25977c26332bfaa971b9ab951b9cf875091f65a9))
-- Update CHANGELOG.md ([`cef3a07`](https://gitlab.com/jiordiviera/velyx/-/commit/cef3a07c2576683b914404884ce50d6b1d22e6b3))
-- Update CHANGELOG.md ([`fb712e6`](https://gitlab.com/jiordiviera/velyx/-/commit/fb712e6f1d15630aafa96ab34090bbd55b48854b))
-- Update CHANGELOG.md ([`c2a05fa`](https://gitlab.com/jiordiviera/velyx/-/commit/c2a05fade2d148af84c66ee5866b8980b7927160))
-
-### Refactored
-
-- Remove unused accordion and avatar components; update Alpine.js dependency ([`5b5a921`](https://gitlab.com/jiordiviera/velyx/-/commit/5b5a9216913eb898d6d5ce83f50e4463d48a2026))
-- Update avatar-group component to use new avatar structure and improve preview view tests ([`8ca86ce`](https://gitlab.com/jiordiviera/velyx/-/commit/8ca86cefb4bd10f3f754143b23ea3b38b4399b50))
-- Remove unused components from ComponentShowTest ([`3662bcd`](https://gitlab.com/jiordiviera/velyx/-/commit/3662bcd9f692344c4f84f455b15cfd811b7b6d87))
-- Streamline publish workflow and improve Node.js setup ([`2b6c568`](https://gitlab.com/jiordiviera/velyx/-/commit/2b6c5681e17d1140fdc759a90b68276eb9e7d09b))
-
-## [v2.0.2] - 2026-03-23
-
-### Added
-
-- Ask user to override existing velyx.css theme file ([`237c55f`](https://gitlab.com/jiordiviera/velyx/-/commit/237c55f5457f92d796ee67b41a213b70d1504a6b))
-
-### Fixed
-
-- Allow overwriting existing velyx.css theme file ([`235b627`](https://gitlab.com/jiordiviera/velyx/-/commit/235b6274130666062deb8f49d9be3a5ee9e16006))
-
-### Testing
-
-- Test release
- ([`0d40fe9`](https://gitlab.com/jiordiviera/velyx/-/commit/0d40fe9c2d85944bb525a2611359daf6464d0aef))
-
-## [v2.0.1] - 2026-03-23
 
 ### Added
 
@@ -130,8 +86,7 @@ messages
 - Feat: implement add command with component selection and dependency resolution
 feat: add utility functions for file operations, registry management, and requirement checks
 feat: define VelarComponentMeta type for component metadata structure
-fix: disable no-explicit-any rule in ESLint configuration
- ([`ea1c8f8`](https://gitlab.com/jiordiviera/velyx/-/commit/ea1c8f862eff477fc8e813f209139df7e860fdb4))
+fix: disable no-explicit-any rule in ESLint configuration ([`ea1c8f8`](https://gitlab.com/jiordiviera/velyx/-/commit/ea1c8f862eff477fc8e813f209139df7e860fdb4))
 - Enhance add command and improve configuration handling with type safety ([`0dba7e3`](https://gitlab.com/jiordiviera/velyx/-/commit/0dba7e385cdb4755597df0ba88759bba53bf223c))
 - Update package manager version and add chalk dependency; enhance add command with error handling and user prompts ([`2ea3c44`](https://gitlab.com/jiordiviera/velyx/-/commit/2ea3c44c1d3e4d85aed0900f846ef20e3b4348ab))
 - Refactor init command and improve error handling ([`0f32628`](https://gitlab.com/jiordiviera/velyx/-/commit/0f32628b4c2caf85a6c3b8964d94a175ad3d3565))
@@ -147,8 +102,7 @@ fix: disable no-explicit-any rule in ESLint configuration
 - Enhance dependency management by adding npm to Composer format conversion and streamline package manager detection ([`379a3f4`](https://gitlab.com/jiordiviera/velyx/-/commit/379a3f4cefbbe33e34bfa85d39767468274991ca))
 - Feat: implement VelyxRegistryService for interacting with Velyx Registry API v1 and refactor RegistryService to utilize it
 refactor: streamline registry service methods and remove deprecated remote registry utility
-fix: enhance error handling in readVelyxConfig function
- ([`3da1330`](https://gitlab.com/jiordiviera/velyx/-/commit/3da133080fccca28d6ea024643762ef386aeccbf))
+fix: enhance error handling in readVelyxConfig function ([`3da1330`](https://gitlab.com/jiordiviera/velyx/-/commit/3da133080fccca28d6ea024643762ef386aeccbf))
 - Improve development workflow and code formatting ([`54a5e61`](https://gitlab.com/jiordiviera/velyx/-/commit/54a5e6140a2c485b82b12fbb089e193e32663ec5))
 - Add config validation to list command and update registry types ([`2958ec2`](https://gitlab.com/jiordiviera/velyx/-/commit/2958ec2934d5ed3e2f0625d0b7eba9fb8ec79a37))
 - Add changesets support and improve CLI documentation ([`5e37a93`](https://gitlab.com/jiordiviera/velyx/-/commit/5e37a93ef3c302a2fecc9331a05347f1c4960980))
@@ -156,6 +110,8 @@ fix: enhance error handling in readVelyxConfig function
 - Add Contributor Covenant Code of Conduct ([`41d4bb3`](https://gitlab.com/jiordiviera/velyx/-/commit/41d4bb3abaf4e173ede199a5c5eac8782a09a8af))
 - Add contributing guidelines, issue templates, pull request template, and security policy ([`05fec2b`](https://gitlab.com/jiordiviera/velyx/-/commit/05fec2b986273fbbfc93640a3e07d494ab7655cf))
 - Add Tailwind CSS v4 @theme inline support to theme generation ([`6cf33e4`](https://gitlab.com/jiordiviera/velyx/-/commit/6cf33e4c38228e234b76fb72abd1af8a16f61c9a))
+- Ask user to override existing velyx.css theme file ([`237c55f`](https://gitlab.com/jiordiviera/velyx/-/commit/237c55f5457f92d796ee67b41a213b70d1504a6b))
+- Update workflow ([`f0ad562`](https://gitlab.com/jiordiviera/velyx/-/commit/f0ad562e41541100537abf421bb8d2ac23152e9c))
 
 ### Fixed
 
@@ -163,6 +119,9 @@ fix: enhance error handling in readVelyxConfig function
 - Prevent body scroll when sidebar drawer is open and improve drawer scrolling ([`a01e5a6`](https://gitlab.com/jiordiviera/velyx/-/commit/a01e5a655a81fac9de015e29293b78591c873e98))
 - Update package name to match the scoped format for better package management ([`1b9a05b`](https://gitlab.com/jiordiviera/velyx/-/commit/1b9a05ba831bef3a49614ff2b57c25fdf9d8fbf8))
 - Update package name and repository URL for consistency ([`d07f04d`](https://gitlab.com/jiordiviera/velyx/-/commit/d07f04db86afafbaeb69c2f9753d8b5f93d7a354))
+- Allow overwriting existing velyx.css theme file ([`235b627`](https://gitlab.com/jiordiviera/velyx/-/commit/235b6274130666062deb8f49d9be3a5ee9e16006))
+- Ensure pnpm version is specified in publish workflow ([`e257a98`](https://gitlab.com/jiordiviera/velyx/-/commit/e257a980a81e3184004ca30949a0296685487ee5))
+- Update icon links to use asset helper for consistency ([`777e6a4`](https://gitlab.com/jiordiviera/velyx/-/commit/777e6a44de9456d5dbe82b15b16938b1a10d5d8b))
 
 ### Miscellaneous Tasks
 
@@ -177,6 +136,14 @@ fix: enhance error handling in readVelyxConfig function
 - Integrate `tsc-alias` into build and dev workflows, update TypeScript paths, and adjust ESLint and package configurations ([`7cf4fce`](https://gitlab.com/jiordiviera/velyx/-/commit/7cf4fcef77a5a9a760514d4ff69a376e2d9ba186))
 - Clean up debug logs and unused code in add flow ([`0b2ed42`](https://gitlab.com/jiordiviera/velyx/-/commit/0b2ed42555f22e11445e66c628f63090fff00e3a))
 - Update changeset ([`191dd8d`](https://gitlab.com/jiordiviera/velyx/-/commit/191dd8d543dc6a8fcb243f02a08269358edf8ff7))
+- Add pnpm-workspace and publish workflow for tools/cli ([`233d10e`](https://gitlab.com/jiordiviera/velyx/-/commit/233d10e9a610245a58dd295fb1dce34efb5e2f44))
+- Configure Changesets for monorepo releases ([`329cb3c`](https://gitlab.com/jiordiviera/velyx/-/commit/329cb3c1517e943ff5661db065b58e4a91e048c2))
+- Update tools/cli repository URL to velyx ([`8e2812d`](https://gitlab.com/jiordiviera/velyx/-/commit/8e2812d1dcf8ffaabf85f4379589d701633ce299))
+- Update CHANGELOG.md ([`0956176`](https://gitlab.com/jiordiviera/velyx/-/commit/0956176b0ccc1992b0f60a206af258222a6c2adb))
+- Update version to 2.1.0 and add new components to CHANGELOG.md ([`25977c2`](https://gitlab.com/jiordiviera/velyx/-/commit/25977c26332bfaa971b9ab951b9cf875091f65a9))
+- Update CHANGELOG.md ([`cef3a07`](https://gitlab.com/jiordiviera/velyx/-/commit/cef3a07c2576683b914404884ce50d6b1d22e6b3))
+- Update CHANGELOG.md ([`fb712e6`](https://gitlab.com/jiordiviera/velyx/-/commit/fb712e6f1d15630aafa96ab34090bbd55b48854b))
+- Update CHANGELOG.md ([`c2a05fa`](https://gitlab.com/jiordiviera/velyx/-/commit/c2a05fade2d148af84c66ee5866b8980b7927160))
 
 ### Refactored
 
@@ -188,6 +155,10 @@ fix: enhance error handling in readVelyxConfig function
 - Standardize string quotes to single quotes across utility files ([`80ec57c`](https://gitlab.com/jiordiviera/velyx/-/commit/80ec57cc60f6f5f237fe099f3c8cdaa2e166d54f))
 - Remove Livewire support and related checks from initialization logic ([`b3b5c92`](https://gitlab.com/jiordiviera/velyx/-/commit/b3b5c92b4f363c8c2018bcdddb439cf6c72c7b19))
 - Align add command with Velyx Registry API v1 structure ([`f95ca49`](https://gitlab.com/jiordiviera/velyx/-/commit/f95ca496399972e07b00543b32400a8b5c24101e))
+- Remove unused accordion and avatar components; update Alpine.js dependency ([`5b5a921`](https://gitlab.com/jiordiviera/velyx/-/commit/5b5a9216913eb898d6d5ce83f50e4463d48a2026))
+- Update avatar-group component to use new avatar structure and improve preview view tests ([`8ca86ce`](https://gitlab.com/jiordiviera/velyx/-/commit/8ca86cefb4bd10f3f754143b23ea3b38b4399b50))
+- Remove unused components from ComponentShowTest ([`3662bcd`](https://gitlab.com/jiordiviera/velyx/-/commit/3662bcd9f692344c4f84f455b15cfd811b7b6d87))
+- Streamline publish workflow and improve Node.js setup ([`2b6c568`](https://gitlab.com/jiordiviera/velyx/-/commit/2b6c5681e17d1140fdc759a90b68276eb9e7d09b))
 
 ### Testing
 
@@ -200,10 +171,9 @@ fix: enhance error handling in readVelyxConfig function
 - Relocate and refactor ListService tests for consistency and maintainability ([`3dded19`](https://gitlab.com/jiordiviera/velyx/-/commit/3dded193c6af5aaf8d462ba8c78b51e90de525fb))
 - Add unit tests for css utilities and improve tsconfig path handling in vitest config ([`f701b56`](https://gitlab.com/jiordiviera/velyx/-/commit/f701b5678201d71c38e79ae6f8be4ef2a997352c))
 - Add integration/e2e coverage and clean unused CLI options ([`2e8c6a5`](https://gitlab.com/jiordiviera/velyx/-/commit/2e8c6a5823310fd5ffc17c98ac2b56af88baf3e6))
-- Test release
- ([`95fb972`](https://gitlab.com/jiordiviera/velyx/-/commit/95fb9723df66b2c7b0f415e05f2cd6de79f15ace))
-- Test release
- ([`2f6d32c`](https://gitlab.com/jiordiviera/velyx/-/commit/2f6d32c73174453abbe2f66495d924a16a5f5ed0))
+- Test release ([`95fb972`](https://gitlab.com/jiordiviera/velyx/-/commit/95fb9723df66b2c7b0f415e05f2cd6de79f15ace))
+- Test release ([`2f6d32c`](https://gitlab.com/jiordiviera/velyx/-/commit/2f6d32c73174453abbe2f66495d924a16a5f5ed0))
+- Test release ([`0d40fe9`](https://gitlab.com/jiordiviera/velyx/-/commit/0d40fe9c2d85944bb525a2611359daf6464d0aef))
 
 ## [v1.0.0] - 2026-05-17
 
@@ -266,8 +236,7 @@ fix: enhance error handling in readVelyxConfig function
 - Add stat card component with dynamic content and styling options ([`47a61a8`](https://gitlab.com/jiordiviera/velyx/-/commit/47a61a87c8d110b3f00112ae722a0792814933b4))
 - Add timeline component with vertical and horizontal modes, including dynamic item rendering ([`767276d`](https://gitlab.com/jiordiviera/velyx/-/commit/767276d4a877d92488e9805043557478b8d47965))
 - Feat: add tooltip component with show/hide functionality and customizable options
-refactor: remove unused range slider component and related files
- ([`a09099a`](https://gitlab.com/jiordiviera/velyx/-/commit/a09099ab9a3b706917d198a917dd9c0f57474626))
+refactor: remove unused range slider component and related files ([`a09099a`](https://gitlab.com/jiordiviera/velyx/-/commit/a09099ab9a3b706917d198a917dd9c0f57474626))
 - Implement toggle component with customizable options and Livewire integration ([`8876111`](https://gitlab.com/jiordiviera/velyx/-/commit/8876111da315996572cbe3724a5c910f74af7236))
 - Add sortable list component with drag-and-drop functionality ([`70788f1`](https://gitlab.com/jiordiviera/velyx/-/commit/70788f1b4caeac84795355c6319fa8b55d794f12))
 - Add sortable list and item components with drag-and-drop functionality ([`06a0a89`](https://gitlab.com/jiordiviera/velyx/-/commit/06a0a89e512995cae3ae941cac287c05a478f746))
@@ -291,8 +260,7 @@ refactor: remove unused range slider component and related files
 - Correct formatting in exists method of ComponentService ([`ecdc398`](https://gitlab.com/jiordiviera/velyx/-/commit/ecdc398ab281260fe014f25c2f130012fd97097c))
 - Remove unnecessary class from accordion item div ([`e898ad3`](https://gitlab.com/jiordiviera/velyx/-/commit/e898ad3fb11ad81c12ee2f11860f872df954b773))
 - Format closure syntax in button variant test for consistency ([`cb5686f`](https://gitlab.com/jiordiviera/velyx/-/commit/cb5686f5a0d39f4fb7f981e6fcaf927911f8d273))
-- Fix code style
- ([`1e7e762`](https://gitlab.com/jiordiviera/velyx/-/commit/1e7e76252ffc53cedd4f38a9e934baa967225ee6))
+- Fix code style ([`1e7e762`](https://gitlab.com/jiordiviera/velyx/-/commit/1e7e76252ffc53cedd4f38a9e934baa967225ee6))
 - Correct APP_NAME formatting in .env.example ([`718daaf`](https://gitlab.com/jiordiviera/velyx/-/commit/718daafb6624f34cb32aced588dbd1759eb1bb4d))
 - Revert APP_NAME to default value in .env.example ([`0c99a7e`](https://gitlab.com/jiordiviera/velyx/-/commit/0c99a7e4563a3cfaa2e91a970f3620606cc19d2e))
 - Reorder pnpm and Node.js setup steps in CI/CD workflow for consistency ([`0fa7635`](https://gitlab.com/jiordiviera/velyx/-/commit/0fa763521894f48ac45f39242015953632ff8378))
@@ -329,8 +297,6 @@ refactor: remove unused range slider component and related files
 [v2.1.3]: https://gitlab.com/jiordiviera/velyx/-/compare/v2.1.2...v2.1.3
 [v2.1.2]: https://gitlab.com/jiordiviera/velyx/-/compare/v2.1.1...v2.1.2
 [v2.1.1]: https://gitlab.com/jiordiviera/velyx/-/compare/v2.1.0...v2.1.1
-[v2.1.0]: https://gitlab.com/jiordiviera/velyx/-/compare/v2.0.2...v2.1.0
-[v2.0.2]: https://gitlab.com/jiordiviera/velyx/-/compare/v2.0.1...v2.0.2
-[v2.0.1]: https://gitlab.com/jiordiviera/velyx/-/compare/v1.0.0...v2.0.1
-[v1.0.0]: https://gitlab.com/jiordiviera/velyx/-/compare/v2.0.2...v1.0.0
+[v2.1.0]: https://gitlab.com/jiordiviera/velyx/-/compare/v1.0.0...v2.1.0
+[v1.0.0]: https://gitlab.com/jiordiviera/velyx/-/compare/...v1.0.0
 
