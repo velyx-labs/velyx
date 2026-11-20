@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\ComponentService;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
@@ -15,15 +16,27 @@ new class extends Component
     {
         $this->components = $componentService->getAllComponents();
 
-        $project = rawurlencode(config('velyx-docs.gitlab_project'));
+        $this->stars = Cache::get('github_stars_velyx') ?? $this->fetchStars();
+    }
 
-        $this->stars = Cache::remember('gitlab_stars_velyx', 3600, function () use ($project) {
+    private function fetchStars(): int
+    {
+        $repo = config('velyx-docs.github_repo');
+
+        try {
             $response = Http::acceptJson()
-                ->timeout(5)
-                ->get("https://gitlab.com/api/v4/projects/{$project}");
+                ->timeout(3)
+                ->get("https://api.github.com/repos/{$repo}");
+        } catch (ConnectionException) {
+            $response = null;
+        }
 
-            return $response->successful() ? (int) $response->json('star_count', 0) : 0;
-        });
+        $stars = $response?->successful() ? (int) $response->json('stargazers_count', 0) : 0;
+
+        // A failed lookup is retried after a few minutes instead of an hour.
+        Cache::put('github_stars_velyx', $stars, $stars > 0 ? 3600 : 300);
+
+        return $stars;
     }
 };
 ?>
@@ -75,16 +88,16 @@ new class extends Component
 
                 <p class="mt-5 text-sm text-muted-foreground/70">
                     <a
-                        href="{{ config('velyx-docs.links.gitlab') }}"
+                        href="{{ config('velyx-docs.links.github') }}"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
                     >
                         <x-lucide-star class="size-3.5" />
                         @if($stars > 0)
-                            <strong class="font-semibold text-foreground">{{ number_format($stars) }}</strong>&nbsp;stars on GitLab
+                            <strong class="font-semibold text-foreground">{{ number_format($stars) }}</strong>&nbsp;stars on GitHub
                         @else
-                            Star on GitLab
+                            Star on GitHub
                         @endif
                     </a>
                 </p>

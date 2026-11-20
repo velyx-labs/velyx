@@ -1,6 +1,7 @@
 <?php
 
 use App\Support\DocsSearchIndex;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
 it('renders the landing page through the shared layout', function () {
@@ -70,17 +71,28 @@ it('renders the header and footer with the inline mark and canonical repo link',
     $this->get(route('home'))->assertDontSee('assets/img/logo', false);
 });
 
-it('reads the star count from the GitLab project API', function () {
+it('reads the star count from the GitHub repository API', function () {
     Http::fake([
-        'gitlab.com/api/v4/projects/jiordiviera%2Fvelyx' => Http::response(['star_count' => 1234]),
+        'api.github.com/repos/velyx-labs/velyx' => Http::response(['stargazers_count' => 1234]),
     ]);
 
     $this->get(route('home'))
         ->assertOk()
         ->assertSee('1,234', false)
-        ->assertSee('stars on GitLab', false);
+        ->assertSee('stars on GitHub', false)
+        ->assertSee('https://github.com/velyx-labs/velyx', false);
 
-    Http::assertSent(fn ($request) => str_starts_with($request->url(), 'https://gitlab.com/api/v4/projects/jiordiviera%2Fvelyx'));
+    Http::assertSent(fn ($request) => $request->url() === 'https://api.github.com/repos/velyx-labs/velyx');
+});
+
+it('still renders the home page when the star count lookup times out', function () {
+    Http::fake([
+        'api.github.com/*' => fn () => throw new ConnectionException('cURL error 28: Operation timed out'),
+    ]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('Star on GitHub', false);
 });
 
 it('boots the Simple / Neo style before paint and renders the switch', function () {
