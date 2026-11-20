@@ -13,7 +13,7 @@
         $pageView = 'resources/views/docs/pages/'.substr($docsPath, 5).'.blade.php';
         $editPath = is_file(base_path($pageView)) ? $pageView : null;
     }
-    $editUrl = rtrim(config('velyx-docs.links.gitlab'), '/').($editPath ? '/-/blob/main/'.ltrim($editPath, '/') : '');
+    $editUrl = rtrim(config('velyx-docs.links.github'), '/').($editPath ? '/blob/main/'.ltrim($editPath, '/') : '');
 @endphp
 
 <x-docs.base-layout :title="$title" :description="$description">
@@ -128,7 +128,7 @@
             <div class="mt-6 flex flex-col gap-2 border-t border-border pt-4 text-[13px] text-muted-foreground">
                 <a href="{{ $editUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-normal text-muted-foreground transition-colors hover:text-foreground">
                     <x-lucide-pencil class="size-3.5" />
-                    {{ $editPath ? 'Edit this page on GitLab' : 'View on GitLab' }}
+                    {{ $editPath ? 'Edit this page on GitHub' : 'View on GitHub' }}
                 </a>
                 <a href="#top" class="inline-flex items-center gap-1.5 font-normal text-muted-foreground transition-colors hover:text-foreground">
                     <x-lucide-arrow-up class="size-3.5" />

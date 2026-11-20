@@ -43,13 +43,13 @@ new class extends Component {};
                 </a>
 
                 <a
-                    href="{{ config('velyx-docs.links.gitlab') }}"
+                    href="{{ config('velyx-docs.links.github') }}"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hidden size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent sm:inline-flex hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    aria-label="Velyx on GitLab"
+                    aria-label="Velyx on GitHub"
                 >
-                    <x-icons.gitlab class="h-4 w-4" />
+                    <x-icons.github class="h-4 w-4" />
                 </a>
             </div>
         </div>

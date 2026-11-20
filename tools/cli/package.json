@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/jiordiviera/velyx.git"
+    "url": "git+https://github.com/velyx-labs/velyx.git"
   },
   "publishConfig": {
     "provenance": true,

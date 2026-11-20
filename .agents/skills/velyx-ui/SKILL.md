@@ -64,9 +64,9 @@ The site ships two looks, switched by `<x-style-switch />` (header + footer):
   `theme-color` / `og:` / `twitter:` block. Brand files live in `public/brand/` (+ `favicon.svg`,
   `site.webmanifest` at `public/` root). The mark is inline as `<x-icons.velyx>`
   (`stroke="currentColor"`, one file for both themes) — not an `<img>` swap. OG copy is English.
-- **Links & repo:** GitLab / X / support URLs and the stars-API project path come from
-  `config('velyx-docs.links.*')` and `config('velyx-docs.gitlab_project')`. Canonical repo is
-  `jiordiviera/velyx` on GitLab. Never hard-code a repo URL in a view.
+- **Links & repo:** GitHub / X / support URLs and the stars-API repo come from
+  `config('velyx-docs.links.*')` and `config('velyx-docs.github_repo')`. Canonical repo is
+  `velyx-labs/velyx` on GitHub. Never hard-code a repo URL in a view.
 
 ## Documentation site
 
