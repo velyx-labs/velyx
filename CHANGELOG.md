@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update CHANGELOG.md ([`1ec59f4`](https://gitlab.com/jiordiviera/velyx/-/commit/1ec59f4839b2d439b121ffd718cb931b8d0b6fff))
 - Update CHANGELOG.md ([`365b54f`](https://gitlab.com/jiordiviera/velyx/-/commit/365b54f152c98cf4ba4e605007f87215b90b7321))
 - Update CHANGELOG.md ([`afabd71`](https://gitlab.com/jiordiviera/velyx/-/commit/afabd711b91df3f616e51dea0e52a90b0b9f66f0))
+- Update CHANGELOG.md ([`0301d0f`](https://gitlab.com/jiordiviera/velyx/-/commit/0301d0fbd20585939bba255d6f4425e2ef1e2b76))
 
 ## [v2.1.3] - 2026-05-24
 
