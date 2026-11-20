@@ -17,7 +17,8 @@ on:
 
 concurrency:
   group: ci-cd-${{ github.ref }}
-  cancel-in-progress: true
+  # Never cancel a run on main: it may be halfway through a deploy.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   lint:
@@ -34,7 +35,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.4"
+          php-version: "8.5"
           tools: composer:v2
           coverage: none
 
@@ -75,7 +76,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.4"
+          php-version: "8.5"
           tools: composer:v2
           coverage: xdebug
 
@@ -148,7 +149,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.4"
+          php-version: "8.5"
           tools: composer:v2
 
       - name: Cache Composer dependencies
@@ -168,6 +169,13 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Upload assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: public/build
+          retention-days: 1
+
   deploy:
     name: Deploy production
     runs-on: ubuntu-latest
@@ -179,30 +187,64 @@ jobs:
     environment: production
 
     steps:
-      - name: Deploy over SSH
-        uses: appleboy/ssh-action@v1.0.3
+      # The server has no Node toolchain: ship the assets built by the `build`
+      # job instead of rebuilding them there.
+      - name: Download assets
+        uses: actions/download-artifact@v4
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || 22 }}
-          script_stop: true
-          script: |
-            set -e
-            cd ${{ secrets.DEPLOY_PATH }}
-            git fetch --all --prune
-            git checkout main
-            git reset --hard origin/main
-            composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-            php artisan migrate --force
-            php artisan optimize:clear
-            php artisan optimize
-            php artisan queue:restart || true
+          name: build
+          path: build
 
-            # Reload Octane workers to pick up new code in memory.
-            php artisan octane:reload
+      - name: Deploy over SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          # Owner of storage/, bootstrap/cache and public/build: the user the
+          # app (Octane) runs as.
+          APP_USER: www-data
+        run: |
+          set -euo pipefail
+          install -m 600 /dev/null ~/deploy_key
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/deploy_key
+          SSH="ssh -i $HOME/deploy_key -p ${DEPLOY_PORT:-22} -o StrictHostKeyChecking=accept-new $DEPLOY_USER@$DEPLOY_HOST"
+          BUILD_ARCHIVE="/tmp/velyx-build-$GITHUB_RUN_ID.tgz"
 
-            if command -v pnpm >/dev/null 2>&1; then
-              pnpm install --frozen-lockfile
-              pnpm build
-            fi
+          tar -czf - build | $SSH "cat > '$BUILD_ARCHIVE'"
+
+          $SSH "DEPLOY_PATH='$DEPLOY_PATH' BUILD_ARCHIVE='$BUILD_ARCHIVE' APP_USER='$APP_USER' bash -se" <<'REMOTE'
+          set -e
+          cd "$DEPLOY_PATH"
+          git fetch --all --prune
+          git checkout main
+          git reset --hard origin/main
+          composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+          php artisan migrate --force
+
+          # Swap the new assets in with a rename, so no request sees a half-written build.
+          rm -rf public/build.new public/build.old
+          mkdir public/build.new
+          tar -xzf "$BUILD_ARCHIVE" -C public/build.new --strip-components=1
+          if [ -d public/build ]; then mv public/build public/build.old; fi
+          mv public/build.new public/build
+          rm -rf public/build.old "$BUILD_ARCHIVE"
+
+          php artisan optimize:clear
+          php artisan optimize
+          php artisan queue:restart || true
+
+          # Deploying as root leaves the files it writes owned by root, which the
+          # app user can then no longer rewrite (compiled views, caches, logs).
+          if [ "$(id -u)" -eq 0 ]; then
+            chown -R "$APP_USER:$APP_USER" storage bootstrap/cache public/build
+          fi
+
+          # Reload Octane workers to pick up new code (and the new Vite manifest) in memory.
+          php artisan octane:reload
+          REMOTE
+
+      - name: Remove the deploy key
+        if: always()
+        run: rm -f ~/deploy_key
