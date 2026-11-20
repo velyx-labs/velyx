@@ -1,6 +1,6 @@
 # Velyx UI
 
-[![Pipeline](https://gitlab.com/jiordiviera/velyx/badges/main/pipeline.svg)](https://gitlab.com/jiordiviera/velyx/-/pipelines)
+[![CI/CD](https://github.com/velyx-labs/velyx/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/velyx-labs/velyx/actions/workflows/ci-cd.yml)
 ![Codecov](https://codecov.io/gl/jiordiviera/velyx/branch/main/graph/badge.svg)
 
 Beautifully designed components for Laravel, built with [Livewire](https://livewire.laravel.com), [Alpine.js](https://alpinejs.dev), and [Tailwind CSS](https://tailwindcss.com).

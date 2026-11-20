@@ -116,7 +116,7 @@
         </div>
         <code class="rounded-md bg-background px-2 py-1.5 font-mono text-xs break-all text-foreground">npx velyx@latest init</code>
         <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-            <a href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-normal text-muted-foreground hover:text-foreground"><x-icons.gitlab class="size-3" />GitLab</a>
+            <a href="{{ config('velyx-docs.links.github') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-normal text-muted-foreground hover:text-foreground"><x-icons.github class="size-3" />GitHub</a>
             <a href="{{ config('velyx-docs.links.support') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-normal text-muted-foreground hover:text-foreground"><x-icons.buymeacoffee class="size-3" />Buy me a coffee</a>
         </div>
     </div>

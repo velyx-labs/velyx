@@ -152,7 +152,7 @@ Technical documentation for testing architecture:
 
 - **Registry**: [registry.velyx.dev](https://registry.velyx.dev)
 - **Documentation**: [velyx.dev](https://velyx.dev)
-- **GitLab**: [gitlab.com/jiordiviera/velyx](https://gitlab.com/jiordiviera/velyx)
+- **GitHub**: [github.com/velyx-labs/velyx](https://github.com/velyx-labs/velyx)
 
 ---
 

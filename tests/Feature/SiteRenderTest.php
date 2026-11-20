@@ -66,7 +66,7 @@ it('renders the header and footer with the inline mark and canonical repo link',
 
     expect($html)
         ->toContain('M6 3H10M3 7L8 13L13 7')
-        ->toContain('https://gitlab.com/jiordiviera/velyx');
+        ->toContain('https://github.com/velyx-labs/velyx');
 
     $this->get(route('home'))->assertDontSee('assets/img/logo', false);
 });
@@ -152,7 +152,7 @@ it('uses the svgl brand logos in the header and footer', function () {
     $html = $this->get(route('home'))->assertOk()->getContent();
 
     expect($html)
-        ->toContain('fill="#E24329"')
+        ->toContain('d="M512 0C229.12 0 0 229.12 ')
         ->toContain('fill="#FFDD00"');
 });
 

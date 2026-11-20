@@ -31,8 +31,8 @@ new class extends Component {};
                         <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate size="sm" iconRight="arrow-right">
                             Get started
                         </x-ui.button>
-                        <x-ui.button href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" variant="outline" size="sm">
-                            GitLab
+                        <x-ui.button href="{{ config('velyx-docs.links.github') }}" target="_blank" rel="noopener noreferrer" variant="outline" size="sm">
+                            GitHub
                         </x-ui.button>
                     </div>
                 </div>
@@ -57,8 +57,8 @@ new class extends Component {};
                 <div class="flex flex-col gap-4">
                     <p class="font-mono text-xs uppercase tracking-wider text-muted-foreground/60">Community</p>
                     <div class="-ml-3 flex flex-col items-start">
-                        <x-ui.button href="{{ config('velyx-docs.links.gitlab') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.gitlab" :lucide="false" class="text-muted-foreground hover:text-foreground">
-                            GitLab
+                        <x-ui.button href="{{ config('velyx-docs.links.github') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.github" :lucide="false" class="text-muted-foreground hover:text-foreground">
+                            GitHub
                         </x-ui.button>
                         <x-ui.button href="{{ config('velyx-docs.links.twitter') }}" target="_blank" rel="noopener noreferrer" variant="link" size="sm" icon="icons.twitter" :lucide="false" class="text-muted-foreground hover:text-foreground">
                             X (Twitter)

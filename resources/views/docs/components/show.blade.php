@@ -31,7 +31,7 @@ new class extends Component {};
                 <span x-text="copied ? 'Copied' : 'Copy link'">Copy link</span>
             </x-ui.button>
             <x-ui.button
-                href="{{ rtrim(config('velyx-docs.links.gitlab'), '/') }}/-/tree/main/registry/components/{{ $componentName }}"
+                href="{{ rtrim(config('velyx-docs.links.github'), '/') }}/tree/main/registry/components/{{ $componentName }}"
                 target="_blank"
                 rel="noopener noreferrer"
                 size="sm"

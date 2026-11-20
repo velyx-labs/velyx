@@ -50,8 +50,8 @@ it('renders the redesigned sidebar, breadcrumbs, pager and component header', fu
         ->toContain('aria-label="Pagination"')
         ->toContain('Copy link')
         ->toContain('View source')
-        ->toContain('/-/tree/main/registry/components/button')
-        ->toContain('Edit this page on GitLab')
+        ->toContain('https://github.com/velyx-labs/velyx/tree/main/registry/components/button')
+        ->toContain('Edit this page on GitHub')
         ->toContain('Velyx CLI')
         ->toContain('Data &amp; media')
         ->toContain('wire:navigate class="font-normal text-muted-foreground transition-colors hover:text-foreground"');
@@ -60,5 +60,5 @@ it('renders the redesigned sidebar, breadcrumbs, pager and component header', fu
 it('links guide pages to their Blade source for editing', function () {
     $this->get(route('docs.page', 'quick-start'))
         ->assertOk()
-        ->assertSee('/-/blob/main/resources/views/docs/pages/quick-start.blade.php', false);
+        ->assertSee('https://github.com/velyx-labs/velyx/blob/main/resources/views/docs/pages/quick-start.blade.php', false);
 });

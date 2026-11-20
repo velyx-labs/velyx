@@ -192,7 +192,7 @@ new class extends Component
                     </div>
                     <div class="flex flex-wrap gap-2.5">
                         <x-ui.button iconRight="arrow-right">Get started</x-ui.button>
-                        <x-ui.button variant="outline" icon="icons.gitlab" :lucide="false">GitLab</x-ui.button>
+                        <x-ui.button variant="outline" icon="icons.github" :lucide="false">GitHub</x-ui.button>
                     </div>
                 </div>
 

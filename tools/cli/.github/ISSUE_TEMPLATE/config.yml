@@ -4,5 +4,5 @@ contact_links:
     url: mailto:security@velyx.dev
     about: Report vulnerabilities privately by email.
   - name: CLI contribution guide
-    url: https://gitlab.com/jiordiviera/velyx/-/blob/main/tools/cli/.github/CONTRIBUTING.md
+    url: https://github.com/velyx-labs/velyx/blob/main/tools/cli/.github/CONTRIBUTING.md
     about: Read the contribution workflow before opening implementation-heavy issues.
