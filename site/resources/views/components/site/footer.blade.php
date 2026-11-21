@@ -17,14 +17,14 @@
             <div class="flex flex-wrap gap-14 text-control">
                 <div class="flex flex-col gap-2.5">
                     <x-site.label>Product</x-site.label>
-                    <a href="#components" class="text-ink-muted hover:text-ink">Components</a>
-                    <a href="#cli" class="text-ink-muted hover:text-ink">CLI</a>
-                    <a href="#icons" class="text-ink-muted hover:text-ink">Icons</a>
+                    <a href="{{ route('docs.components') }}" class="text-ink-muted hover:text-ink">Components</a>
+                    <a href="{{ route('docs.guide', 'cli') }}" class="text-ink-muted hover:text-ink">CLI</a>
+                    <a href="{{ route('docs.guide', 'icons') }}" class="text-ink-muted hover:text-ink">Icons</a>
                     <a href="https://github.com/velyx-labs/velyx/releases" class="text-ink-muted hover:text-ink">Changelog</a>
                 </div>
                 <div class="flex flex-col gap-2.5">
                     <x-site.label>Resources</x-site.label>
-                    <a href="#docs" class="text-ink-muted hover:text-ink">Documentation</a>
+                    <a href="{{ route('docs') }}" class="text-ink-muted hover:text-ink">Documentation</a>
                     <a href="https://github.com/velyx-labs/velyx" class="text-ink-muted hover:text-ink">GitHub</a>
                     <a href="https://buymeacoffee.com/jiordiviera" class="text-ink-muted hover:text-ink">Buy Me a Coffee</a>
                 </div>

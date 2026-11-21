@@ -7,7 +7,7 @@
                 Every component is a file in your repository. It shows up in code review, and you can change anything.
                 Velyx never overwrites your edits.
             </p>
-            <a href="#docs" class="self-start text-[15px] font-semibold underline underline-offset-4 hover:text-ink-muted">How updates work</a>
+            <a href="{{ route('docs.guide', 'cli') }}" class="self-start text-[15px] font-semibold underline underline-offset-4 hover:text-ink-muted">How updates work</a>
         </x-reveal>
 
         <x-reveal :delay="120" class="min-w-0 flex-[1_1_560px]">

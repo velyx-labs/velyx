@@ -22,8 +22,8 @@
         </x-reveal>
 
         <x-reveal :delay="620" class="flex flex-wrap justify-center gap-2.5">
-            <x-site.button href="#docs">Get started</x-site.button>
-            <x-site.button variant="outline" href="#components">Browse components</x-site.button>
+            <x-site.button :href="route('docs.guide', 'installation')">Get started</x-site.button>
+            <x-site.button variant="outline" :href="route('docs.components')">Browse components</x-site.button>
         </x-reveal>
 
         <x-reveal :delay="720">

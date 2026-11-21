@@ -1,9 +1,9 @@
 @php
     $links = [
-        'Docs' => '#docs',
-        'Components' => '#components',
-        'CLI' => '#cli',
-        'Icons' => '#icons',
+        'Docs' => route('docs'),
+        'Components' => route('docs.components'),
+        'CLI' => route('docs.guide', 'cli'),
+        'Icons' => route('docs.guide', 'icons'),
         'Changelog' => 'https://github.com/velyx-labs/velyx/releases',
     ];
 @endphp
@@ -21,6 +21,7 @@
         </nav>
 
         <div class="ml-auto flex items-center gap-1.5">
+            <x-site.search />
             <x-site.button variant="ghost" size="sm" href="https://github.com/velyx-labs/velyx" class="px-2.5" aria-label="Velyx on GitHub">
                 <x-icons.github class="size-4" />
                 <span class="hidden text-small sm:inline">GitHub</span>

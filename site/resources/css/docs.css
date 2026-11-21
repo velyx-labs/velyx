@@ -1,0 +1,44 @@
+/* Docs: syntax colors (GitHub light and dark palettes) and running-text styles. */
+
+@layer components {
+    .tok-tag { color: #116329; }
+    .tok-attr, .tok-key, .tok-num { color: #0550ae; }
+    .tok-str { color: #0a3069; }
+    .tok-pun { color: #6e7781; }
+    .tok-kw, .tok-dir { color: #cf222e; }
+    .tok-var { color: #953800; }
+    .tok-fn { color: #8250df; }
+    .tok-com { color: #6e7781; font-style: italic; }
+
+    .dark .tok-tag { color: #7ee787; }
+    .dark .tok-attr, .dark .tok-key, .dark .tok-num { color: #79c0ff; }
+    .dark .tok-str { color: #a5d6ff; }
+    .dark .tok-pun, .dark .tok-com { color: #8b949e; }
+    .dark .tok-kw, .dark .tok-dir { color: #ff7b72; }
+    .dark .tok-var { color: #ffa657; }
+    .dark .tok-fn { color: #d2a8ff; }
+
+    .docs-prose {
+        @apply text-body text-ink-muted;
+    }
+
+    .docs-prose p + p {
+        @apply mt-4;
+    }
+
+    .docs-prose a {
+        @apply font-medium text-ink underline underline-offset-4 hover:text-ink-muted;
+    }
+
+    .docs-prose strong {
+        @apply font-semibold text-ink;
+    }
+
+    .docs-prose :not(pre) > code {
+        @apply rounded-sm border border-border bg-surface-subtle px-[5px] py-px font-mono text-code-inline text-ink;
+    }
+
+    .docs-prose ul {
+        @apply flex list-disc flex-col gap-2 pl-5 marker:text-ink-subtle;
+    }
+}
