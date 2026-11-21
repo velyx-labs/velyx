@@ -3,7 +3,7 @@
   "name": "input",
   "version": "3.0.0",
   "description": "A single-line text field. Reads errors from the Laravel error bag and sets aria-invalid.",
-  "requires": { "laravel": ">=11" },
+  "requires": { "laravel": ">=10" },
   "files": [
     { "path": "input.blade.php", "target": "input.blade.php" }
   ]

@@ -6,7 +6,7 @@
     <div class="mx-auto flex max-w-[1200px] flex-col items-center gap-6 px-4 text-center sm:px-8">
         <x-reveal as="a" href="https://github.com/velyx-labs/velyx/releases" class="group inline-flex h-7 items-center gap-2 rounded-full border border-border bg-surface px-3 text-small font-medium text-ink hover:bg-surface-subtle">
             <span class="rounded-full bg-primary px-1.5 py-px font-mono text-[11px] text-on-primary">3.0</span>
-            Go CLI, icon sets and Laravel 11+
+            Go CLI, icon sets and Laravel 10+
             <x-tabler-arrow-right class="size-3.5 transition-transform duration-300 ease-out-quint group-hover:translate-x-0.5" aria-hidden="true" />
         </x-reveal>
 

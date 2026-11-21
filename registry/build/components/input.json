@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "description": "A single-line text field. Reads errors from the Laravel error bag and sets aria-invalid.",
   "requires": {
-    "laravel": "\u003e=11"
+    "laravel": "\u003e=10"
   },
   "dependencies": {},
   "files": [

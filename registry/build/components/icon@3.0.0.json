@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "description": "Renders an icon by its Velyx name from the icon set chosen at init. Generated from registry/icons/icons.json.",
   "requires": {
-    "laravel": "\u003e=11"
+    "laravel": "\u003e=10"
   },
   "dependencies": {},
   "files": [

@@ -28,7 +28,7 @@
       "maxLength": 280
     },
     "requires": {
-      "description": "Minimum versions the user's project must meet. Defaults: PHP 8.2, Laravel 11, Livewire 3.",
+      "description": "Minimum versions the user's project must meet. Defaults: PHP 8.2, Laravel 10, Livewire 3.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
