@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@import '../../../tokens/build/velyx.css';
+@import './fonts.css';
+@import './motion.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    html {
+        @apply scroll-smooth bg-canvas text-ink font-sans antialiased;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-focus;
+    }
+}

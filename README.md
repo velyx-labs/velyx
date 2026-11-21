@@ -14,7 +14,7 @@ Laravel components you own, line by line.
 | `registry/php/` | Pest + Testbench harness that renders every component in a real Laravel app. |
 | `tokens/` | Design tokens (`tokens.json`) and the generated Tailwind v4 stylesheet (`build/velyx.css`). |
 | `cli/` | The Go CLI (`velyx`), plus the token generator. |
-| `site/` | The website: landing, docs and previews (coming next). |
+| `site/` | The website (Laravel 13, Livewire 4): landing, docs and previews. Imports `tokens/build/velyx.css` and self-hosts the fonts. |
 
 ## Using the CLI (development build)
 
@@ -38,6 +38,14 @@ make registry # regenerate the icon component and registry/build
 make test     # run the Go tests
 make test-php # render every component in Laravel (cd registry/php && composer install first)
 make build    # build bin/velyx
+```
+
+The site runs like any Laravel app from `site/`:
+
+```bash
+cd site && composer install && pnpm install
+cp .env.example .env && php artisan key:generate && php artisan migrate
+composer run dev
 ```
 
 ## License
