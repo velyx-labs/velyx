@@ -10,8 +10,8 @@
     $markdownUrl = url()->current().'.md';
     $prompt = 'Read '.$markdownUrl.' so I can ask questions about it.';
     $assistants = [
-        'Claude' => 'https://claude.ai/new?q='.rawurlencode($prompt),
-        'ChatGPT' => 'https://chatgpt.com/?hints=search&q='.rawurlencode($prompt),
+        'Claude' => ['https://claude.ai/new?q='.rawurlencode($prompt), 'icons.claude', 'size-4'],
+        'ChatGPT' => ['https://chatgpt.com/?hints=search&q='.rawurlencode($prompt), 'icons.openai', 'size-5 -mx-0.5'],
     ];
     $iconButton = 'inline-flex size-8 items-center justify-center rounded-md border border-border bg-surface text-ink transition-colors hover:bg-surface-subtle';
 @endphp
@@ -66,12 +66,12 @@
             class="absolute top-[calc(100%+6px)] right-0 z-40 flex w-56 flex-col rounded-lg border border-border bg-surface p-1 text-small shadow-lg"
         >
             <a role="menuitem" href="{{ $markdownUrl }}" target="_blank" class="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-ink hover:bg-surface-subtle">
-                <x-tabler-markdown class="size-4 text-ink-muted" aria-hidden="true" />
+                <x-icons.markdown class="h-2.5 w-4 text-ink" />
                 View as Markdown
             </a>
-            @foreach ($assistants as $name => $url)
+            @foreach ($assistants as $name => [$url, $logo, $size])
                 <a role="menuitem" href="{{ $url }}" target="_blank" rel="noopener" class="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-ink hover:bg-surface-subtle">
-                    <x-tabler-message-chatbot class="size-4 text-ink-muted" aria-hidden="true" />
+                    <x-dynamic-component :component="$logo" :class="$size.' text-ink'" />
                     Open in {{ $name }}
                     <x-tabler-arrow-up-right class="ml-auto size-3.5 text-ink-subtle" aria-hidden="true" />
                 </a>

@@ -162,7 +162,9 @@ class DocsTest extends TestCase
             ->assertSee('href="'.url('/docs/components/input.md').'"', false)
             ->assertSee('title="Previous: Button"', false)
             ->assertSee('title="Next: Label"', false)
-            ->assertSee('https://claude.ai/new?q=', false);
+            ->assertSee('https://claude.ai/new?q=', false)
+            ->assertSee('fill="#D97757"', false)
+            ->assertSee('viewBox="0 0 611 611"', false);
     }
 
     public function test_long_source_files_fold_behind_expand(): void
