@@ -70,3 +70,30 @@ func TestResolveRejectsUnknownValues(t *testing.T) {
 		t.Error("expected an error for an unknown accent")
 	}
 }
+
+func TestScopedCSSKeepsTheHostTokensOutsideTheScope(t *testing.T) {
+	css, err := load(t).ScopedCSS(Options{}, ".velyx-preview", map[string]string{
+		"color-primary": "var(--velyx-primary)",
+		"radius-md":     "var(--velyx-radius-md)",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{
+		".velyx-preview {\n  --radius: 0.625rem;",
+		"--ui-radius-md: calc(var(--radius) - 2px);",
+		".dark .velyx-preview {",
+		"--color-primary: var(--primary, var(--velyx-primary));",
+		"--color-muted: var(--muted);",
+		"--radius-md: var(--ui-radius-md, var(--velyx-radius-md));",
+		"--radius-xl: var(--ui-radius-xl);",
+		":where(.velyx-preview, .velyx-preview *) {",
+	} {
+		if !strings.Contains(css, want) {
+			t.Errorf("ScopedCSS is missing %q", want)
+		}
+	}
+	if strings.Contains(css, ":root") || strings.Contains(css, "--font-sans") {
+		t.Error("ScopedCSS must not touch :root or the host font")
+	}
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://velyx.dev/schema/velyx.json",
+  "components": "resources/views/components/ui",
+  "css": "resources/css/ui-theme.css",
+  "appCss": "resources/css/app.css",
+  "icons": "tabler",
+  "theme": {
+    "base": "neutral",
+    "accent": "neutral",
+    "radius": "0.625",
+    "font": "Hanken Grotesk"
+  },
+  "registry": "../registry/build",
+  "installed": {
+    "badge": "3.0.0",
+    "button": "3.0.0",
+    "card": "3.0.0",
+    "icon": "3.0.0",
+    "input": "3.0.0",
+    "label": "3.0.0"
+  }
+}

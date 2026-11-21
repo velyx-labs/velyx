@@ -1,4 +1,4 @@
-.PHONY: tokens registry test test-php vet build check-generated
+.PHONY: tokens registry site-theme site-components test test-php vet build check-generated
 
 GO := cd cli && go
 
@@ -9,6 +9,14 @@ tokens:
 # Regenerate the icon component and the static registry in registry/build.
 registry:
 	$(GO) run ./cmd/velyx-registry -root ../registry
+
+# Regenerate the component theme the site uses for its live previews.
+site-theme:
+	$(GO) run ./cmd/velyx-site-theme
+
+# Reinstall every registry component into the site with the CLI itself.
+site-components: build
+	cd site && ../bin/velyx add $(notdir $(wildcard registry/components/*)) --yes --overwrite --no-composer
 
 test:
 	$(GO) test ./...
@@ -24,5 +32,5 @@ build:
 	$(GO) build -o ../bin/velyx ./cmd/velyx
 
 # Fails when generated files are out of date with tokens.json.
-check-generated: tokens registry
-	git diff --exit-code -- tokens/build cli/internal/ui registry/build registry/components/icon
+check-generated: tokens registry site-theme site-components
+	git diff --exit-code -- tokens/build cli/internal/ui registry/build registry/components/icon site/resources/css/ui-theme.css site/resources/views/components/ui site/velyx.json
