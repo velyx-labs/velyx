@@ -1,0 +1,42 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "card",
+  "version": "3.0.0",
+  "description": "Groups related content and actions in a bordered surface, with header, title, description, content and footer parts.",
+  "requires": {
+    "laravel": "\u003e=11"
+  },
+  "dependencies": {},
+  "files": [
+    {
+      "path": "card.blade.php",
+      "target": "card/card.blade.php",
+      "content": "@props([\n    'as' =\u003e 'div',\n])\n\n\u003c{{ $as }} {{ $attributes-\u003eclass('flex flex-col gap-6 rounded-xl border border-border bg-card py-6 text-card-foreground shadow-xs') }}\u003e\n    {{ $slot }}\n\u003c/{{ $as }}\u003e\n"
+    },
+    {
+      "path": "header.blade.php",
+      "target": "card/header.blade.php",
+      "content": "\u003cdiv {{ $attributes-\u003eclass('flex flex-col gap-1.5 px-6') }}\u003e\n    {{ $slot }}\n\u003c/div\u003e\n"
+    },
+    {
+      "path": "title.blade.php",
+      "target": "card/title.blade.php",
+      "content": "@props([\n    'as' =\u003e 'h3',\n])\n\n\u003c{{ $as }} {{ $attributes-\u003eclass('text-base leading-none font-semibold') }}\u003e\n    {{ $slot }}\n\u003c/{{ $as }}\u003e\n"
+    },
+    {
+      "path": "description.blade.php",
+      "target": "card/description.blade.php",
+      "content": "\u003cp {{ $attributes-\u003eclass('text-sm text-muted-foreground') }}\u003e\n    {{ $slot }}\n\u003c/p\u003e\n"
+    },
+    {
+      "path": "content.blade.php",
+      "target": "card/content.blade.php",
+      "content": "\u003cdiv {{ $attributes-\u003eclass('px-6') }}\u003e\n    {{ $slot }}\n\u003c/div\u003e\n"
+    },
+    {
+      "path": "footer.blade.php",
+      "target": "card/footer.blade.php",
+      "content": "\u003cdiv {{ $attributes-\u003eclass('flex items-center gap-2 px-6') }}\u003e\n    {{ $slot }}\n\u003c/div\u003e\n"
+    }
+  ]
+}

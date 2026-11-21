@@ -1,0 +1,21 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "button",
+  "version": "3.0.0",
+  "description": "Triggers an action or navigates. Five variants, three sizes, an icon slot and a Livewire loading state.",
+  "requires": {
+    "laravel": "\u003e=11"
+  },
+  "dependencies": {
+    "components": [
+      "icon"
+    ]
+  },
+  "files": [
+    {
+      "path": "button.blade.php",
+      "target": "button.blade.php",
+      "content": "@props([\n    'variant' =\u003e 'default',\n    'size' =\u003e 'md',\n    'href' =\u003e null,\n    'icon' =\u003e null,\n    'iconTrailing' =\u003e null,\n    'type' =\u003e 'button',\n])\n\n@php\n    $variants = [\n        'default' =\u003e 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',\n        'secondary' =\u003e 'bg-secondary text-secondary-foreground hover:bg-secondary/80',\n        'outline' =\u003e 'border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',\n        'ghost' =\u003e 'hover:bg-accent hover:text-accent-foreground',\n        'destructive' =\u003e 'bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90',\n        'link' =\u003e 'text-primary underline-offset-4 hover:underline',\n    ];\n\n    $sizes = [\n        'sm' =\u003e 'h-8 gap-1.5 rounded-md px-3 text-xs',\n        'md' =\u003e 'h-9 gap-2 rounded-md px-4 text-sm',\n        'lg' =\u003e 'h-10 gap-2 rounded-md px-6 text-sm',\n        'icon' =\u003e 'size-9 rounded-md',\n    ];\n\n    $classes = \\Illuminate\\Support\\Arr::toCssClasses([\n        'inline-flex shrink-0 items-center justify-center whitespace-nowrap font-medium transition-colors',\n        'outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',\n        'disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50',\n        $variants[$variant] ?? $variants['default'],\n        $sizes[$size] ?? $sizes['md'],\n    ]);\n\n    // When the button triggers a Livewire action, show a spinner and disable it while the action runs.\n    $action = $attributes-\u003ewhereStartsWith('wire:click')-\u003efirst();\n    $target = $action ? strtok($action, '(') : null;\n@endphp\n\n@if ($href)\n    \u003ca href=\"{{ $href }}\" {{ $attributes-\u003eclass($classes) }}\u003e\n        @if ($icon)\n            \u003cx-ui.icon :name=\"$icon\" class=\"size-4\" /\u003e\n        @endif\n        {{ $slot }}\n        @if ($iconTrailing)\n            \u003cx-ui.icon :name=\"$iconTrailing\" class=\"size-4\" /\u003e\n        @endif\n    \u003c/a\u003e\n@else\n    \u003cbutton\n        type=\"{{ $type }}\"\n        @if ($target)\n            wire:loading.attr=\"disabled\"\n            wire:target=\"{{ $target }}\"\n        @endif\n        {{ $attributes-\u003eclass($classes) }}\n    \u003e\n        @if ($target)\n            \u003cx-ui.icon name=\"loader\" class=\"size-4 animate-spin\" wire:loading wire:target=\"{{ $target }}\" /\u003e\n        @endif\n        @if ($icon \u0026\u0026 $target)\n            \u003cx-ui.icon :name=\"$icon\" class=\"size-4\" wire:loading.remove wire:target=\"{{ $target }}\" /\u003e\n        @elseif ($icon)\n            \u003cx-ui.icon :name=\"$icon\" class=\"size-4\" /\u003e\n        @endif\n        {{ $slot }}\n        @if ($iconTrailing)\n            \u003cx-ui.icon :name=\"$iconTrailing\" class=\"size-4\" /\u003e\n        @endif\n    \u003c/button\u003e\n@endif\n"
+    }
+  ]
+}

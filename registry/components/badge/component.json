@@ -1,0 +1,11 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "badge",
+  "version": "3.0.0",
+  "description": "Small labels for status and metadata. Status badges always carry a word.",
+  "requires": { "laravel": ">=11" },
+  "dependencies": { "components": ["icon"] },
+  "files": [
+    { "path": "badge.blade.php", "target": "badge.blade.php" }
+  ]
+}

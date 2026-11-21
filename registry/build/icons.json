@@ -1,0 +1,38 @@
+{
+  "$comment": "Semantic icon names used by Velyx components, mapped to each supported icon set. Components only ever write <x-ui.icon name=\"…\" />.",
+  "default": "lucide",
+  "libraries": {
+    "lucide": {
+      "label": "Lucide",
+      "composer": "mallardduck/blade-lucide-icons",
+      "component": "lucide-{name}"
+    },
+    "heroicons": {
+      "label": "Heroicons",
+      "composer": "blade-ui-kit/blade-heroicons",
+      "component": "heroicon-o-{name}"
+    },
+    "tabler": {
+      "label": "Tabler",
+      "composer": "secondnetwork/blade-tabler-icons",
+      "component": "tabler-{name}"
+    },
+    "phosphor": {
+      "label": "Phosphor",
+      "composer": "codeat3/blade-phosphor-icons",
+      "component": "phosphor-{name}"
+    }
+  },
+  "icons": {
+    "check": { "lucide": "check", "heroicons": "check", "tabler": "check", "phosphor": "check" },
+    "x": { "lucide": "x", "heroicons": "x-mark", "tabler": "x", "phosphor": "x" },
+    "chevron-down": { "lucide": "chevron-down", "heroicons": "chevron-down", "tabler": "chevron-down", "phosphor": "caret-down" },
+    "chevron-right": { "lucide": "chevron-right", "heroicons": "chevron-right", "tabler": "chevron-right", "phosphor": "caret-right" },
+    "loader": { "lucide": "loader-circle", "heroicons": "arrow-path", "tabler": "loader-2", "phosphor": "spinner" },
+    "info": { "lucide": "info", "heroicons": "information-circle", "tabler": "info-circle", "phosphor": "info" },
+    "circle-check": { "lucide": "circle-check", "heroicons": "check-circle", "tabler": "circle-check", "phosphor": "check-circle" },
+    "alert-triangle": { "lucide": "triangle-alert", "heroicons": "exclamation-triangle", "tabler": "alert-triangle", "phosphor": "warning" },
+    "search": { "lucide": "search", "heroicons": "magnifying-glass", "tabler": "search", "phosphor": "magnifying-glass" },
+    "copy": { "lucide": "copy", "heroicons": "document-duplicate", "tabler": "copy", "phosphor": "copy" }
+  }
+}

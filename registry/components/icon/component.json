@@ -1,0 +1,10 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "icon",
+  "version": "3.0.0",
+  "description": "Renders an icon by its Velyx name from the icon set chosen at init. Generated from registry/icons/icons.json.",
+  "requires": { "laravel": ">=11" },
+  "files": [
+    { "path": "icon.blade.php", "target": "icon.blade.php" }
+  ]
+}

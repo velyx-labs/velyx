@@ -1,0 +1,17 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "label",
+  "version": "3.0.0",
+  "description": "An accessible label with an optional required mark and hint.",
+  "requires": {
+    "laravel": "\u003e=11"
+  },
+  "dependencies": {},
+  "files": [
+    {
+      "path": "label.blade.php",
+      "target": "label.blade.php",
+      "content": "@props([\n    'required' =\u003e false,\n    'hint' =\u003e null,\n])\n\n\u003clabel {{ $attributes-\u003eclass('flex items-center gap-1 text-sm font-medium leading-none select-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50') }}\u003e\n    {{ $slot }}\n    @if ($required)\n        \u003cspan class=\"text-destructive\" aria-hidden=\"true\"\u003e*\u003c/span\u003e\n    @endif\n    @if ($hint)\n        \u003cspan class=\"font-normal text-muted-foreground\"\u003e{{ $hint }}\u003c/span\u003e\n    @endif\n\u003c/label\u003e\n"
+    }
+  ]
+}

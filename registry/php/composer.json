@@ -1,0 +1,30 @@
+{
+    "name": "velyx/registry-tests",
+    "description": "Renders every Velyx registry component inside a real Laravel app.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "blade-ui-kit/blade-heroicons": "^2.7",
+        "codeat3/blade-phosphor-icons": "^2.4",
+        "mallardduck/blade-lucide-icons": "^2.0",
+        "orchestra/testbench": "^11.3",
+        "pestphp/pest": "^5.3",
+        "secondnetwork/blade-tabler-icons": "^3.52"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

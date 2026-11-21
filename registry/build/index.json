@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "name": "badge",
+      "version": "3.0.0",
+      "description": "Small labels for status and metadata. Status badges always carry a word.",
+      "dependencies": [
+        "icon"
+      ]
+    },
+    {
+      "name": "button",
+      "version": "3.0.0",
+      "description": "Triggers an action or navigates. Five variants, three sizes, an icon slot and a Livewire loading state.",
+      "dependencies": [
+        "icon"
+      ]
+    },
+    {
+      "name": "card",
+      "version": "3.0.0",
+      "description": "Groups related content and actions in a bordered surface, with header, title, description, content and footer parts."
+    },
+    {
+      "name": "icon",
+      "version": "3.0.0",
+      "description": "Renders an icon by its Velyx name from the icon set chosen at init. Generated from registry/icons/icons.json."
+    },
+    {
+      "name": "input",
+      "version": "3.0.0",
+      "description": "A single-line text field. Reads errors from the Laravel error bag and sets aria-invalid."
+    },
+    {
+      "name": "label",
+      "version": "3.0.0",
+      "description": "An accessible label with an optional required mark and hint."
+    }
+  ]
+}

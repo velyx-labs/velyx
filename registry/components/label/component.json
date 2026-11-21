@@ -1,0 +1,10 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "label",
+  "version": "3.0.0",
+  "description": "An accessible label with an optional required mark and hint.",
+  "requires": { "laravel": ">=11" },
+  "files": [
+    { "path": "label.blade.php", "target": "label.blade.php" }
+  ]
+}

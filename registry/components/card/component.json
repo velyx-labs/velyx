@@ -1,0 +1,15 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "card",
+  "version": "3.0.0",
+  "description": "Groups related content and actions in a bordered surface, with header, title, description, content and footer parts.",
+  "requires": { "laravel": ">=11" },
+  "files": [
+    { "path": "card.blade.php", "target": "card/card.blade.php" },
+    { "path": "header.blade.php", "target": "card/header.blade.php" },
+    { "path": "title.blade.php", "target": "card/title.blade.php" },
+    { "path": "description.blade.php", "target": "card/description.blade.php" },
+    { "path": "content.blade.php", "target": "card/content.blade.php" },
+    { "path": "footer.blade.php", "target": "card/footer.blade.php" }
+  ]
+}

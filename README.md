@@ -8,18 +8,23 @@ Laravel components you own, line by line.
 
 | Path | What |
 | --- | --- |
-| `registry/` | Components as data: one folder per component with a `component.json` manifest (`registry/schema/component.schema.json`). |
+| `registry/components/` | One folder per component: Blade files plus a `component.json` manifest (`registry/schema/component.schema.json`). |
+| `registry/themes/`, `registry/icons/` | Theme sources for the user's `velyx.css`, and the map from Velyx icon names to each icon set. |
+| `registry/build/` | Generated static registry the CLI downloads (`make registry`). |
+| `registry/php/` | Pest + Testbench harness that renders every component in a real Laravel app. |
 | `tokens/` | Design tokens (`tokens.json`) and the generated Tailwind v4 stylesheet (`build/velyx.css`). |
 | `cli/` | The Go CLI (`velyx`), plus the token generator. |
 | `site/` | The website: landing, docs and previews (coming next). |
 
 ## Development
 
-Requires Go 1.24+.
+Requires Go 1.24+, and PHP 8.2+ with Composer for the component tests.
 
 ```bash
 make tokens   # regenerate tokens/build/velyx.css and the CLI palette
+make registry # regenerate the icon component and registry/build
 make test     # run the Go tests
+make test-php # render every component in Laravel (cd registry/php && composer install first)
 make build    # build bin/velyx
 ```
 

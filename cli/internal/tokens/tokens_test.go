@@ -21,17 +21,17 @@ func TestCSSHasLightDarkAndThemeBlocks(t *testing.T) {
 	css := loadRepoTokens(t).CSS()
 
 	for _, want := range []string{
-		"--velyx-brand: #2e3beb;",
-		"--velyx-brand: #8b93ff;",
-		"--velyx-focus: var(--velyx-brand);",
+		"--velyx-ink: #0a0a0a;",
+		"--velyx-ink: #fafafa;",
+		"--velyx-focus: var(--velyx-ink);",
 		".dark,\n[data-theme=\"dark\"] {",
 		"@media (prefers-color-scheme: dark)",
 		"@theme inline {",
-		"--color-brand: var(--velyx-brand);",
+		"--color-primary: var(--velyx-primary);",
 		"--radius-md: var(--velyx-radius-md);",
 		"--font-display: var(--velyx-font-display);",
-		"--text-heading-1: 36px;",
-		"--text-heading-1--line-height: 42px;",
+		"--text-heading-1: 44px;",
+		"--text-heading-1--line-height: 46px;",
 	} {
 		if !strings.Contains(css, want) {
 			t.Errorf("CSS is missing %q", want)
@@ -43,10 +43,10 @@ func TestDarkBlockOnlyOverridesChangedTokens(t *testing.T) {
 	css := loadRepoTokens(t).CSS()
 	dark := css[strings.Index(css, ".dark,"):strings.Index(css, "@theme inline")]
 
-	if strings.Contains(dark, "--velyx-marker:") {
-		t.Error("marker is the same in both themes and should not be overridden in dark")
+	if strings.Contains(dark, "--velyx-on-terminal:") {
+		t.Error("on-terminal is the same in both themes and should not be overridden in dark")
 	}
-	if !strings.Contains(dark, "--velyx-ink: #eef0f6;") {
+	if !strings.Contains(dark, "--velyx-ink: #fafafa;") {
 		t.Error("dark block should override ink")
 	}
 }
@@ -67,9 +67,9 @@ func TestGoPaletteResolvesAliases(t *testing.T) {
 	got := string(source)
 	for _, want := range []string{
 		"package ui",
-		`Brand = Color{Light: "#2e3beb", Dark: "#8b93ff"}`,
-		`Focus = Color{Light: "#2e3beb", Dark: "#8b93ff"}`,
-		`SurfaceRaised = Color{`,
+		`Ink = Color{Light: "#0a0a0a", Dark: "#fafafa"}`,
+		`Focus = Color{Light: "#0a0a0a", Dark: "#fafafa"}`,
+		`SurfaceSubtle = Color{`,
 	} {
 		if !strings.Contains(got, want) {
 			t.Errorf("palette is missing %q", want)

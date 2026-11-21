@@ -1,0 +1,17 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "input",
+  "version": "3.0.0",
+  "description": "A single-line text field. Reads errors from the Laravel error bag and sets aria-invalid.",
+  "requires": {
+    "laravel": "\u003e=11"
+  },
+  "dependencies": {},
+  "files": [
+    {
+      "path": "input.blade.php",
+      "target": "input.blade.php",
+      "content": "@props([\n    'type' =\u003e 'text',\n    'size' =\u003e 'md',\n    'name' =\u003e null,\n    'invalid' =\u003e null,\n])\n\n@php\n    // The field name drives the error lookup; fall back to the wire:model property.\n    $field = $name ?? $attributes-\u003ewhereStartsWith('wire:model')-\u003efirst();\n    $invalid ??= $field \u0026\u0026 isset($errors) \u0026\u0026 $errors-\u003ehas($field);\n\n    $sizes = [\n        'sm' =\u003e 'h-8 px-2.5 text-xs',\n        'md' =\u003e 'h-9 px-3 text-sm',\n        'lg' =\u003e 'h-10 px-3.5 text-sm',\n    ];\n@endphp\n\n\u003cinput\n    type=\"{{ $type }}\"\n    @if ($name) name=\"{{ $name }}\" @endif\n    @if ($invalid) aria-invalid=\"true\" @endif\n    {{ $attributes-\u003eclass([\n        'flex w-full min-w-0 rounded-md border border-input bg-transparent shadow-xs transition-colors',\n        'placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground',\n        'file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground',\n        'outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/40',\n        'disabled:cursor-not-allowed disabled:opacity-50',\n        'aria-invalid:border-destructive aria-invalid:ring-destructive/30',\n        $sizes[$size] ?? $sizes['md'],\n    ]) }}\n\u003e\n"
+    }
+  ]
+}
