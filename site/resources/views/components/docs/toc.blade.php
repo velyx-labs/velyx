@@ -33,4 +33,16 @@
         <x-icons.github class="size-3.5" />
         Edit on GitHub
     </a>
+
+    <a href="https://buymeacoffee.com/jiordiviera" class="group mt-4 flex flex-col gap-2 rounded-lg border border-border bg-surface p-3.5 transition-colors hover:border-border-strong">
+        <span class="flex items-center gap-2 font-semibold text-ink">
+            <x-icons.buy-me-a-coffee class="h-4 w-auto" />
+            Support Velyx
+        </span>
+        <span class="text-ink-muted">Velyx is free and MIT licensed. A coffee keeps new components coming.</span>
+        <span class="inline-flex items-center gap-1 font-medium text-ink">
+            Buy me a coffee
+            <x-tabler-arrow-right class="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+        </span>
+    </a>
 </aside>

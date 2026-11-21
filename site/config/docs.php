@@ -42,6 +42,14 @@ return [
         'badge' => 'Badge',
     ],
 
+    /*
+    | Pages to flag as new in the sidebar, as navigation keys such as
+    | "component:button" or "guide:theming". Clear an entry once it has
+    | been out for a while.
+    */
+
+    'new' => [],
+
     'repository' => 'https://github.com/velyx-labs/velyx',
 
 ];

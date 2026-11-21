@@ -26,6 +26,9 @@
         <x-docs.command :command="'velyx add '.$manifest['name']" />
     </div>
 
+    {{-- Only read in the Markdown copy of the page, where both tabs show. --}}
+    <p class="hidden">Or install it by hand:</p>
+
     <ol x-show="tab === 'manual'" x-cloak role="tabpanel" class="flex flex-col gap-7">
         @php($step = 0)
 
@@ -51,7 +54,7 @@
             <div class="flex min-w-0 flex-1 flex-col gap-3">
                 <p class="docs-prose">Copy {{ count($manifest['files']) === 1 ? 'this file' : 'these files' }} into <code>{{ $folder }}</code>.</p>
                 @foreach ($manifest['files'] as $file)
-                    <x-docs.code :code="$file['content']" :file="$folder.'/'.$file['target']" class="max-h-[420px] overflow-y-auto" />
+                    <x-docs.code :code="$file['content']" :file="$folder.'/'.$file['target']" expandable />
                 @endforeach
             </div>
         </li>
