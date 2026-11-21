@@ -62,3 +62,11 @@
         animation: none;
     }
 }
+
+/* Theme switch: one quick cross-fade of the whole page instead of every
+   element easing its colours on its own. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: var(--ease-out-quint);
+}
