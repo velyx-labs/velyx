@@ -3,7 +3,7 @@
   "name": "button",
   "version": "3.0.0",
   "description": "Triggers an action or navigates. Five variants, three sizes, an icon slot and a Livewire loading state.",
-  "requires": { "laravel": ">=11" },
+  "requires": { "laravel": ">=10" },
   "dependencies": { "components": ["icon"] },
   "files": [
     { "path": "button.blade.php", "target": "button.blade.php" }

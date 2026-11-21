@@ -50,9 +50,16 @@ func TestDetectRejectsNonLaravelFolders(t *testing.T) {
 }
 
 func TestProblemsFlagOldVersions(t *testing.T) {
-	info := Info{Laravel: "10.48.0", Tailwind: "^3.4"}
+	info := Info{Laravel: "9.52.0", Tailwind: "^3.4"}
 	got := strings.Join(info.Problems(), " ")
-	if !strings.Contains(got, "Laravel 10.48.0") || !strings.Contains(got, "Tailwind CSS ^3.4") {
+	if !strings.Contains(got, "Laravel 9.52.0") || !strings.Contains(got, "Tailwind CSS ^3.4") {
 		t.Fatalf("problems = %q", got)
+	}
+}
+
+func TestProblemsAcceptLaravel10(t *testing.T) {
+	info := Info{Laravel: "10.48.0", Tailwind: "^4.1"}
+	if got := info.Problems(); len(got) != 0 {
+		t.Fatalf("Laravel 10 with Tailwind 4 should pass, got %q", got)
 	}
 }

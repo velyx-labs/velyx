@@ -3,7 +3,7 @@
   "name": "card",
   "version": "3.0.0",
   "description": "Groups related content and actions in a bordered surface, with header, title, description, content and footer parts.",
-  "requires": { "laravel": ">=11" },
+  "requires": { "laravel": ">=10" },
   "files": [
     { "path": "card.blade.php", "target": "card/card.blade.php" },
     { "path": "header.blade.php", "target": "card/header.blade.php" },

@@ -36,7 +36,7 @@
 
     <x-docs.section id="requirements" title="Requirements">
         <ul class="docs-prose">
-            <li>Laravel 11 or later, PHP 8.2 or later.</li>
+            <li>Laravel 10 or later, PHP 8.2 or later.</li>
             <li>Tailwind CSS v4.</li>
             <li>Livewire 3 or later and Alpine.js, only for the components that use them.</li>
         </ul>

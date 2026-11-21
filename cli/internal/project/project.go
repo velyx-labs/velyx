@@ -23,7 +23,7 @@ type Info struct {
 
 // Minimum versions supported by Velyx 3.
 const (
-	MinLaravel  = 11
+	MinLaravel  = 10
 	MinTailwind = 4
 )
 
