@@ -5,7 +5,7 @@
   "description": "Groups related content and actions in a bordered surface, with header, title, description, content and footer parts.",
   "requires": { "laravel": ">=10" },
   "files": [
-    { "path": "card.blade.php", "target": "card/card.blade.php" },
+    { "path": "card.blade.php", "target": "card/index.blade.php" },
     { "path": "header.blade.php", "target": "card/header.blade.php" },
     { "path": "title.blade.php", "target": "card/title.blade.php" },
     { "path": "description.blade.php", "target": "card/description.blade.php" },

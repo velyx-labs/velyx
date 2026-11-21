@@ -21,7 +21,20 @@ jobs:
         run: make check-generated
 
   components:
+    name: components (${{ matrix.name }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The locked harness, on the current Laravel.
+          - name: latest
+            php: '8.4'
+          # The oldest Laravel Velyx supports, on the oldest PHP it supports.
+          - name: Laravel 10
+            php: '8.2'
+            testbench: '^8.0'
+            pest: '^2.0'
     defaults:
       run:
         working-directory: registry/php
@@ -29,7 +42,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: ${{ matrix.php }}
           coverage: none
-      - run: composer install --no-interaction --no-progress
+      - if: ${{ ! matrix.testbench }}
+        run: composer install --no-interaction --no-progress
+      # Laravel 10 is past end of life and has open advisories, so Composer
+      # would refuse it. This harness only renders Blade in a test run.
+      - if: ${{ matrix.testbench }}
+        run: |
+          composer config audit.block-insecure false
+          composer require --dev --no-interaction --no-progress --with-all-dependencies \
+            "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}"
+          composer show laravel/framework | grep -E '^versions'
       - run: vendor/bin/pest --compact
