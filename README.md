@@ -16,6 +16,18 @@ Laravel components you own, line by line.
 | `cli/` | The Go CLI (`velyx`), plus the token generator. |
 | `site/` | The website: landing, docs and previews (coming next). |
 
+## Using the CLI (development build)
+
+```bash
+make build
+cd path/to/your-laravel-app
+/path/to/velyx/bin/velyx init --registry /path/to/velyx/registry/build
+/path/to/velyx/bin/velyx add button card
+/path/to/velyx/bin/velyx list
+```
+
+Without `--registry`, the CLI reads the registry from this repository's `v3` branch on GitHub.
+
 ## Development
 
 Requires Go 1.24+, and PHP 8.2+ with Composer for the component tests.

@@ -55,6 +55,12 @@ func Load(path string) (*Source, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return Parse(data)
+}
+
+// Parse decodes themes.json content.
+func Parse(data []byte) (*Source, error) {
 	var s Source
 	if err := json.Unmarshal(data, &s); err != nil {
 		return nil, fmt.Errorf("decode themes.json: %w", err)

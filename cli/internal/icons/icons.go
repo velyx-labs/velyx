@@ -30,6 +30,12 @@ func Load(path string) (*Map, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return Parse(data)
+}
+
+// Parse decodes and validates icons.json content.
+func Parse(data []byte) (*Map, error) {
 	var m Map
 	if err := json.Unmarshal(data, &m); err != nil {
 		return nil, fmt.Errorf("decode icons.json: %w", err)
