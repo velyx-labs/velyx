@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velyx.dev/schema/component.json",
+  "title": "Velyx component",
+  "description": "Manifest of one component in the Velyx registry (registry/components/<name>/component.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "version", "description", "files"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "description": "Component name, used in `velyx add <name>`. Lowercase letters, digits and hyphens.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "maxLength": 64
+    },
+    "version": {
+      "description": "Semantic version of this component.",
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?$"
+    },
+    "description": {
+      "description": "One sentence shown in `velyx list` and the docs.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 280
+    },
+    "requires": {
+      "description": "Minimum versions the user's project must meet. Defaults: PHP 8.2, Laravel 11, Livewire 3.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "php": { "type": "string" },
+        "laravel": { "type": "string" },
+        "livewire": { "type": "string" },
+        "alpine": { "type": "boolean" }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "components": {
+          "description": "Other Velyx components installed alongside this one.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }
+        },
+        "composer": {
+          "description": "Composer packages, optionally pinned as vendor/package@version.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "npm": {
+          "description": "npm packages, optionally pinned as package@version.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "files": {
+      "description": "Files copied into the user's project.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "target"],
+        "properties": {
+          "path": {
+            "description": "Path relative to the component folder.",
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "description": "Destination relative to the project's components root (velyx.json components.path).",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

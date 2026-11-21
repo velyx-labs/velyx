@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [v3]
+  pull_request:
+    branches: [v3]
+
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: cli/go.mod
+      - run: make vet
+      - run: make test
+      - run: make build
+      - name: Generated files are up to date
+        run: make check-generated

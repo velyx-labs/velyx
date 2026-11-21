@@ -1,0 +1,15 @@
+{
+  "$schema": "https://velyx.dev/schema/component.json",
+  "name": "dialog",
+  "version": "3.0.0",
+  "description": "Modal dialog with focus trap and Livewire support.",
+  "requires": { "laravel": ">=11", "livewire": ">=3", "alpine": true },
+  "dependencies": {
+    "components": ["button"],
+    "composer": ["mallardduck/blade-lucide-icons"],
+    "npm": []
+  },
+  "files": [
+    { "path": "dialog.blade.php", "target": "dialog.blade.php" }
+  ]
+}
