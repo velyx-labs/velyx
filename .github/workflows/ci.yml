@@ -51,7 +51,9 @@ jobs:
       - if: ${{ matrix.testbench }}
         run: |
           composer config audit.block-insecure false
-          composer require --dev --no-interaction --no-progress --with-all-dependencies \
+          composer require --dev --no-update \
             "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}"
+          # Resolve everything again: the lock pins Symfony versions Laravel 10 cannot use.
+          composer update --no-interaction --no-progress
           composer show laravel/framework | grep -E '^versions'
       - run: vendor/bin/pest --compact
