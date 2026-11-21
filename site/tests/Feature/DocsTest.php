@@ -126,4 +126,67 @@ class DocsTest extends TestCase
             $this->get($url)->assertSee('title="Toggle theme (D)"', false)->assertSee('startViewTransition', false);
         }
     }
+
+    #[DataProvider('pages')]
+    public function test_every_docs_page_has_a_markdown_copy(string $url): void
+    {
+        $response = $this->get($url.'.md')->assertOk()->assertHeader('Content-Type', 'text/markdown; charset=UTF-8');
+
+        $this->assertMatchesRegularExpression('/^# \S/', $response->getContent());
+        $prose = preg_replace('/^( *)```[^\n]*\n.*?^\1```$/ms', '', $response->getContent());
+        $this->assertStringNotContainsString('<div', $prose);
+        $this->assertStringNotContainsString('class="', $prose);
+    }
+
+    public function test_markdown_keeps_code_and_drops_previews(): void
+    {
+        $markdown = $this->get('/docs/components/button.md')->getContent();
+
+        $this->assertStringContainsString("```bash\nnpx velyx add button\n```", $markdown);
+        $this->assertStringContainsString("## Destructive\n\nFor actions that delete or cannot be undone.\n\n```blade\n<x-ui.button variant=\"destructive\">", $markdown);
+        $this->assertStringContainsString("2. Copy this file into `resources/views/components/ui`.\n\n   ```blade title=\"resources/views/components/ui/button.blade.php\"\n   @props([", $markdown);
+        $this->assertStringNotContainsString('Copy page', $markdown);
+        $this->assertStringNotContainsString('View code', $markdown);
+    }
+
+    public function test_unknown_markdown_pages_are_not_found(): void
+    {
+        $this->get('/docs/nope.md')->assertNotFound();
+        $this->get('/docs/components/nope.md')->assertNotFound();
+    }
+
+    public function test_pages_have_copy_and_neighbour_actions(): void
+    {
+        $this->get('/docs/components/input')
+            ->assertSee('Copy page')
+            ->assertSee('href="'.url('/docs/components/input.md').'"', false)
+            ->assertSee('title="Previous: Button"', false)
+            ->assertSee('title="Next: Label"', false)
+            ->assertSee('https://claude.ai/new?q=', false);
+    }
+
+    public function test_long_source_files_fold_behind_expand(): void
+    {
+        $this->get('/docs/components/button')->assertSee("expanded ? 'Collapse' : 'Expand'", false);
+        $this->get('/docs/components/label')->assertDontSee("expanded ? 'Collapse' : 'Expand'", false);
+    }
+
+    public function test_installation_offers_starting_points(): void
+    {
+        $this->get('/docs/installation')->assertSeeInOrder(['New Laravel app', 'Livewire starter kit', 'Existing project', 'By hand']);
+    }
+
+    public function test_the_table_of_contents_links_to_sponsoring(): void
+    {
+        $this->get('/docs/cli')->assertSee('https://buymeacoffee.com/jiordiviera', false)->assertSee('Support Velyx');
+    }
+
+    public function test_new_pages_are_flagged_in_the_sidebar(): void
+    {
+        $this->get('/docs/cli')->assertDontSee('(new)');
+
+        config(['docs.new' => ['component:card']]);
+
+        $this->get('/docs/cli')->assertSeeInOrder(['Card', '(new)', 'Badge']);
+    }
 }

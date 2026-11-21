@@ -13,11 +13,17 @@
                     href="{{ $link['url'] }}"
                     @if ($active) aria-current="page" @endif
                     @class([
-                        'rounded-md px-2.5 py-1.5 text-control transition-colors',
+                        'flex items-center gap-2 rounded-md px-2.5 py-1.5 text-control transition-colors',
                         'bg-surface-subtle font-semibold text-ink' => $active,
                         'text-ink-muted hover:bg-surface-subtle hover:text-ink' => ! $active,
                     ])
-                >{{ $link['title'] }}</a>
+                >
+                    {{ $link['title'] }}
+                    @if (in_array($link['key'], config('docs.new', []), true))
+                        <span class="size-1.5 rounded-full bg-success" aria-hidden="true"></span>
+                        <span class="sr-only">(new)</span>
+                    @endif
+                </a>
             @endforeach
         </nav>
     @endforeach

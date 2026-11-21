@@ -12,6 +12,8 @@
 @endphp
 
 <div
+    data-md-code="{{ $runners['npx'] }}"
+    data-md-lang="bash"
     x-data="{
         runners: @js($runners),
         runner: 'npx',

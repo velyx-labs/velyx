@@ -15,7 +15,7 @@
 @endphp
 
 <section aria-label="Preview" {{ $attributes->class('overflow-hidden rounded-xl border border-border bg-surface') }} x-data="{ open: false }">
-    <div class="velyx-preview relative grid place-items-center bg-[radial-gradient(var(--velyx-border)_1px,transparent_1px)] bg-size-[16px_16px] px-6 py-10 {{ $stage }}">
+    <div data-md="skip" class="velyx-preview relative grid place-items-center bg-[radial-gradient(var(--velyx-border)_1px,transparent_1px)] bg-size-[16px_16px] px-6 py-10 {{ $stage }}">
         <div class="flex w-full flex-wrap items-center justify-center gap-3">
             @include($view)
         </div>

@@ -1,6 +1,33 @@
 <x-docs.layout :title="$title" :nav-key="$navKey" :around="$around" section="Getting started"
-    :toc="['init' => 'Initialize', 'add' => 'Add a component', 'files' => 'What changes', 'existing' => 'Existing projects']">
+    :toc="['start' => 'Start from', 'new-app' => 'New app', 'init' => 'Initialize', 'add' => 'Add a component', 'files' => 'What changes', 'existing' => 'Existing projects']">
     <x-docs.page-header section="Getting started" :title="$title" description="Set up Velyx in a Laravel app, then add your first component." />
+
+    <x-docs.section id="start" title="Start from">
+        <ul class="m-0 grid list-none gap-3 p-0 sm:grid-cols-2">
+            @foreach ([
+                ['New Laravel app', 'Create the app, then run velyx init.', '#new-app', 'icons.laravel'],
+                ['Livewire starter kit', 'Auth and layouts ready; Velyx adds the components.', '#new-app', 'icons.livewire'],
+                ['Existing project', 'Run init in the app you already have.', '#existing', 'tabler-folder'],
+                ['By hand', 'Copy a component from its page, no CLI.', route('docs.components'), 'tabler-clipboard-text'],
+            ] as [$label, $text, $url, $icon])
+                <li><a href="{{ $url }}" class="group h-full flex items-start gap-3.5 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-border-strong hover:bg-surface-subtle">
+                    <span class="grid size-9 shrink-0 place-items-center rounded-md border border-border bg-canvas" aria-hidden="true">
+                        <x-dynamic-component :component="$icon" class="size-[18px]" />
+                    </span>
+                    <span class="flex flex-col gap-0.5">
+                        <span class="font-semibold text-ink">{{ $label }}<span class="hidden">:</span></span>
+                        <span class="text-small text-ink-muted">{{ $text }}</span>
+                    </span>
+                </a></li>
+            @endforeach
+        </ul>
+    </x-docs.section>
+
+    <x-docs.section id="new-app" title="New app">
+        <p class="docs-prose">Create a Laravel app with the <a href="https://laravel.com/docs/installation">Laravel installer</a>. Add <code>--livewire</code> to start from the Livewire starter kit.</p>
+        <x-docs.code :code="'laravel new my-app'.PHP_EOL.'cd my-app'" file="Terminal" icon="terminal-2" :numbers="false" />
+        <p class="docs-prose">Then initialize Velyx in it.</p>
+    </x-docs.section>
 
     <x-docs.section id="init" title="Initialize">
         <p class="docs-prose">Run this at the root of your Laravel project. It asks where components go, which icon set to use and which colors to start from.</p>
