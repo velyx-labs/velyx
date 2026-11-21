@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "card.blade.php",
-      "target": "card/card.blade.php",
+      "target": "card/index.blade.php",
       "content": "@props([\n    'as' =\u003e 'div',\n])\n\n\u003c{{ $as }} {{ $attributes-\u003eclass('flex flex-col gap-6 rounded-xl border border-border bg-card py-6 text-card-foreground shadow-xs') }}\u003e\n    {{ $slot }}\n\u003c/{{ $as }}\u003e\n"
     },
     {

@@ -107,7 +107,7 @@ func TestAddInstallsComponentsWithDependencies(t *testing.T) {
 	h.out.Reset()
 	h.run(t, "add", "card", "button")
 
-	for _, rel := range []string{"button.blade.php", "card/card.blade.php", "card/title.blade.php", "icon.blade.php"} {
+	for _, rel := range []string{"button.blade.php", "card/index.blade.php", "card/title.blade.php", "icon.blade.php"} {
 		h.read(t, "resources/views/components/ui/"+rel)
 	}
 	cfg, _ := config.Load(h.root)
